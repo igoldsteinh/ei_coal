@@ -56,7 +56,6 @@ fitted_simdata <- read_csv(here::here("data",
 # this is the actual sample time from the simulated data, because coalescence occurs at some time before true time 0 (in forward time)
 # ie in reality samples are taken at time 34 in forward time, but the last coalescence occurs at time 6 in forward time
 # we can't infer before time 6, so we adjust the time scale so that now time 6 is time 0
-# hopefully this means that all subsequent lists remain in the order in which the files are ordered in the list
 sim_num_vals <- map(file_list, ~as.numeric(stringr::str_extract(.x, stringr::regex("(\\d+)(?!.*\\d)"))))
 samp_time <- map(sim_num_vals, ~fitted_simdata %>% 
                    filter(sim == .x) %>% 

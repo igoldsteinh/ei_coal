@@ -10,9 +10,10 @@ include(srcdir("sim_ei.jl"))
 include(srcdir("sim_seir.jl"))
 include(srcdir("create_coal_trees.jl"))
 include(srcdir("construct_newick_tree.jl"))
+# pick a tree file
 trees = CSV.read(datadir("sim_data", "fixed_iso50_trees.csv"), DataFrame)
 trees.og_ids = [eval(Meta.parse(trees.og_ids[i])) for i in 1:size(trees, 1)]
-# filter for sim == 1
+# filter for sim == sim_val
 sim_val = 13
 full_tree = trees[trees.sim .== sim_val, :]
 coal_and_samp_tree = full_tree[full_tree.event .== "samp" .|| full_tree.event .== "coal", :]

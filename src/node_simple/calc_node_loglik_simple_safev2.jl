@@ -1,4 +1,7 @@
-# this file is for debugging purposes only
+# this file is a repeat of calc_node_loglik_simplev2.jl
+# without some memory saving features which ensure no wierd memory overwrites
+# only used for debugging or for getting initial values of the ll
+# for documentation, see the other file
 """
 calc_node_loglik_simple_safe
 should calculate node log likelihoods under the assumption that 

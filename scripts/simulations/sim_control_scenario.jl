@@ -10,9 +10,8 @@ include(srcdir("sim_seir.jl"))
 include(srcdir("create_coal_trees.jl"))
 include(srcdir("construct_newick_tree.jl"))
 
-### how many sims? ###
-num_pop_sims = 1
 ### Simulate an SEIR trajectory ###
+num_pop_sims = 1
 N = 15000
 I_init = 1
 r0_vec = vcat(2.2, 1.3)
@@ -29,7 +28,6 @@ all_state_dfs = []
 while i < num_pop_sims
     Random.seed!(seed_num)
     individ_frame, state_frame = sim_timevarying_seir(N, I_init, beta_vec, beta_times, nu, gamma, stop_time)
-
     # check to see if we have enough individuals to sample
     # in the isochronous case, max is 100, to be safe, assume we need 130
     if state_frame.I[end] >= 130
@@ -57,7 +55,6 @@ forward_samp_lin = []
 forward_samp_ids = []
 all_iso50_trees = []
 individ_frame = all_individ_dfs[1]
-
 for j in 1:num_samp_sims
     # sample infectious individuals from time last_samp_time 
     Random.seed!(j)
@@ -68,7 +65,6 @@ for j in 1:num_samp_sims
     tree.sim .= j
     tree.real_seed .= j
     tree.time = tree.time = abs.(tree.time .- last_samp_time)
-
     # store the tree 
     push!(all_iso50_trees, tree)
 end
@@ -85,7 +81,6 @@ forward_samp_lin = []
 forward_samp_ids = []
 all_iso100_trees = []
 individ_frame = all_individ_dfs[1]
-
 for j in 1:num_samp_sims
     # sample infectious individuals from time last_samp_time 
     Random.seed!(j)
@@ -96,7 +91,6 @@ for j in 1:num_samp_sims
     tree.sim .= j
     tree.real_seed .= j
     tree.time = tree.time = abs.(tree.time .- last_samp_time)
-
     # store the tree 
     push!(all_iso100_trees, tree)
 end
@@ -131,7 +125,6 @@ for j in 1:num_samp_sims
     tree.sim .= j
     tree.real_seed .= j
     tree.time = tree.time = abs.(tree.time .- last_samp_time)
-
     # store the tree 
     push!(all_het50_trees, tree)
 end
@@ -166,7 +159,6 @@ for j in 1:num_samp_sims
     tree.sim .= j
     tree.real_seed .= j
     tree.time = tree.time = abs.(tree.time .- last_samp_time)
-
     # store the tree 
     push!(all_het100_trees, tree)
 end

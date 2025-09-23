@@ -1,15 +1,16 @@
+# converting Liberia mcc tree into coalescence and sampling times
 library(ape)
 library(phylodyn)
 library(tidyverse)
 suppressPackageStartupMessages(library(ggtree))
 
+# plot the tree
 mcc_tree <- read.nexus(here::here("scripts", "ebola_scripts", "libera_mcc_tree.trees"))
 
 
 lbr_list <- summarize_phylo(mcc_tree)
 max(lbr_list[["coal_times"]])
 tree_plot<- ggtree(mcc_tree, mrsd = max_date, as.Date = TRUE) + 
-  #geom_tiplab(size = 2) +
   ggtitle("LBR Ebola MCC Tree") + 
   theme_tree2() + 
   xlab("Years") + 

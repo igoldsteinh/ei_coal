@@ -1,3 +1,4 @@
+# fit partially observed EI coalescent model to simulated data
 using CSV
 using DataFrames
 using DrWatson
@@ -57,8 +58,6 @@ coal_times = sort!(coal_times)
 reverse_samp_times = sort!(reverse_samp_times)
 
 # choose comp_times to be the alpha times and the times of coal and sample events
-# QUESTION, DO WE INCLUDE THE LAST SAMPLING TIME IN THE COMP TIMES?
-# lets say yes
 comp_times = sort(union(alpha_times[2:end], abs.(coal_times[1:end-1] .- samp_time), abs.(reverse_samp_times .- samp_time), samp_time))
 reverse_times = reverse(abs.(vcat(0.0, comp_times) .- samp_time))
 # est_times is the times at which we will estimate the states 
@@ -92,7 +91,7 @@ log_lik, log_lik_vec, new_sampled_node_states =sample_internal_nodes_safev2(num_
 init_dist, start_time, last_samp_time, reverse_samp_times, reverse_samp_lin, alpha_times, init_gamma, alpha_vec, 
 reverse_E, reverse_I, max_lineages, mat_size)
 
-# fit ze model
+# fit the model
 est_states = new_sampled_node_states
 natural_vars = vcat(init_gamma, init_nu, init_e0, init_i0,  init_rw_sigma, init_rts[1], init_rts[2:end])
 q_cur = log.(natural_vars) .- vcat(log_prior_means, repeat([log_rt_init_mean], length(init_rts)-1))
@@ -101,18 +100,13 @@ Random.seed!(sim_num)
 @time my_samples, my_states = sample_nodescdf_andparams!(q_cur, l_cur, cholC, log_prior_means, num_lineages, est_times, coal_times, 
     est_states, start_time,last_samp_time, reverse_samp_times, reverse_samp_lin, alpha_times, mat_size, curr_lin,
      num_samples, discard_initial, num_thin, tstep_cutoff)
-# well lets see what it looks like I guess 
+# make dataframe of results
 rt_columns = ["rt_t_values[$i]" for i in 0:(length(alpha_times)-1)]
 other_columns = [:gamma, :nu, :e0, :i0, :rw_sigma]
 # rewrite other_columns as characters
 other_columns = [string(col) for col in other_columns]
 all_columns = vcat(other_columns, rt_columns, ["log_likelihood", "actual_iteration"])
 my_samples_frame = DataFrame(my_samples, all_columns)
-# convert all_columns into symbols
-all_columns = [Symbol(col) for col in all_columns]
-chain = Chains(my_samples, all_columns)
-# Calculate the effective sample size
-my_ess = ess(chain)
-
+# save results
 CSV.write(resultsdir("my_generated_quantities", 
 string("ei_cdf_sim", sim_id, "_simnum", sim_num, ".csv")), my_samples_frame)

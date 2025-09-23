@@ -9,10 +9,8 @@ include(srcdir("sim_ei.jl"))
 include(srcdir("sim_seir.jl"))
 include(srcdir("create_coal_trees.jl"))
 include(srcdir("construct_newick_tree.jl"))
-
-### how many sims? ###
-num_pop_sims = 1
 ### Simulate an SEIR trajectory ###
+num_pop_sims = 1
 N = 15000
 I_init = 1
 r0_vec = vcat(exp.(collect(log(1.3):(log(2) - log(1.3))/(5*7):log(2))), 2)
@@ -29,7 +27,6 @@ all_state_dfs = []
 while i < num_pop_sims
     Random.seed!(seed_num)
     individ_frame, state_frame = sim_timevarying_seir(N, I_init, beta_vec, beta_times, nu, gamma, stop_time)
-
     # check to see if we have enough individuals to sample
     # in the isochronous case, max is 100, to be safe, assume we need 120
     # find the index closes to last_samp_time
@@ -64,7 +61,6 @@ forward_samp_ids = []
 all_iso50_trees = []
 individ_frame = CSV.read(datadir("sim_data", "increase_individ_frame.csv"), DataFrame)
 individ_frame.history = [eval(Meta.parse(individ_frame.history[i])) for i in 1:size(individ_frame, 1)]
-
 for j in 1:num_samp_sims
     # sample infectious individuals from time last_samp_time 
     Random.seed!(j)
@@ -75,7 +71,6 @@ for j in 1:num_samp_sims
     tree.sim .= j
     tree.real_seed .= j
     tree.time = tree.time = abs.(tree.time .- last_samp_time)
-
     # store the tree 
     push!(all_iso50_trees, tree)
 end
@@ -93,7 +88,6 @@ forward_samp_ids = []
 all_iso100_trees = []
 individ_frame = CSV.read(datadir("sim_data", "increase_individ_frame.csv"), DataFrame)
 individ_frame.history = [eval(Meta.parse(individ_frame.history[i])) for i in 1:size(individ_frame, 1)]
-
 for j in 1:num_samp_sims
     # sample infectious individuals from time last_samp_time 
     Random.seed!(j)
@@ -104,7 +98,6 @@ for j in 1:num_samp_sims
     tree.sim .= j
     tree.real_seed .= j
     tree.time = tree.time = abs.(tree.time .- last_samp_time)
-
     # store the tree 
     push!(all_iso100_trees, tree)
 end
@@ -118,7 +111,6 @@ total_samps = 50
 last_num_samps = 30
 individ_frame = CSV.read(datadir("sim_data", "increase_individ_frame.csv"), DataFrame)
 individ_frame.history = [eval(Meta.parse(individ_frame.history[i])) for i in 1:size(individ_frame, 1)]
-
 # five weeks before last sampling time, we allow sampling
 samp_window_start = last_samp_time - 5*7
 iso = false 
@@ -126,7 +118,6 @@ forward_samp_times = []
 forward_samp_lin = ones(Int, total_samps - last_num_samps)
 forward_samp_ids = []
 all_het50_trees = []
-# individ_frame = all_individ_dfs[1]
 for j in 1:num_samp_sims
     # sample infectious individuals from time last_samp_time 
     Random.seed!(j)
@@ -178,7 +169,6 @@ for j in 1:num_samp_sims
     tree.sim .= j
     tree.real_seed .= j
     tree.time = tree.time = abs.(tree.time .- last_samp_time)
-
     # store the tree 
     push!(all_het100_trees, tree)
 end

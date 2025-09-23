@@ -61,20 +61,18 @@ log_gamma_mean = log(1/7)
 log_gamma_sd = 0.3
 log_nu_mean = log(1/7)
 log_nu_sd = 0.3
-# note we're hardcoding in e0 has to be above 1
 log_e0_mean = log(1.1)
 log_e0_sd = 0.05
 log_i0_mean = log(1.1)
 log_i0_sd = 0.05
 log_rw_mean = log(0.05)
 log_rw_sigma_sd = 0.2
-
 log_prior_means = [log_gamma_mean, log_nu_mean, log_e0_mean, log_i0_mean,  log_rw_mean, log_rt_init_mean,]
 cholC = create_cholc_matrix(log_gamma_sd, log_nu_sd, log_e0_sd, log_i0_sd, log_rw_sigma_sd, log_rt_init_sd)
 Random.seed!(123467)
 init_rw_sigma, init_rts, init_gamma, init_nu, init_e0, init_i0 = sample_initial_params_simple(log_rw_mean, log_rw_sigma_sd, log_rt_init_mean, log_rt_init_sd,
     log_gamma_mean, log_gamma_sd, log_nu_mean, log_nu_sd, log_e0_mean, log_e0_sd, log_i0_mean, log_i0_sd, 
-  alpha_times, curr_lin)
+  alpha_times, comp_times, curr_lin)
 alpha_vec = init_rts .* init_nu
 E_traj = zeros(length(comp_times))
 I_traj = zeros(length(comp_times))
@@ -86,26 +84,29 @@ max_lineages = Int(maximum(curr_lin))
 init_dist = zeros(max_lineages + 1)
 mat_size = 50
 last_samp_time = samp_time
-tstep_cutoff = 0.5 # this is the cutoff for using the krylov method, if the time step is larger than this, we don't use the krylov method
-Random.seed!(123467)
+# this is the cutoff for using the krylov method, if the time step is larger than this, we don't use the krylov method
+tstep_cutoff = 0.5
+# get the initial log likelihood
+Random.seed!(123467 )
 log_lik, log_lik_vec, new_sampled_node_states =sample_internal_nodes_safev2(num_lineages, est_times, coal_times, 
 init_dist, start_time, last_samp_time, reverse_samp_times, reverse_samp_lin, alpha_times, init_gamma, alpha_vec, 
 reverse_E, reverse_I, max_lineages, mat_size)
-
 est_states = new_sampled_node_states
 natural_vars = vcat(init_gamma, init_nu, init_e0, init_i0,  init_rw_sigma, init_rts[1], init_rts[2:end])
 q_cur = log.(natural_vars) .- vcat(log_prior_means, repeat([log_rt_init_mean], length(init_rts)-1))
 l_cur = log_lik
+# choose mcmc params
 num_samples = 900000 
 num_thin = 90
 discard_initial = 0
 discard_initial = Int(round(num_samples/2))
+# sample
 Random.seed!(123467)
 @time my_samples, my_states = sample_nodescdf_andparams!(q_cur, l_cur, cholC, log_prior_means, num_lineages, est_times, coal_times, 
     est_states, start_time,last_samp_time, reverse_samp_times, reverse_samp_lin, alpha_times, mat_size, curr_lin,
      num_samples, discard_initial, num_thin, tstep_cutoff)
 
-# well lets see what it looks like I guess 
+# create dataframe of results
 rt_columns = ["rt_t_values[$i]" for i in 0:(length(alpha_times)-1)]
 other_columns = [:gamma, :nu, :e0, :i0, :rw_sigma]
 # rewrite other_columns as characters
@@ -114,5 +115,6 @@ all_columns = vcat(other_columns, rt_columns, ["log_likelihood", "actual_iterati
 my_samples_frame = DataFrame(my_samples, all_columns)
 sim = "LBR_version2"
 seed = 123467
+# save
 CSV.write(resultsdir("my_generated_quantities", 
 string("ess_joint_hetchron_inseq_samples_sim", sim, "_seed", seed, ".csv")), my_samples_frame)
