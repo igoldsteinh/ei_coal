@@ -1,10 +1,29 @@
 """
-calc_coal_cdf_simple
+calc_coal_cdf_simplev2()
 calculate the cdf of a single coalescent event for each possible absorbption state
 calculates the pdf simultaneously, as the calculations are already being done
 NOTE the resulting pdf and cdf are indexed by the end state for a known start state
 in contrast in the normal likelihood calculation the pdf is indexed by the start state for a known end state, so the dimensions are different
 here we assume that no rate changes occur during the interval
+# Arguments
+-num_lineages: current number of lineages
+-coal_time: time of coalescent
+-init_dist: vector, one entry is one which is the initial state
+-start_time: time at start of interval
+-gamma: gamma param
+-alpha_t: value of alpha in the interval
+-E: value of E in the interval
+-I: value of I in the interval
+-id_matrix: we should get rid of this
+-A_matrix: contains rates of non-coaelscent states
+-A_matrix2: we should get rid of this
+-L_matrix: contains rates of coalescent
+-new_inverse_term: needed matrix for reducing allocations
+-cdf: we should get rid of this
+-pdf: returns pdf vector
+-my_method: method of matrix exponentiation
+-my_cache: cache used to reduced allocations
+-temp_vec: remove later
 """
 function calc_coal_pdf_simplev2(num_lineages::Int, coal_time::Float64, init_dist::AbstractVector{Float64}, start_time::Float64, 
     gamma::Float64, alpha_t::Float64, E::Float64, I::Float64, id_matrix::AbstractMatrix{Float64}, A_matrix::AbstractMatrix{Float64}, 
@@ -25,10 +44,24 @@ function calc_coal_pdf_simplev2(num_lineages::Int, coal_time::Float64, init_dist
         return pdf
 end 
 """
-calc_samp_pmf 
+calc_samp_pmf_cachedv2!() 
 final vector is indexed by end state for a known start state 
 assuming no rate changes during the interval
 we may be able to improve this with krylov for larger matrices
+calculating the pmf for a sampling or alpha node
+# Arguments
+-num_lineages: number of lineages
+-est_time: time of event
+-init_dist: vector, one at initial state
+-start_time: time of interval start
+-gamma: gamma parameter
+-alpha_t: value of alpha in interval
+-E: value of E in interval
+-I: value of I in interval
+-A_matrix: contains rates of non-coalescence
+-my_method: method for matrix exponentiation
+-my_cache: cache for matrix exponentiation
+-temp_vec: needed for saving memory
 """
 function calc_samp_pmf_cachedv2!(num_lineages::Int, est_time::Float64, init_dist::AbstractVector{Float64}, start_time::Float64, 
     gamma::Float64, alpha_t::Float64, E::Float64, I::Float64, A_matrix::AbstractMatrix{Float64}, my_method, my_cache, 
@@ -58,6 +91,8 @@ not being used for the moment
 # end
 
 """
+DEBUGGING FUNCTION IGNORE
+
 safe version of sample_internal_nodes before we get all crazy
 assumes that est_times includes alpha_times, coal_times and samp_times
 """
@@ -248,8 +283,41 @@ function sample_internal_nodes_safev2(num_lineages, est_times, coal_times, init_
 end 
 
 """
-sample_internal_nodes 
+sample_internal_nodesv2!() 
+sample the number of lineages in states E and I at est_times
 assumes that est_times includes alpha_times, coal_times and samp_times
+# Arguments
+-num_lineages: number of lineages at time 0 (backwards time)
+-est_times: sorted times to estimate states
+-coal_times: sorted times of coalescence
+-init_dist: vector, 1 at initial state
+-start_time: set to 0, re-used
+-last_samp_time: time of the last sample in forward time
+-reverse_samp_times: sorted reverse sample times, not including last sample time
+-reverse_samp_lin: number of lineages sampled at reverse_samp_times
+-alpha_times: forward times when alpha changes, includes time 0
+-gamma: gamma parameter
+-alpha_vec: vector of alphas, corresponding entry is what it turns into at the alpha time
+-reverse_E: vector of values of E in reverse time
+-reverse_I: vector of values of I in reverse time
+-cache_dict: dictionary of caches used in exponentiation
+-mat_size: cutoff, above krylov subspaces can be used to save computation time
+-ks_dict: dictionary of caches for krylov subspaces
+-expv_cache_dict: cache dictionary for expv function
+-A_matrix: rate matrix of non-coalescent states
+-A_matrix2: probably can be removed
+-L_matrix: rate matrix of coalescent states
+-id_matrix: probably can be removed
+-new_inverse_term: needed for saving memory in likelihood calcs
+-cdf: may be removable
+-pdf: vector of pdf values
+-my_method: method for matrix exponentiation
+-temp_vec: used for saving cache
+-L_vec: used for calculating pdf with two lineages
+-my_vec: used for ll calcs
+-sampled_node_states: pre-stored output vector
+-ll_vec: vector of likelihod contributions of each est_time
+-tstep_cutoff: above this time, krylov subspace will not be used (poor approximation)
 """
 function sample_internal_nodesv2!(num_lineages::Int, est_times::AbstractVector{Float64}, coal_times::AbstractVector{Float64}, 
     init_dist::AbstractVector{Float64}, start_time::Float64, last_samp_time::Float64, reverse_samp_times::AbstractVector{Float64}, 

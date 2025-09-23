@@ -1,7 +1,4 @@
-# this file is a rewrite of calc_node_loglik_joint_hetchron.jl
-# with the added assumption that the rates are constant
-# between estimation states
-# this removes the need for much indexing and for loops
+# this file is for debugging purposes only
 """
 calc_node_loglik_simple_safe
 should calculate node log likelihoods under the assumption that 

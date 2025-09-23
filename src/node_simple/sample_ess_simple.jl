@@ -1,19 +1,45 @@
 
 using LinearAlgebra
 """
-ess(q_cur, l_cur, loglik, cholC; kwargs...)
+sample_ess_simple()
 peform an elliptical slice sampling step
-allow for tuning of the initial angle proposal
-@params
-    q_cur: current state (with 0 mean)
-    l_cur: current log-likelihood (full likelihood)
-    loglik: function to compute the log-likelihood
-    cholC: Cholesky factor of the covariance matrix of the independent parameters
-    kwargs: additional arguments for the loglik function
-@returns
-    q: new state
-    u: new log-likelihood
-    Ind: indicator of whether the proposal was accepted (1) or rejected (0)
+returns new uncentered parameters, log likelihood, vector of ll contributions, vector of vector of pdfs
+# Arguments
+-q_cur: current state (with 0 mean)
+-l_cur: current log-likelihood (full likelihood)
+-cholC: Cholesky factor of the covariance matrix of the independent parameters
+-log_prior_means: vector of prior means on log scale
+-num_lineages: number of starting lineages
+-est_times: times that contribute to the log likelihood
+-coal_times: coalescence times
+-est_states: number of lineages in states I and E at the est_times
+-start_time: zero
+-last_samp_time: time of the last sample
+-reverse_samp_times: sorted reverse samp times not including the last one
+-reverse_samp_lin: number of lineags sampled at reverse_samp_times
+-alpha_times: forward times alpha changes
+-ll_vec: vector of likelihood contributions of est_times
+-lik_vec: vector of likelihood contribution used for cache savings
+-A_matrix: rates of non-coalescent states
+-L_matrix: rates of coalescent states
+-my_vec: used for storing values
+-my_method: method of matrix exponenitation
+-cache_dict: dictionary of caches for matrix exponentiation
+-temp: used for storing values
+-L_vec: used for when there are two lineages only
+-ks_dict: dictionary of caches for krylov subspace
+-expv_cache_dict: dictionary of caches for expv
+-mat_size: cutoff above which krylov subpsace can be used
+-E_traj: vector of E values
+-I_traj: vector of I values
+-reverse_E: vector of E values reversed
+-reverse_I: vector of I values reversed
+-total_pop: sum of E and I
+-alpha_vec: vector of alpha values
+-lin_E: vector of number of E lineages at est_times
+-lin_I: same as lin_E but for I lineages
+-pop_big_enough: vector of booleans checking if there are more population members than lineage members
+-tstep_cutoff: if time diff is larger than this, krylov subspace is not allowed
 the order of params is log_gamma, log_nu, log_e0, log_i0, log_rw_sigma, log_rt_init,  log rt no init
 we are now using log_e0 as itself, not log(e0 - 1)
 """
@@ -32,63 +58,6 @@ function sample_ess_simple(q_cur::Vector{Float64}, l_cur::Float64, cholC::Abstra
         print(sum(ll_vec))
         error("l_cur is inf")
     end
-    # sanity check 
-#         gamma = exp(q_cur[1] + log_prior_means[1])
-#         nu = exp(q_cur[2] + log_prior_means[2])
-#         e0 = exp(q_cur[3] + log_prior_means[3])
-#         i0 = exp(q_cur[4] + log_prior_means[4]) 
-#         rw_sigma = exp(q_cur[5] + log_prior_means[5])
-#         init_rt = exp(q_cur[6] + log_prior_means[6])
-#         rt_no_init = exp.(log_prior_means[6] .+ q_cur[7:end])
-#         alpha_init = init_rt * nu
-#         alpha_vec[1] = alpha_init
-#         alpha_vec[2:end] .= rt_no_init .* nu
-#         ll_check, ll_vec_check, pdf_vec_check = calc_node_loglik_simple_safev2(num_lineages, est_times, coal_times, est_states, start_time, last_samp_time, 
-#     reverse_samp_times, reverse_samp_lin, alpha_times, gamma, alpha_vec, reverse_E, reverse_I, total_pop,
-#  mat_size, lin_E, lin_I)
-#     if abs(ll_check - l_cur) > 1e-6 
-#         print("ll_check")
-#         print(ll_check)
-#         print("l_cur")
-#         print(l_cur)
-#         # find which ll_vec is wrong 
-#         # wrong_idx = findall(abs.(ll_vec_check .- ll_vec) .> 1e-6)
-#         # println("old_vec")
-#         # println(ll_vec)
-#         # println("vec check")
-#         # println(ll_vec_check)
-#         # print("sums vec check")
-#         # print(sum(ll_vec_check))
-#         # print("sums vec")
-#         # print(sum(ll_vec))
-#         # print(wrong_idx)
-#         print("gamma")
-#         print(gamma)
-#         print("nu")
-#         print(nu)
-#         print("e0")
-#         print(e0)
-#         print("i0")
-#         print(i0)
-#         println("alpha_vec=")
-#         println(alpha_vec)
-#         println("est_states=")
-#         println(est_states)
-#         # print("rw_sigma")
-#         # print(rw_sigma)
-#         # print("init_rt")
-#         # print(init_rt)
-#         # print("est_states_start")
-#         # # print(est_states[wrong_idx - 1])
-#         # print("est_states_end")
-#         # print(est_states[wrong_idx])
-#         # print("est_times")
-#         # print(est_times[wrong_idx])
-#         error("ess ll check failed")
-#     end 
-
-
-
     # Choose ellipse
     ind_params = cholC * randn(size(cholC)[1])
     # suppose the last of them is the rw parameter
@@ -133,8 +102,6 @@ function sample_ess_simple(q_cur::Vector{Float64}, l_cur::Float64, cholC::Abstra
     ll_vec, lik_vec, A_matrix, L_matrix, my_vec, my_method, cache_dict, temp, L_vec, ks_dict, expv_cache_dict, mat_size, lin_E, lin_I,
     pop_big_enough, tstep_cutoff)
     iter = 1
-    # print("ll")
-    # print(ll)
     while ll < logy || isnan(ll) 
         # Shrink the bracket and try a new point
         if t < 0
@@ -167,19 +134,7 @@ function sample_ess_simple(q_cur::Vector{Float64}, l_cur::Float64, cholC::Abstra
     reverse_samp_times, reverse_samp_lin, alpha_times, gamma, alpha_vec, reverse_E, reverse_I, total_pop,
     ll_vec, lik_vec, A_matrix, L_matrix, my_vec, my_method, cache_dict, temp, L_vec, ks_dict, expv_cache_dict, 
     mat_size, lin_E, lin_I, pop_big_enough, tstep_cutoff)
-        # print("ll")
-        # print(ll)
         iter += 1
-        # if iter == 50
-        #     print("ll")
-        #     print(ll)
-        #     print("logy")
-        #     print(logy)
-        #     print("old_ll")
-        #     print(l_cur)
-        #     print("u")
-        #     print(u)
-        # end 
     end
     if isinf(ll) || isnan(ll) || ll < logy
         print("ll")
@@ -197,13 +152,20 @@ end
 create_cholc_matrix(log_gamma_sd, log_nu_sd, log_e0_sd, log_i0_sd, log_rt_init_sd, log_rw_sigma_sd)
 return cholesky decomposition of covariance matrix of independent prior parameters
 the order is gamma, nu, e0, i0, rw_sigma, rt_init
+# Arguments
+-log_gamma_mean: mean paramater of log-normal gamma prior
+-log_gamma_sd: sd parameter of log-normal gamma prior
+-log_nu_mean: mean parameter of log-normal nu prior
+-log_nu_sd: sd parameter of log-normal nu prior
+-log_e0_mean: mean parameter of log-normal initial E prior
+-log_e0_sd: sd parameter of log-normal intiail E prior
+-log_i0_mean: mean parameter of log-normal intial I prior
+-log_i0_sd: sd parameter of log-normal intial I prior
+-log_rw_mean: mean parameter of log-normal rw prior
+-log_rw_sigma_sd: sd parameter of log-normal rw prior
+-log_rt_init_mean: mean paramater of log-normal initial rt prior
+-log_rt_init_sd: sd parmater of log-normal initial rt prior
 """
-# log_rt_init_sd = 0.2
-# log_gamma_sd = 0.25
-# log_nu_sd = 0.25
-# log_e0_sd = 0.05
-# log_i0_sd = 0.05
-# log_rw_sigma_sd = 0.1
 function create_cholc_matrix(log_gamma_sd, log_nu_sd, log_e0_sd, log_i0_sd,  log_rw_sigma_sd,log_rt_init_sd,)
     cov_matrix = Diagonal(vcat(log_gamma_sd^2, log_nu_sd^2, log_e0_sd^2, log_i0_sd^2, log_rw_sigma_sd^2, log_rt_init_sd^2, ))
     cholC = cholesky(cov_matrix)
@@ -212,6 +174,11 @@ end
 
 """
 sample_fixed_priors(cholC, log_prior_means, num_samps)
+sample the fixed priors
+# Arguments
+-cholC: cholesky matrix of the variance matrix of the fixed params
+-log_prior_means: vector of prior means on log scale
+-num_samps: how many samples of the prior?
 """
 function sample_fixed_priors(cholC, log_prior_means, num_samps)
     # create the matrix of paramater values

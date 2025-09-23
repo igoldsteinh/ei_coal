@@ -1,11 +1,41 @@
-# this file is a rewrite of calc_node_loglik_joint_hetchron.jl
-# with the added assumption that the rates are constant
-# between estimation states
-# this removes the need for much indexing and for loops
 """
-calc_node_loglik_simple
-should calculate node log likelihoods under the assumption that 
+calc_node_loglik_simple()
+calculate node log likelihoods under the assumption that 
 the rates only change at the estimation times
+# Arguments
+-num_lineages: number of starting lineages
+-est_times: times that contribute to the log likelihood
+-coal_times: coalescence times
+-est_states: number of lineages in states I and E at the est_times
+-start_time: zero
+-last_samp_time: time of the last sample
+-reverse_samp_times: sorted reverse samp times not including the last one
+-reverse_samp_lin: number of lineags sampled at reverse_samp_times
+-alpha_times: forward times alpha changes
+-gamma: gamma parameter
+-alpha_vec: alpha parameter
+-reverse_E: vector of E in reverse time
+-reverse_I: vector of I in reverse time
+-total_pop: sum of reverse_E and reverse_I
+-ll_vec: vector of likelihood contributions of est_times
+-lik_vec: vector of likelihood contribution used for cache savings
+-A_matrix: rates of non-coalescent states
+-L_matrix: rates of coalescent states
+-my_vec: used for storing values
+-my_method: method of matrix exponenitation
+-cache_dict: dictionary of caches for matrix exponentiation
+-temp: used for storing values
+-L_vec: used for when there are two lineages only
+-ks_dict: dictionary of caches for krylov subspace
+-expv_cache_dict: dictionary of caches for expv
+-mat_size: cutoff above which krylov subpsace can be used
+-lin_E: vector of number of E lineages at est_times
+-lin_I: same as lin_E but for I lineages
+-pop_big_enough: vector of booleans checking if there are more population members than lineage members
+-tstep_cutoff: if time diff is larger than this, krylov subspace is not allowed
+the order of params is log_gamma, log_nu, log_e0, log_i0, log_rw_sigma, log_rt_init,  log rt no init
+we are now using log_e0 as itself, not log(e0 - 1)
+
 """
 function calc_node_loglik_simplev2!(num_lineages::Int, est_times::AbstractVector{Float64}, 
     coal_times::AbstractVector{Float64}, est_states::Vector{Int}, start_time::Float64, 
@@ -163,11 +193,24 @@ function calc_node_loglik_simplev2!(num_lineages::Int, est_times::AbstractVector
 end 
 
 """
-calc_samp_lik_vecform_krylov_simple
+calc_samp_lik_vecform_krylov_simplev2()
 this is the likelihood contribution of a sampling event in vector form, 
 choose the correct entry of the column based on the start state 
 note this should work for sampling events and also for alpha changes 
 calculated with krylov subspace methods
+# Arguments
+-A_matrix: rates of non-coalescent states
+-my_vec: what the results are stored in
+-my_ks: krylov cache
+-expv_cache: expv cache
+-active_lineages: num lineages in this interval
+-est_time: time of event
+-branch_state: state at est_time
+-start_time: time of start of interval
+-gamma: gamma param
+-alpha_t: value of alpha in interval
+-E: value of E in interval
+-I: value of I in nterval
 """
 function calc_samp_lik_vecform_krylov_simplev2(A_matrix::AbstractMatrix{Float64}, 
     my_vec::AbstractVector{Float64}, my_ks, expv_cache, active_lineages::Int, 
@@ -184,10 +227,24 @@ function calc_samp_lik_vecform_krylov_simplev2(A_matrix::AbstractMatrix{Float64}
 end 
 
 """
-calc_samp_lik_vecform_simple
+calc_samp_lik_vecform_simplev2()
 this is the likelihood contribution of a sampling event in vector form, 
 choose the correct entry of the column based on the start state 
 note this should work for sampling events and also for alpha changes 
+# Arguments
+-A_matrix: rates of non-coalescent states
+-my_vec: what the results are stored in
+-my_method: method of exponentiation
+-my_cache: cache
+-active_lineages: num lineages in this interval
+-est_time: time of event
+-branch_state: state at est_time
+-start_time: time of start of interval
+-gamma: gamma param
+-alpha_t: value of alpha in interval
+-E: value of E in interval
+-I: value of I in nterval
+
 """
 function calc_samp_lik_vecform_simplev2(A_matrix::AbstractMatrix{Float64}, 
     my_vec::AbstractVector{Float64}, my_method, my_cache, temp::AbstractVector{Float64}, 
@@ -202,7 +259,22 @@ function calc_samp_lik_vecform_simplev2(A_matrix::AbstractMatrix{Float64},
     return my_vec
 end 
 """
-calc_coal_pdf_vecform_simple
+calc_coal_pdf_vecform_simplev2()
+# Arguments
+-A_matrix: rates of non-coalescent states
+-L_matrix: rates of coalescent states
+-my_vec: what the results are stored in
+-my_method: method of exponentiation
+-my_cache: cache
+-num_lineages: num lineages in this interval
+-coal_time: time of event
+-coal_type: state at coal_time
+-start_time: time of start of interval
+-gamma: gamma param
+-alpha_t: value of alpha in interval
+-E: value of E in interval
+-I: value of I in nterval
+
 """
 function calc_coal_pdf_vecform_simplev2(A_matrix::AbstractMatrix{Float64}, 
     L_matrix::AbstractMatrix{Float64}, my_vec::AbstractVector{Float64}, my_method, my_cache, 
@@ -215,8 +287,23 @@ function calc_coal_pdf_vecform_simplev2(A_matrix::AbstractMatrix{Float64},
     return my_vec
 end 
 """
-calc_coal_pdf_vecform_krylov_simple
+calc_coal_pdf_vecform_krylov_simplev2()
 but we're trying to just do vector multiplication
+# Arguments
+-A_matrix: rates of non-coalescent states
+-L_matrix: rates of coalescent states
+-my_vec: what the results are stored in
+-my_ks: krylov cache
+-expv_cache: expv cache
+-num_lineages: num lineages in this interval
+-coal_time: time of event
+-coal_type: state at coal_time
+-start_time: time of start of interval
+-gamma: gamma param
+-alpha_t: value of alpha in interval
+-E: value of E in interval
+-I: value of I in nterval
+
 """
 function calc_coal_pdf_vecform_krylov_simplev2(A_matrix::AbstractMatrix{Float64}, 
     L_matrix::AbstractMatrix{Float64}, my_vec::AbstractVector{Float64}, my_ks, expv_cache, 
@@ -236,12 +323,26 @@ function calc_coal_pdf_vecform_krylov_simplev2(A_matrix::AbstractMatrix{Float64}
     return my_vec
 end 
 """
-calc_twolin_pdf_vecform_simple
+calc_twolin_pdf_vecform_simplev2()
 caculate the pdf of a two lineage coalescent even with known stard and end states
 vecform version of two lineage pdf
-WHY ARE YOU ALLOCATING SO MUCH?
+calc_coal_pdf_vecform_simplev2()
+# Arguments
+-A_matrix: rates of non-coalescent states
+-L_vec: rates of coalescent states
+-my_vec: what the results are stored in
+-my_method: method of exponentiation
+-my_cache: cache
+-coal_time: time of event
+-start_time: time of start of interval
+-gamma: gamma param
+-alpha_t: value of alpha in interval
+-E: value of E in interval
+-I: value of I in nterval
+
 """
-function calc_twolin_pdf_vecform_simplev2(A_matrix::AbstractMatrix{Float64}, L_vec::AbstractVector{Float64}, my_vec::AbstractVector{Float64}, my_method, my_cache,  coal_time::Float64,  start_time::Float64, 
+function calc_twolin_pdf_vecform_simplev2(A_matrix::AbstractMatrix{Float64}, L_vec::AbstractVector{Float64}, 
+    my_vec::AbstractVector{Float64}, my_method, my_cache,  coal_time::Float64,  start_time::Float64, 
     gamma::Float64, alpha_t::Float64, E::Float64, I::Float64)
         # find the index of the reverse_time before the coalescent time 
         active_lineages = 2
@@ -253,16 +354,13 @@ function calc_twolin_pdf_vecform_simplev2(A_matrix::AbstractMatrix{Float64}, L_v
         return my_vec
 end 
 """
-column major update_A_matrix!
-this seems to be slighly slower than the other one
-hopefully the column major has better performance in later functions
-but we could experiment if needed 
+column major update_A_matrix_cm_simplev2!()
+update the rates of non-coalescent states
 num_lineages is the current number of extant lineages
 E, I my_alpha, gamma are the current values of alpha, gamma, E and I for the rates 
-we are going to do something odd and remove all indicators enforcing lineage size against compartment size
-we will make it so that the E2I rate is 0 if nI < I 
 """
-function update_A_matrix_cm_simplev2!(A_matrix::AbstractMatrix{Float64}, num_lineages::Int, my_alpha::Float64, gamma::Float64, E::Float64, I::Float64)
+function update_A_matrix_cm_simplev2!(A_matrix::AbstractMatrix{Float64}, 
+    num_lineages::Int, my_alpha::Float64, gamma::Float64, E::Float64, I::Float64)
     # first set all entries to 0
     A_matrix .= 0.0
     # Precompute constants to avoid redundant calculations
@@ -317,9 +415,13 @@ function update_A_matrix_cm_simplev2!(A_matrix::AbstractMatrix{Float64}, num_lin
     A_matrix[j,j] = -E2I_rate
 end
 """
-create_L_matrix
+update_L_matrix!
 Creates matrix of rates to transition into absorbing states
 with n lineages, there are n-1 absorbing states
+# Arguments
+-L_matrix: thing to update
+-num_lineages: current number of lineages
+-A_matrix: current A_matrix
 """
 function update_L_matrix!(L_matrix::AbstractMatrix{Float64}, num_lineages::Int, A_matrix::AbstractMatrix{Float64})
     L_matrix .= 0.0
@@ -368,6 +470,12 @@ end
 check_comp_pop_size(lin_E, lin_I, reverse_E, reverse_I)
 assuming reverse_E, reverse_I are same length as lin_E, lin_I
 check that the populations in the compartments are large enough 
+# Arguments
+-lin_E: vector of num lineages in E
+-lin_I: vector of num lineages in I
+-reverse_E: vector of E values
+-reverse_I: vector of I values
+-pop_big_enough: boolean vector to be updated
 """
 function check_total_pop_sizev2!(lin_E, lin_I, reverse_E, reverse_I, pop_big_enough)
     # check that the total population size is large enough
