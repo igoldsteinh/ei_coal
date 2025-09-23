@@ -1,6 +1,17 @@
 # simulate EI model 
 using DataFrames
 using Random
+""" 
+sim_ei(I_init::Int64, alpha::Float64, nu::Float64, gamma::Float64, stop_time::Float64)
+simulate an EI agent based model tracking infectioun history
+returns frame of individual infection histories as well as frame of population level counts
+# Arguments
+-I_init: number of individuals initialy in state I
+-alpha: alpha parameter (rate of infections is alpha * I)
+-nu: nu parameter (1/nu is average time spent in I)
+-gamma: gamma parameter (1/gamma is average time spent in E)
+-stop_time: when to stop the simulation
+"""
 function sim_ei(I_init::Int64, alpha::Float64, nu::Float64, gamma::Float64, stop_time::Float64)
     # Setting up initial states and frames
     t = 0.0
@@ -80,9 +91,14 @@ function sim_ei(I_init::Int64, alpha::Float64, nu::Float64, gamma::Float64, stop
     end
     return (individ_frame, DataFrame(state_frame, [:time, :E, :I, :R, :alpha, :rt]))
 end
-
-
-# sample individuals but only infectious ones
+"""
+samp_individs_nolatent(individ_frame::DataFrame, t::Float64, n::Int)
+sample individuals but only infectious ones
+#Arguments
+-individ_frame: Frame of individual histories 
+-t: time to sample from
+-n: number of samples
+"""
 function samp_individs_nolatent(individ_frame::DataFrame, t::Float64, n::Int)
     # Filter eligible individuals who were infectious at time T
         # Drop rows with missing infectious_time 
@@ -97,77 +113,77 @@ function samp_individs_nolatent(individ_frame::DataFrame, t::Float64, n::Int)
     return samp_ids
 end
 
-function find_true_ancestors_latent(t::Float64, samp_ids::Vector{Int}, individ_frame::DataFrame)
-    ancestor_frame = DataFrame(samp_id=samp_ids, 
-    ancestor_id=Vector{Union{Missing, Int64}}(undef, length(samp_ids)), 
-    ancestor_state=Vector{Union{Missing, String}}(undef, length(samp_ids)),
-    time=t)
+# function find_true_ancestors_latent(t::Float64, samp_ids::Vector{Int}, individ_frame::DataFrame)
+#     ancestor_frame = DataFrame(samp_id=samp_ids, 
+#     ancestor_id=Vector{Union{Missing, Int64}}(undef, length(samp_ids)), 
+#     ancestor_state=Vector{Union{Missing, String}}(undef, length(samp_ids)),
+#     time=t)
 
-    # Calculate ancestors at time t for sampled individuals
-    for (i, samp_id) in enumerate(samp_ids)
-        infec_time = individ_frame.infec_time[samp_id]
-        infectious_time = individ_frame.infectious_time[samp_id]
+#     # Calculate ancestors at time t for sampled individuals
+#     for (i, samp_id) in enumerate(samp_ids)
+#         infec_time = individ_frame.infec_time[samp_id]
+#         infectious_time = individ_frame.infectious_time[samp_id]
 
-        if infec_time < t 
-            # If the time of interest is after infection, you are your own ancestor
-            ancestor_frame.ancestor_id[i] = samp_id
-            # the state of the ancestor is the state of the individual at time t
-        elseif infec_time >= t
-            # If your infection happens after time t
-            ancestor_history = individ_frame.history[samp_id]
-            possible_individuals = filter(row -> row.id in ancestor_history, eachrow(individ_frame))
-            eligible_ancestors = filter(row -> row.infec_time < t, possible_individuals)
+#         if infec_time < t 
+#             # If the time of interest is after infection, you are your own ancestor
+#             ancestor_frame.ancestor_id[i] = samp_id
+#             # the state of the ancestor is the state of the individual at time t
+#         elseif infec_time >= t
+#             # If your infection happens after time t
+#             ancestor_history = individ_frame.history[samp_id]
+#             possible_individuals = filter(row -> row.id in ancestor_history, eachrow(individ_frame))
+#             eligible_ancestors = filter(row -> row.infec_time < t, possible_individuals)
 
-            if size(eligible_ancestors, 1) > 0
-                closest_ancestor = argmax(eligible_ancestors.infec_time)
-                ancestor_frame.ancestor_id[i] = eligible_ancestors.id[closest_ancestor]
-            end
-        end
-        # record the state of the ancestor at time t
-        if coalesce(individ_frame.infectious_time[ancestor_frame.ancestor_id[i]] > t, true)
-            ancestor_frame.ancestor_state[i] = "E"
-        else
-            ancestor_frame.ancestor_state[i] = "I"
-        end
-    end
+#             if size(eligible_ancestors, 1) > 0
+#                 closest_ancestor = argmax(eligible_ancestors.infec_time)
+#                 ancestor_frame.ancestor_id[i] = eligible_ancestors.id[closest_ancestor]
+#             end
+#         end
+#         # record the state of the ancestor at time t
+#         if coalesce(individ_frame.infectious_time[ancestor_frame.ancestor_id[i]] > t, true)
+#             ancestor_frame.ancestor_state[i] = "E"
+#         else
+#             ancestor_frame.ancestor_state[i] = "I"
+#         end
+#     end
 
-    return ancestor_frame
-end
+#     return ancestor_frame
+# end
 
-function ancestry_over_time_latent(start_time::Float64, grid_size::Float64, samp_ids::Vector{Int}, individ_frame::DataFrame)
-    num_ancestors = length(samp_ids)
-    num_ancestors_frame = DataFrame(time=collect(0:grid_size:start_time), 
-    num_ancestors=Vector{Union{Missing, Int64}}(undef,length(0:grid_size:start_time)),
-    num_ancestors_e = Vector{Union{Missing, Int64}}(undef,length(0:grid_size:start_time)),
-    num_ancestors_i = Vector{Union{Missing, Int64}}(undef,length(0:grid_size:start_time)))
+# function ancestry_over_time_latent(start_time::Float64, grid_size::Float64, samp_ids::Vector{Int}, individ_frame::DataFrame)
+#     num_ancestors = length(samp_ids)
+#     num_ancestors_frame = DataFrame(time=collect(0:grid_size:start_time), 
+#     num_ancestors=Vector{Union{Missing, Int64}}(undef,length(0:grid_size:start_time)),
+#     num_ancestors_e = Vector{Union{Missing, Int64}}(undef,length(0:grid_size:start_time)),
+#     num_ancestors_i = Vector{Union{Missing, Int64}}(undef,length(0:grid_size:start_time)))
 
-    num_ancestors_frame.num_ancestors[num_ancestors_frame.time .== start_time] .= num_ancestors
-    # count the number of e ancestors at the start time which is the number of samp_ids whose infectious time is after the start time or whose infectious time is missing
-    num_ancestors_e = length(filter(id -> id in individ_frame.id[coalesce.(individ_frame.infectious_time .> start_time, true)], samp_ids))
-    # find the ids for whom 
-    num_ancestors_frame.num_ancestors_e[num_ancestors_frame.time .== start_time] .= num_ancestors_e
-    # count the number of i ancestors at the start time which is the number of samp_ids whose infectious time is before the start time
-    # this is simply the difference between the total ancestors and the number of i1 ancestors
-    num_ancestors_i = num_ancestors - num_ancestors_e
-    num_ancestors_frame.num_ancestors_i[num_ancestors_frame.time .== start_time] .= num_ancestors_i
+#     num_ancestors_frame.num_ancestors[num_ancestors_frame.time .== start_time] .= num_ancestors
+#     # count the number of e ancestors at the start time which is the number of samp_ids whose infectious time is after the start time or whose infectious time is missing
+#     num_ancestors_e = length(filter(id -> id in individ_frame.id[coalesce.(individ_frame.infectious_time .> start_time, true)], samp_ids))
+#     # find the ids for whom 
+#     num_ancestors_frame.num_ancestors_e[num_ancestors_frame.time .== start_time] .= num_ancestors_e
+#     # count the number of i ancestors at the start time which is the number of samp_ids whose infectious time is before the start time
+#     # this is simply the difference between the total ancestors and the number of i1 ancestors
+#     num_ancestors_i = num_ancestors - num_ancestors_e
+#     num_ancestors_frame.num_ancestors_i[num_ancestors_frame.time .== start_time] .= num_ancestors_i
 
-    current_time = start_time
+#     current_time = start_time
 
-    while num_ancestors > 1 && current_time > 0
-        current_time -= grid_size
-        ancestors = find_true_ancestors_latent(current_time, samp_ids, individ_frame)
-        num_ancestors = length(unique(ancestors.ancestor_id))
-        #count the number of i1 ancestors which are unique
-        num_ancestors_e = length(unique(ancestors.ancestor_id[ancestors.ancestor_state .== "E"]))
-        #count the number of i2 ancestors which are unique
-        num_ancestors_i = length(unique(ancestors.ancestor_id[ancestors.ancestor_state .== "I"]))
-        num_ancestors_frame.num_ancestors[num_ancestors_frame.time .== current_time] .= num_ancestors
-        num_ancestors_frame.num_ancestors_e[num_ancestors_frame.time .== current_time] .= num_ancestors_e
-        num_ancestors_frame.num_ancestors_i[num_ancestors_frame.time .== current_time] .= num_ancestors_i
-    end
+#     while num_ancestors > 1 && current_time > 0
+#         current_time -= grid_size
+#         ancestors = find_true_ancestors_latent(current_time, samp_ids, individ_frame)
+#         num_ancestors = length(unique(ancestors.ancestor_id))
+#         #count the number of i1 ancestors which are unique
+#         num_ancestors_e = length(unique(ancestors.ancestor_id[ancestors.ancestor_state .== "E"]))
+#         #count the number of i2 ancestors which are unique
+#         num_ancestors_i = length(unique(ancestors.ancestor_id[ancestors.ancestor_state .== "I"]))
+#         num_ancestors_frame.num_ancestors[num_ancestors_frame.time .== current_time] .= num_ancestors
+#         num_ancestors_frame.num_ancestors_e[num_ancestors_frame.time .== current_time] .= num_ancestors_e
+#         num_ancestors_frame.num_ancestors_i[num_ancestors_frame.time .== current_time] .= num_ancestors_i
+#     end
 
-    return num_ancestors_frame
-end
+#     return num_ancestors_frame
+# end
 
 # function find_pair_coal_times(pair_ids, individ_frame)
 #     # find the most recent common ancestor of the pair
@@ -300,111 +316,111 @@ end
 # end 
 
 # simulate ei model with timevarying alpha
-function sim_ei_timevar_alpha(I_init::Int64, alpha_vec, alpha_times, nu::Float64, gamma::Float64, stop_time::Float64)
-    # Setting up initial states and frames
-    t = 0.0
-    num_exposed = 0
-    num_infectious = I_init
-    num_recovered = 0
-    current_alpha = alpha_vec[1]
-    rt = current_alpha/nu 
-    state_frame = [t num_exposed num_infectious num_recovered current_alpha rt]
+# function sim_ei_timevar_alpha(I_init::Int64, alpha_vec, alpha_times, nu::Float64, gamma::Float64, stop_time::Float64)
+#     # Setting up initial states and frames
+#     t = 0.0
+#     num_exposed = 0
+#     num_infectious = I_init
+#     num_recovered = 0
+#     current_alpha = alpha_vec[1]
+#     rt = current_alpha/nu 
+#     state_frame = [t num_exposed num_infectious num_recovered current_alpha rt]
 
-    # initialize ids and individ_frame
-    exposed_ids = Int[]
-    infectious_ids = Int[]
-    recovered_ids = Int[]
-    # Initialize the last id
-    current_id = I_init
+#     # initialize ids and individ_frame
+#     exposed_ids = Int[]
+#     infectious_ids = Int[]
+#     recovered_ids = Int[]
+#     # Initialize the last id
+#     current_id = I_init
     
-    # Tracking history and times
-    individ_frame = DataFrame(id=Int[], 
-                              infec_time=Union{Missing, Float64}[], 
-                              infectious_time=Union{Missing, Float64}[], 
-                              recov_time=Union{Missing, Float64}[], 
-                              history=Any[])  # List of who infected them
+#     # Tracking history and times
+#     individ_frame = DataFrame(id=Int[], 
+#                               infec_time=Union{Missing, Float64}[], 
+#                               infectious_time=Union{Missing, Float64}[], 
+#                               recov_time=Union{Missing, Float64}[], 
+#                               history=Any[])  # List of who infected them
 
-    # Initialize initial exposed individuals
-    for i in 1:I_init
-        push!(infectious_ids, i)
-        push!(individ_frame, (i, -1, 0, missing, [i]))
-    end
-    # simulate till end point reached
-    while (num_exposed > 0 || num_infectious > 0) && t < stop_time
-        # update alpha
-        alpha_idx = if t== 0
-            1 
-        else 
-            findlast(alpha_times .<= t)
-        end
-        current_alpha = alpha_vec[alpha_idx]
-        next_change = if alpha_idx == length(alpha_vec)
-            stop_time + 100000
-        else 
-            alpha_times[alpha_idx + 1]
-        end 
-        # Time to the next event
-        next_event = rand(Exponential(1 / (current_alpha * num_infectious + gamma * num_exposed + nu * num_infectious)))
+#     # Initialize initial exposed individuals
+#     for i in 1:I_init
+#         push!(infectious_ids, i)
+#         push!(individ_frame, (i, -1, 0, missing, [i]))
+#     end
+#     # simulate till end point reached
+#     while (num_exposed > 0 || num_infectious > 0) && t < stop_time
+#         # update alpha
+#         alpha_idx = if t== 0
+#             1 
+#         else 
+#             findlast(alpha_times .<= t)
+#         end
+#         current_alpha = alpha_vec[alpha_idx]
+#         next_change = if alpha_idx == length(alpha_vec)
+#             stop_time + 100000
+#         else 
+#             alpha_times[alpha_idx + 1]
+#         end 
+#         # Time to the next event
+#         next_event = rand(Exponential(1 / (current_alpha * num_infectious + gamma * num_exposed + nu * num_infectious)))
 
-        # Update time
-        # first check if an alpha change has occurred 
-        if t + next_event > next_change
-            t = next_change
-            # update state_frame
-            alpha_idx = if t== 0
-                1 
-            else 
-                findlast(alpha_times .<= t)
-            end
-            current_alpha = alpha_vec[alpha_idx]    
-            rt = current_alpha/nu
-            state_frame = vcat(state_frame, [t num_exposed num_infectious num_recovered current_alpha rt])
-        else
-            t += next_event
+#         # Update time
+#         # first check if an alpha change has occurred 
+#         if t + next_event > next_change
+#             t = next_change
+#             # update state_frame
+#             alpha_idx = if t== 0
+#                 1 
+#             else 
+#                 findlast(alpha_times .<= t)
+#             end
+#             current_alpha = alpha_vec[alpha_idx]    
+#             rt = current_alpha/nu
+#             state_frame = vcat(state_frame, [t num_exposed num_infectious num_recovered current_alpha rt])
+#         else
+#             t += next_event
 
-            # Choose which event happens proportional to the rates
-            which_event = sample(["infection", "infectious", "recovery"], Weights([current_alpha * num_infectious, gamma * num_exposed, nu * num_infectious]))
+#             # Choose which event happens proportional to the rates
+#             which_event = sample(["infection", "infectious", "recovery"], Weights([current_alpha * num_infectious, gamma * num_exposed, nu * num_infectious]))
 
-            # If the event is infection
-            if which_event == "infection"
-                # update current id
-                current_id += 1
-                # choose an infector from among the infectious individuals at random
-                infector_id = sample(infectious_ids)
-                # Update states
-                num_exposed += 1
-                push!(exposed_ids, current_id)
-                push!(individ_frame, (current_id, t, missing, missing, unique([individ_frame.history[infector_id]..., infector_id])))
-            # If the event is becoming infectious
-            elseif which_event == "infectious"
-                # choose an exposed individual at random
-                exposed_id = sample(exposed_ids)
-                # Update states
-                num_exposed -= 1
-                num_infectious += 1
-                push!(infectious_ids, exposed_id)
-                # remove exposed_id from exposed_ids
-                exposed_ids = filter!(x -> x != exposed_id, exposed_ids)
+#             # If the event is infection
+#             if which_event == "infection"
+#                 # update current id
+#                 current_id += 1
+#                 # choose an infector from among the infectious individuals at random
+#                 infector_id = sample(infectious_ids)
+#                 # Update states
+#                 num_exposed += 1
+#                 push!(exposed_ids, current_id)
+#                 push!(individ_frame, (current_id, t, missing, missing, unique([individ_frame.history[infector_id]..., infector_id])))
+#             # If the event is becoming infectious
+#             elseif which_event == "infectious"
+#                 # choose an exposed individual at random
+#                 exposed_id = sample(exposed_ids)
+#                 # Update states
+#                 num_exposed -= 1
+#                 num_infectious += 1
+#                 push!(infectious_ids, exposed_id)
+#                 # remove exposed_id from exposed_ids
+#                 exposed_ids = filter!(x -> x != exposed_id, exposed_ids)
 
-                individ_frame.infectious_time[exposed_id] = t
-            # If the event is recovery
-            else
-                # choose an infectious individual at random
-                infectious_id = sample(infectious_ids)
-                # Update states
-                num_infectious -= 1
-                num_recovered += 1
-                push!(recovered_ids, infectious_id)
-                # remove infectious_id from infectious_ids
-                infectious_ids = filter!(x -> x != infectious_id, infectious_ids)
-                individ_frame.recov_time[infectious_id] = t
-            end
-            # update state_frame
-            rt = current_alpha/nu
-            state_frame = vcat(state_frame, [t num_exposed num_infectious num_recovered current_alpha rt])
-        end 
-    end
-    return (individ_frame, DataFrame(state_frame, [:time, :E, :I, :R, :alpha, :rt]))
-end
+#                 individ_frame.infectious_time[exposed_id] = t
+#             # If the event is recovery
+#             else
+#                 # choose an infectious individual at random
+#                 infectious_id = sample(infectious_ids)
+#                 # Update states
+#                 num_infectious -= 1
+#                 num_recovered += 1
+#                 push!(recovered_ids, infectious_id)
+#                 # remove infectious_id from infectious_ids
+#                 infectious_ids = filter!(x -> x != infectious_id, infectious_ids)
+#                 individ_frame.recov_time[infectious_id] = t
+#             end
+#             # update state_frame
+#             rt = current_alpha/nu
+#             state_frame = vcat(state_frame, [t num_exposed num_infectious num_recovered current_alpha rt])
+#         end 
+#     end
+#     return (individ_frame, DataFrame(state_frame, [:time, :E, :I, :R, :alpha, :rt]))
+# end
 
 

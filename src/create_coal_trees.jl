@@ -9,7 +9,6 @@ find the coalescent time for a pair of individuals
 # Arguments
 -pair_ids: the pair of individual ids to find the coalescent time
 -individ_frame: a dataframe containing infection, infectious, recovered times and transmission histories
-
 """
 function find_pair_coal_times(pair_ids, individ_frame)
     # find the most recent common ancestor of the pair
@@ -75,9 +74,8 @@ end
 find_samp_coal_times(samp_ids, individ_frame)
 find the coalescence times for a set of sampled individuals
 # Arguments
--samp_ids: list of individual ids to find all coalescent times of
+-samp_ids: vector of individual ids to find all coalescent times of
 -individ_frame: data frame containing infection,infectious,recovered times and infection histories
-
 """
 function find_samp_coal_times(samp_ids, individ_frame)
     # for all pairs of samp_ids, find the coalescence time
@@ -205,7 +203,9 @@ end
 """
 find_soonest_coal_times(samp_ids, individ_frame)
 find the soonest coalescence times for a set of sampled individuals
-this should be faster than finding all of them 
+# Arguments
+-samp_ids: vector of individual ids to find all coalescent times of
+-individ_frame: frame of individual infection histories
 """
 function find_soonest_coal_times(samp_ids, individ_frame)
     # for all pairs of samp_ids, find the coalescence time
@@ -356,7 +356,7 @@ end
 
 """ 
 create_ei_coal_tree_hetchron(samp_ids, individ_frame, samp_time)
-create a coalescent tree from a set of sampled individuals
+create a coalescent tree from a set of sampled individuals sampled heterochronously
 output is a dataframe with columns with times, event types and counts of lineages
 this will be done in forward time for sanity's sake
 reverse time will be calculated separately
@@ -507,8 +507,8 @@ function create_ei_coal_tree_hetchron(last_samp_ids, last_samp_time, forward_sam
 end
 """ 
 create_ei_coal_tree_hetchron2(samp_ids, individ_frame, samp_time)
-trying to make this faster, don't want to break what we already have
-create a coalescent tree from a set of sampled individuals
+faster version of creatE_ei_coal_tree_hetrchron
+create a coalescent tree from a set of sampled individuals heterchronously
 output is a dataframe with columns with times, event types and counts of lineages
 this will be done in forward time for sanity's sake
 reverse time will be calculated separately
@@ -673,6 +673,14 @@ end
 sample_infected_ids(individ_frame, last_samp_time, forward_samp_times, forward_samp_lin, num_samps, iso)
 sample ids from an outbreak
 to be used as input in tree creation
+outputs vector of ids which are the samples
+# Arugments
+-individ_frame: frame of infection histories
+-last_samp_time: last sample time (forward time)
+-forward_samp_times: sorted forward sample times which are not the last_samp_time
+-forward_samp_lin: vector with number of lineages sampled at forward_samp_times 
+-num_samps: number of lineages sampled at last_samp_time
+-iso: boolean true false, if true sampling his isochronous, if false sampling is heterochronous
 """
 function sample_infected_ids(individ_frame, last_samp_time, forward_samp_times, forward_samp_lin, num_samps, iso)
     # first check if isochronous or not 

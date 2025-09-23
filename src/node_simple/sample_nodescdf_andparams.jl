@@ -1,3 +1,27 @@
+"""
+sample_nodescdf_andparams!()
+for a fixed phylogeny, jointly sample the number of lineages in E and I at internal nodes, sample times, 
+    and alpha change points, and also the EI population parameters
+# Arguments
+-q_cur: log scale mean 0 parameters for ESS sampling
+-l_cur: current value of the log-likelihood for ESS sampling
+-num_lineages: number of lineages at backwards time 0
+-est_times: times when lineage states must be estimated (reverse time)
+-coal_times: times of coalescence (reverse time)
+-est_states: initial lineage states at est_times
+-start_time: set to 0, used internally
+-last_samp_time: time of the last sample (forward time)
+-reverse_samp_times: sorted sample times in reverse time, excluding time 0
+-reverse_samp_lin: number of lineages sampled at reverse_samp_times
+-alpha_times: vector of times in forward time in which alpha changes, includes time 0
+-mat_size: cutoff at which point Krylov subspace methods are used when possible, default 50
+-curr_lin: vector of total lineages at est times
+-num_samples: number of total MCMC samples 
+-discard_init: number of samples to discard as burn-in
+-num_thin: every num_thinth sample is kept 
+-tstep_cutoff: above this time, Krylov subspace is not used regardless of mat_size,
+1.0 seems to work ok for small samples, 0.5 safer for >=100
+"""
 function sample_nodescdf_andparams!(q_cur::Vector{Float64}, l_cur::Float64, cholC::AbstractMatrix, log_prior_means::Vector{Float64}, 
     num_lineages::Int, est_times::Vector{Float64}, coal_times::Vector{Float64}, est_states::Vector{Int}, start_time::Float64, 
     last_samp_time::Float64, reverse_samp_times::Vector{Float64}, reverse_samp_lin::AbstractVector, 

@@ -1,7 +1,17 @@
 """
 propose_ei_coal_tree()
 propose a EI coal tree for known samples and known EI counts in forward time 
-each new event is simulated via thinning 
+each new event is simulated via time transformation
+if event times are negative, reject and return to the last accepted coalescent time
+# Arguments:
+-max_time: the time to stop at, not actually necessary
+-samp_time: time of the last sample
+-reverse_times: vector of times rates change
+-comp_traj: frame with E and I counts
+-gamma: gamma parameter
+-alpha: alpha parameter
+-init_nE: initial lineages in state E
+-init_nI: initial lineages in state I
 """
 function propose_ei_coal_tree_tt_rejectnegs(max_time; samp_time, reverse_times, comp_traj, gamma, 
     alpha, init_nE, init_nI)

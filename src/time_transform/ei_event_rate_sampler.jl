@@ -1,6 +1,15 @@
 using DataFrames
 """
-Julia version of ei_inv_event_rate.R 
+ei_event_rate_sampler(t::Float64; ...)
+calculate the total rate, and individual event rates for the partially observed EI coalescent
+# Arguments
+-t: time of interest
+-init_eff_frame: dataframe with E and I population counts
+-alpha: alpha parameter at time t
+-gamma: gamma parameter
+-max_time: time of the last sample
+-nE: number of lineages in state E
+-nI: number of lineages in state I
 """
 function ei_event_rate_sampler(t::Float64; 
                             init_eff_frame::DataFrame, 
