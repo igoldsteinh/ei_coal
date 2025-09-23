@@ -6,14 +6,8 @@ using Revise
 using JLD2
 using Random
 using LinearAlgebra
-using MCMCChains
 using ExponentialUtilities
-using DynamicPPL
 using StatsBase
-using Plots
-
-# helper functions for processing turing model
-include(srcdir("phylo_ww.jl"))
 # calculates the solutions to the EI ode system
 include(srcdir("calc_ei_trajectoriesv2.jl"))
 # needed to calcluate the solutions to the EI ode system

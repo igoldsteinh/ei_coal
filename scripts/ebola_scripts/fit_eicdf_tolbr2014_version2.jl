@@ -6,11 +6,8 @@ using Revise
 using JLD2
 using Random
 using LinearAlgebra
-using MCMCChains
 using ExponentialUtilities
-using DynamicPPL
 using StatsBase
-using Plots
 
 # helper functions for processing turing model
 include(srcdir("phylo_ww.jl"))
@@ -115,11 +112,6 @@ other_columns = [:gamma, :nu, :e0, :i0, :rw_sigma]
 other_columns = [string(col) for col in other_columns]
 all_columns = vcat(other_columns, rt_columns, ["log_likelihood", "actual_iteration"])
 my_samples_frame = DataFrame(my_samples, all_columns)
-# convert all_columns into symbols
-all_columns = [Symbol(col) for col in all_columns]
-chain = Chains(my_samples, all_columns)
-# Calculate the effective sample size
-my_ess = ess(chain)
 sim = "LBR_version2"
 seed = 123467
 CSV.write(resultsdir("my_generated_quantities", 
