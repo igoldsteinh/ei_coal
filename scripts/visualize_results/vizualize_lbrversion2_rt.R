@@ -24,7 +24,7 @@ model_res <- read_csv(here::here("results",
                                  "my_generated_quantities", 
                                  "ess_joint_hetchron_inseq_samples_simLBR_version2_seed123467.csv"))
 lump_val = 7
-date_crosswalk <- read_csv(here::here("data", "real_data", "ebola_lbrmcc_2014_date_crosswalk.csv")) %>%
+date_crosswalk <- read_csv(here::here("data", "ebola_lbrmcc_2014_date_crosswalk.csv")) %>%
   mutate(lump = floor(forward_times/lump_val))
 my_posterior_timevarying_quantiles <- model_res %>% 
   mutate(.iteration = row_number(),
@@ -55,7 +55,7 @@ my_plot_posterior_rt <- my_posterior_rt %>%
   xlab("Time")
 my_plot_posterior_rt
 # visualize mcc tree ------------------------------------------------------
-mcc_tree <- read.nexus(here::here("scripts", "ebola_scripts", "libera_mcc_tree.trees"))
+mcc_tree <- read.nexus(here::here("data", "libera_mcc_tree.trees"))
 lbr_list <- summarize_phylo(mcc_tree)
 fields <- strsplit(mcc_tree$tip.label, "\\|")
 # gather all entry 6 into one vector

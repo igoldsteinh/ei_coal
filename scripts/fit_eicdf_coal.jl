@@ -20,9 +20,9 @@ include(srcdir("node_simple", "sample_ess_simple.jl"))
 include(srcdir("node_simple", "calc_node_loglik_simplev2.jl"))
 include(srcdir("node_simple", "calc_node_loglik_simple_safev2.jl"))
 include(srcdir("node_simple", "sample_internal_nodesv2.jl"))
-num_samples = 350000
+num_samples = 100
 discard_initial = Int(round(num_samples/2))
-num_thin = 35
+num_thin = 10
 # decide on the simulation id and sim number 
 sim_id =
 if length(ARGS) == 0
@@ -71,7 +71,7 @@ curr_lin = create_curr_lin_vec(num_lineages, coal_times, reverse_samp_times, rev
 Random.seed!(sim_num)
 init_rw_sigma, init_rts, init_gamma, init_nu, init_e0, init_i0 = sample_initial_params_simple(log_rw_mean, log_rw_sigma_sd, log_rt_init_mean, log_rt_init_sd,
     log_gamma_mean, log_gamma_sd, log_nu_mean, log_nu_sd, log_e0_mean, log_e0_sd, log_i0_mean, log_i0_sd, 
-  alpha_times, curr_lin)
+  alpha_times, comp_times,curr_lin)
 alpha_vec = init_rts .* init_nu
 E_traj = zeros(length(comp_times))
 I_traj = zeros(length(comp_times))
@@ -97,7 +97,7 @@ natural_vars = vcat(init_gamma, init_nu, init_e0, init_i0,  init_rw_sigma, init_
 q_cur = log.(natural_vars) .- vcat(log_prior_means, repeat([log_rt_init_mean], length(init_rts)-1))
 l_cur = log_lik
 Random.seed!(sim_num)
-@time my_samples, my_states = sample_nodescdf_andparams!(q_cur, l_cur, cholC, log_prior_means, num_lineages, est_times, coal_times, 
+my_samples, my_states = sample_nodescdf_andparams!(q_cur, l_cur, cholC, log_prior_means, num_lineages, est_times, coal_times, 
     est_states, start_time,last_samp_time, reverse_samp_times, reverse_samp_lin, alpha_times, mat_size, curr_lin,
      num_samples, discard_initial, num_thin, tstep_cutoff)
 # make dataframe of results

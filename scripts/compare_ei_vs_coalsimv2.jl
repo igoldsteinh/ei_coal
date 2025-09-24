@@ -8,15 +8,12 @@ using Statistics
 using StatsBase
 using Combinatorics
 using Random
-using Optim
 using ExponentialUtilities
 include(srcdir("sim_ei.jl"))
 include(srcdir("create_coal_trees.jl"))
-include(srcdir("new_thin", "ei_event_rate_sampler.jl"))
-include(srcdir("new_thin", "calc_ei_probs_julia.jl"))
-include(srcdir("new_thin", "sim_next_eicoal_time_tt.jl"))
-include(srcdir("new_thin", "sim_next_eicoal_time_tt.jl"))
-include(srcdir("new_thin", "propose_ei_coal_tree_tt_rejectnegs.jl"))
+include(srcdir("time_transform", "ei_event_rate_sampler.jl"))
+include(srcdir("time_transform", "sim_next_eicoal_time_tt.jl"))
+include(srcdir("time_transform", "propose_ei_coal_tree_tt_rejectnegs.jl"))
 
 ### First, simulate the EI MJP process ###
 individ_results = DataFrame()

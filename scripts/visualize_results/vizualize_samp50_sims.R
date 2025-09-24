@@ -1,4 +1,4 @@
-# visualize 12 simulations (3 rt curves, two sampling schemes, two sample sizes)
+# visualize n=50 simulations 
 suppressPackageStartupMessages(library(tidyverse))
 suppressPackageStartupMessages(library(tidybayes))
 suppressPackageStartupMessages(library(posterior))
