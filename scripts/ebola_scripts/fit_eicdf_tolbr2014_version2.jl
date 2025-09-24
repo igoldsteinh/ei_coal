@@ -9,8 +9,6 @@ using LinearAlgebra
 using ExponentialUtilities
 using StatsBase
 
-# helper functions for processing turing model
-include(srcdir("phylo_ww.jl"))
 # calculates the solutions to the EI ode system
 include(srcdir("calc_ei_trajectoriesv2.jl"))
 # needed to calcluate the solutions to the EI ode system
@@ -23,8 +21,8 @@ include(srcdir("node_simple", "calc_node_loglik_simplev2.jl"))
 include(srcdir("node_simple", "calc_node_loglik_simple_safev2.jl"))
 include(srcdir("node_simple", "sample_internal_nodesv2.jl"))
 # read in the data
-samp_times = CSV.read(datadir("real_data", "ebola_lbrmcc_2014_samp_times.csv"), DataFrame)
-coal_times_df = CSV.read(datadir("real_data", "ebola_lbrmcc_2014_coal_times.csv"), DataFrame)
+samp_times = CSV.read(datadir("ebola_lbrmcc_2014_samp_times.csv"), DataFrame)
+coal_times_df = CSV.read(datadir( "ebola_lbrmcc_2014_coal_times.csv"), DataFrame)
 
 coal_times = round.(coal_times_df.coal_times_days, digits = 4)
 reverse_samp_times = samp_times.samp_times_4dig[2:end]
