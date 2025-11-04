@@ -1,3 +1,27 @@
+"""
+sample_initial_params_simple()
+sample initial parameter values from the prior in such a way that the likelihood won't be zero
+(total lineages larger than total pop size)
+returns natural scale initial parameter values
+# Arguments
+-log_rw_mean: mean parameter of log-normal rw prior
+-log_rw_sigma_sd: sd parameter of log-normal rw prior
+-log_rt_init_mean: mean paramater of log-normal initial rt prior
+-log_rt_init_sd: sd parmater of log-normal initial rt prior
+-log_gamma_mean: mean paramater of log-normal gamma prior
+-log_gamma_sd: sd parameter of log-normal gamma prior
+-log_nu_mean: mean parameter of log-normal nu prior
+-log_nu_sd: sd parameter of log-normal nu prior
+-log_e0_mean: mean parameter of log-normal initial E prior
+-log_e0_sd: sd parameter of log-normal intiail E prior
+-log_i0_mean: mean parameter of log-normal intial I prior
+-log_i0_sd: sd parameter of log-normal intial I prior
+-alpha_times: vector forward times of alpha change points
+-curr_lin: total number of lineages at comp times
+-comp_times: times for which E and I values are known
+-reverse_comp_times: reverse time version of comp_times
+-est_times: coal and samp times
+"""
 function sample_init_params(log_rw_mean, log_rw_sigma_sd, log_rt_init_mean, log_rt_init_sd,
     log_gamma_mean, log_gamma_sd, log_nu_mean, log_nu_sd, log_e0_mean, log_e0_sd, log_i0_mean, log_i0_sd, 
   alpha_times, curr_lin, comp_times, reverse_comp_times, est_times)
@@ -38,7 +62,7 @@ function sample_init_params(log_rw_mean, log_rw_sigma_sd, log_rt_init_mean, log_
     return rw_sigma, init_rts, init_gamma, init_nu, init_e0, init_i0
 end
 """
-check_total_pop_size(total_pop, curr_lin_vec)
+check_total_pop_size(est_times, curr_lin, reverse_comp_times, reverse_E, reverse_I)
 this function checks if the total population size is too small at any time point
 """
 function check_total_pop_size(est_times, curr_lin, reverse_comp_times, reverse_E, reverse_I)
