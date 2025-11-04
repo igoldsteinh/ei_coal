@@ -34,8 +34,6 @@ the rates only change at the estimation times
 -pop_big_enough: vector of booleans checking if there are more population members than lineage members
 -tstep_cutoff: if time diff is larger than this, krylov subspace is not allowed
 the order of params is log_gamma, log_nu, log_e0, log_i0, log_rw_sigma, log_rt_init,  log rt no init
-we are now using log_e0 as itself, not log(e0 - 1)
-
 """
 function calc_node_loglik_simplev2!(num_lineages::Int, est_times::AbstractVector{Float64}, 
     coal_times::AbstractVector{Float64}, est_states::Vector{Int}, start_time::Float64, 
@@ -354,7 +352,8 @@ function calc_twolin_pdf_vecform_simplev2(A_matrix::AbstractMatrix{Float64}, L_v
         return my_vec
 end 
 """
-column major update_A_matrix_cm_simplev2!()
+update_A_matrix_cm_simplev2!(A_matrix::AbstractMatrix{Float64}, num_lineages::Int, my_alpha::Float64, 
+gamma::Float64, E::Float64, I::Float64)
 update the rates of non-coalescent states
 num_lineages is the current number of extant lineages
 E, I my_alpha, gamma are the current values of alpha, gamma, E and I for the rates 
@@ -415,7 +414,7 @@ function update_A_matrix_cm_simplev2!(A_matrix::AbstractMatrix{Float64},
     A_matrix[j,j] = -E2I_rate
 end
 """
-update_L_matrix!
+update_L_matrix!(L_matrix::AbstractMatrix{Float64}, num_lineages::Int, A_matrix::AbstractMatrix{Float64})
 Creates matrix of rates to transition into absorbing states
 with n lineages, there are n-1 absorbing states
 # Arguments
@@ -431,6 +430,7 @@ function update_L_matrix!(L_matrix::AbstractMatrix{Float64}, num_lineages::Int, 
     return L_matrix
 end 
 """
+preallocate_caches(sizes, method)
 preallocate caches for all sizes of A matrices
 """
 function preallocate_caches(sizes, method)
@@ -442,6 +442,7 @@ function preallocate_caches(sizes, method)
     return caches
 end
 """
+preallocate_krylov(sizes)
 preallocate krylove spaces for all sizes of A matrices
 """
 function preallocate_krylov(sizes)

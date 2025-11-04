@@ -1,0 +1,112 @@
+function joint_sampler_noalpha!(q_cur::Vector{Float64}, l_cur::Float64, cholC::AbstractMatrix, log_prior_means::Vector{Float64}, 
+    init_lineages::Int, est_times::Vector{Float64}, coal_times::Vector{Float64}, est_states::Vector{Int}, 
+     reverse_samp_times, reverse_samp_lin::AbstractVector, alpha_times::Vector{Float64}, 
+     mat_size::Int, curr_lin::Vector{Float64}, num_samples::Int, discard_initial::Int, num_thin::Int, tstep_cutoff)
+     # idiot proofing the error terms
+     if any(curr_lin .<= 0)
+         error("curr_lin has negative or 0 values, this is not allowed")
+     end
+    # create the matrix of paramater values
+    my_samples = zeros(Int((num_samples - discard_initial)/num_thin), length(q_cur) + 2)
+    # create the matrix of states
+    my_states = zeros(Int((num_samples - discard_initial)/num_thin), length(est_states) + 2)
+    # create needed matrices and vectors to reduce memory usage 
+    max_lineages = Int(max(maximum(curr_lin), init_lineages))
+    sizes = 2:(max_lineages + 1)
+    my_method = ExpMethodHigham2005()
+    cache_dict = preallocate_caches(sizes, my_method)
+    ks_dict = preallocate_krylov(mat_size:max_lineages + 1)
+    expv_cache_dict = preallocate_expv_cache((mat_size+1):max_lineages + 1)
+    A_matrix = zeros( max_lineages+1, max_lineages+1)
+    L_matrix = zeros( max_lineages+1, max_lineages-1)
+    pop_big_enough = zeros(length(curr_lin))
+    my_output = zeros(max_lineages - 1)
+    row_vector = zeros(max_lineages + 1)
+    vector_cache = zeros(max_lineages + 1)
+    my_vec = zeros(max_lineages - 1)
+
+    # create other variable vectors
+    alpha_vec = zeros(length(alpha_times))
+    reverse_E = zeros(length(comp_times))
+    reverse_I = zeros(length(comp_times))
+    E_traj = zeros(length(comp_times))
+    I_traj = zeros(length(comp_times))
+    pop_big_enough = zeros(length(curr_lin))
+    max_pop = maximum(reverse_E .+ reverse_I)
+    rt_no_init = zeros(length(alpha_times) - 1) 
+    gamma = exp(q_cur[1] + log_prior_means[1])
+    nu = exp(q_cur[2] + log_prior_means[2])
+    e0 = exp(q_cur[3] + log_prior_means[3])
+    i0 = exp(q_cur[4] + log_prior_means[4]) 
+    init_rt = exp(q_cur[6] + log_prior_means[6])
+    rt_no_init .= exp.(log_prior_means[6] .+ q_cur[7:end])
+    alpha_init = init_rt .* nu
+    alpha_vec[1] = alpha_init
+    alpha_vec[2:end] .= rt_no_init .* nu
+    reverse_alpha_vec = reverse(alpha_vec)
+    calc_ei_trajectoriesv2!(comp_times, alpha_times, alpha_vec, gamma, nu, e0, i0, E_traj, I_traj)
+    reverse_E[1:end-1] .= reverse(E_traj)[2:end]
+    reverse_E[end] = e0
+    reverse_I[1:end-1] .= reverse(I_traj)[2:end]
+    reverse_I[end] = i0
+    max_pop = maximum(reverse_E .+ reverse_I)
+    lin_E = zeros(length(est_states))
+    lin_I = zeros(length(est_states))
+    j = 1
+    m = 1
+    # would be good to do a sanity check here to say, do your starting states likelihood match the input likelihood you gave me?
+    for i in 1:num_samples 
+        # print("i: ", i)
+        # sample the parameters
+        if i % 1000 == 0
+            println("i: ", i, " of ", num_samples)
+        end
+        # update lineages 
+        lin_E .= est_states .- 1
+        lin_I .= curr_lin .- lin_E
+        q_cur, l_cur = sample_ess_noalpha(q_cur, l_cur, cholC, log_prior_means, 
+        init_lineages, est_times, coal_times, est_states, reverse_samp_times, reverse_samp_lin, 
+        alpha_times, A_matrix, L_matrix, my_vec, row_vector, vector_cache, cache_dict, 
+        ks_dict, expv_cache_dict, mat_size, E_traj, I_traj, reverse_E, reverse_I, alpha_vec, 
+        reverse_alpha_vec, lin_E, lin_I, pop_big_enough, tstep_cutoff)
+        gamma = exp(q_cur[1] + log_prior_means[1])
+        nu = exp(q_cur[2] + log_prior_means[2])
+        e0 = exp(q_cur[3] + log_prior_means[3])
+        i0 = exp(q_cur[4] + log_prior_means[4]) 
+        rw_sigma = exp(q_cur[5] + log_prior_means[5])
+        init_rt = exp(q_cur[6] + log_prior_means[6])
+        rt_no_init .= exp.(log_prior_means[6] .+ q_cur[7:end])
+        if i > discard_initial && i % num_thin == 0
+            my_samples[j,1:end-2] .= vcat(gamma, nu, e0, i0, rw_sigma, init_rt, rt_no_init)
+            my_samples[j,end-1] = l_cur
+            my_samples[j,end] = i
+            j += 1
+        end
+        # update gamma and alphae_vec
+        alpha_init = init_rt * nu
+        alpha_vec[1] = alpha_init
+        alpha_vec[2:end] .= rt_no_init .* nu
+        reverse_alpha_vec = reverse(alpha_vec)
+        calc_ei_trajectoriesv2!(comp_times, alpha_times, alpha_vec, gamma, nu, e0, i0, E_traj, I_traj)
+        reverse_E[1:end-1] .= reverse(E_traj)[2:end]
+        reverse_E[end] = e0
+        reverse_I[1:end-1] .= reverse(I_traj)[2:end]
+        reverse_I[end] = i0
+        max_pop = maximum(reverse_E .+ reverse_I)
+        # sample all states
+        
+        l_cur, est_states = sample_internal_nodes_noalpha!(num_lineages, est_times, coal_times, reverse_samp_times, 
+        reverse_samp_lin, gamma, reverse_alpha_vec, reverse_E, reverse_I, cache_dict, mat_size, ks_dict,  expv_cache_dict, 
+        A_matrix, L_matrix,my_output, vector_cache, row_vector, est_states, tstep_cutoff)
+        # store the samples
+        if i > discard_initial && i % num_thin == 0
+            my_states[m,1:end-2] .= est_states
+            my_states[m,end-1] = l_cur
+            my_states[m,end] = i
+            m += 1
+        end
+    end
+    return my_samples, my_states
+end
+
+

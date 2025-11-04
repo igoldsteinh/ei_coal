@@ -43,7 +43,7 @@ tree_sim1 <- read.tree(here::here("data",
 samp_time = 153
 tree_plot_sim1 <- tree_sim1 %>%
   ggtree() + 
-  ggtitle("Fixed Iso") + 
+  ggtitle("Fixed Isochronous") + 
   theme_tree2() + 
   scale_x_continuous("Forward Time", limits = c(0, samp_time)) +
   theme(text = element_text(size = 20))
@@ -65,7 +65,7 @@ my_plot_posterior_rt_sim1 <- my_posterior_rt_sim1 %>%
   geom_point(aes(x = new_time, y = true_rt), color = "orange") +
   geom_hline(yintercept = 1, linetype = "dashed") +
   theme_bw() +
-  ggtitle("Fixed Iso") + 
+  ggtitle("Fixed Isochronous") + 
   my_theme + 
   ylim(c(0, 4.5)) +
   ylab("Ru") +

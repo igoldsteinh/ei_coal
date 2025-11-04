@@ -43,7 +43,7 @@ tree_sim1 <- read.tree(here::here("data",
 samp_time = 153
 tree_plot_sim1 <- tree_sim1 %>%
   ggtree() + 
-  ggtitle("Fixed Iso") + 
+  ggtitle("Fixed Isochronous") + 
   theme_tree2() + 
   scale_x_continuous("", limits = c(0, samp_time)) +
   theme(text = element_text(size = 20))
@@ -67,7 +67,7 @@ tree_sim3 <- read.tree(here::here("data",
 
 tree_plot_sim3 <- tree_sim3 %>%
   ggtree() + 
-  ggtitle("Fixed Het") + 
+  ggtitle("Fixed Heterochronous") + 
   theme_tree2() + 
   scale_x_continuous("", limits = c(0, ceiling(samp_time))) +
   theme(text = element_text(size = 20))
@@ -91,7 +91,7 @@ tree_sim5 <- read.tree(here::here("data",
 
 tree_plot_sim5 <- tree_sim5 %>%
   ggtree() + 
-  ggtitle("Increase Iso") + 
+  ggtitle("Increase Isochronous") + 
   theme_tree2() + 
   scale_x_continuous("", limits = c(0, ceiling(samp_time))) +
   theme(text = element_text(size = 20))
@@ -115,7 +115,7 @@ tree_sim7 <- read.tree(here::here("data",
 
 tree_plot_sim7 <- tree_sim7 %>%
   ggtree() + 
-  ggtitle("Increase Het") + 
+  ggtitle("Increase Heterochronous") + 
   theme_tree2() + 
   scale_x_continuous("", limits = c(0, ceiling(samp_time))) +
   theme(text = element_text(size = 20))
@@ -139,7 +139,7 @@ tree_sim9 <- read.tree(here::here("data",
 
 tree_plot_sim9 <- tree_sim9 %>%
   ggtree() + 
-  ggtitle("Control Iso") + 
+  ggtitle("Control Isochronous") + 
   theme_tree2() + 
   scale_x_continuous("Forward Time", limits = c(0, ceiling(samp_time))) +
   theme(text = element_text(size = 20))
@@ -163,7 +163,7 @@ tree_sim11 <- read.tree(here::here("data",
 
 tree_plot_sim11 <- tree_sim11 %>%
   ggtree() + 
-  ggtitle("Control Het") + 
+  ggtitle("Control Heterochronous") + 
   theme_tree2() + 
   scale_x_continuous("Forward Time", limits = c(0, ceiling(samp_time))) +
   theme(text = element_text(size = 20))
@@ -185,7 +185,7 @@ my_plot_posterior_rt_sim1 <- my_posterior_rt_sim1 %>%
   geom_point(aes(x = new_time, y = true_rt), color = "orange") +
   geom_hline(yintercept = 1, linetype = "dashed") +
   theme_bw() +
-  ggtitle("Fixed Iso") + 
+  ggtitle("Fixed Isochronous") + 
   my_theme + 
   ylim(c(0, 4.5)) +
   ylab("Ru") +
@@ -210,7 +210,7 @@ my_plot_posterior_rt_sim3 <- my_posterior_rt_sim3 %>%
   geom_point(aes(x = new_time, y = true_rt), color = "orange") +
   geom_hline(yintercept = 1, linetype = "dashed") +
   theme_bw() +
-  ggtitle("Fixed Het") + 
+  ggtitle("Fixed Heterochronous") + 
   my_theme + 
   ylim(c(0, 4.5)) +
   ylab("Ru") +
@@ -235,7 +235,7 @@ my_plot_posterior_rt_sim5 <- my_posterior_rt_sim5 %>%
   geom_point(aes(x = new_time, y = true_rt), color = "orange") +
   geom_hline(yintercept = 1, linetype = "dashed") +
   theme_bw() +
-  ggtitle("Increase Iso") + 
+  ggtitle("Increase Isochronous") + 
   my_theme + 
   ylim(c(0, 4.5)) +
   ylab("Ru") +
@@ -260,7 +260,7 @@ my_plot_posterior_rt_sim7 <- my_posterior_rt_sim7 %>%
   geom_point(aes(x = new_time, y = true_rt), color = "orange") +
   geom_hline(yintercept = 1, linetype = "dashed") +
   theme_bw() +
-  ggtitle("Increase Het") + 
+  ggtitle("Increase Heterochronous") + 
   my_theme + 
   ylim(c(0, 4.5)) +
   ylab("Ru") +
@@ -284,7 +284,7 @@ my_plot_posterior_rt_sim9 <- my_posterior_rt_sim9 %>%
   geom_point(aes(x = new_time, y = true_rt), color = "orange") +
   geom_hline(yintercept = 1, linetype = "dashed") +
   theme_bw() +
-  ggtitle("Control Iso") + 
+  ggtitle("Control Isochronous") + 
   my_theme + 
   ylim(c(0, 4.5)) +
   ylab("Ru") +
@@ -308,7 +308,7 @@ my_plot_posterior_rt_sim11 <- my_posterior_rt_sim11 %>%
   geom_point(aes(x = new_time, y = true_rt), color = "orange") +
   geom_hline(yintercept = 1, linetype = "dashed") +
   theme_bw() +
-  ggtitle("Control Het") + 
+  ggtitle("Control Heterochronous") + 
   my_theme + 
   ylim(c(0, 4.5)) +
   ylab("Ru") +

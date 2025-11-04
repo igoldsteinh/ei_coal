@@ -27,7 +27,7 @@ function sample_nodescdf_andparams!(q_cur::Vector{Float64}, l_cur::Float64, chol
     last_samp_time::Float64, reverse_samp_times::Vector{Float64}, reverse_samp_lin::AbstractVector, 
     alpha_times::Vector{Float64}, mat_size::Int, curr_lin::Vector{Float64}, num_samples::Int, discard_initial::Int, num_thin::Int,
     tstep_cutoff)
-     # idiot proofing the error terms
+     # idiot proofing 
      if any(curr_lin .<= 0)
          error("curr_lin has negative or 0 values, this is not allowed")
      end
@@ -45,11 +45,8 @@ function sample_nodescdf_andparams!(q_cur::Vector{Float64}, l_cur::Float64, chol
     ks_dict = preallocate_krylov(mat_size:max_lineages + 1)
     expv_cache_dict = preallocate_expv_cache((mat_size+1):max_lineages + 1)
     A_matrix = zeros( max_lineages+1, max_lineages+1)
-    A_matrix2 = zeros( max_lineages+1, max_lineages+1)
     L_matrix = zeros( max_lineages+1, max_lineages-1)
-    id_matrix = Diagonal(ones(max_lineages + 1))
     new_inverse_term = zeros(max_lineages + 1, max_lineages - 1)
-    cdf = zeros(max_lineages - 1)
     pdf = zeros(max_lineages - 1)
     my_method = ExpMethodHigham2005()
     temp_vec = zeros(max_lineages + 1)
@@ -86,9 +83,7 @@ function sample_nodescdf_andparams!(q_cur::Vector{Float64}, l_cur::Float64, chol
     lin_I = zeros(length(est_states))
     j = 1
     m = 1
-    # would be good to do a sanity check here to say, do your starting states likelihood match the input likelihood you gave me?
     for i in 1:num_samples 
-        # print("i: ", i)
         # sample the parameters
         if i % 1000 == 0
             println("i: ", i, " of ", num_samples)
@@ -127,12 +122,8 @@ function sample_nodescdf_andparams!(q_cur::Vector{Float64}, l_cur::Float64, chol
         
         l_cur, ll_vec, est_states = sample_internal_nodesv2!(num_lineages, est_times, coal_times, init_dist, 
         start_time, last_samp_time, reverse_samp_times, reverse_samp_lin, alpha_times, gamma, alpha_vec, reverse_E, reverse_I,
-        cache_dict, mat_size, ks_dict, expv_cache_dict, A_matrix, A_matrix2, L_matrix, id_matrix, 
-        new_inverse_term, cdf, pdf, my_method, temp_vec, L_vec, my_vec, est_states, ll_vec, tstep_cutoff)
-        # if (abs(l_cur - sum(ll_vec)) > 1e-6)
-        #     println("l_cur: ", l_cur, " sum(ll_vec): ", sum(ll_vec), " est_states: ", est_states)
-        #     error("l_cur != sum(ll_vec)")
-        # end
+        cache_dict, mat_size, ks_dict, expv_cache_dict, A_matrix, L_matrix, 
+        new_inverse_term, pdf, my_method, temp_vec, L_vec, my_vec, est_states, ll_vec, tstep_cutoff)
         # store the samples
         if i > discard_initial && i % num_thin == 0
             my_states[m,1:end-2] .= est_states
