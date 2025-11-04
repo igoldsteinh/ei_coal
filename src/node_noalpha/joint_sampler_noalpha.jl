@@ -1,3 +1,29 @@
+"""
+joint_sampler_noalpha!()
+
+jointly sample EI population parameters and states of the EI coalescent at coalescent and sampling times 
+
+# Arguments
+# Arguments
+-q_cur: log scale mean 0 parameters for ESS sampling
+-l_cur: current value of the log-likelihood for ESS sampling
+-cholC: cholesky matrix of standard deviatiosn for fixed parameters
+-log_prior_means: vector of log prior means for fixed parameters
+-init_lineages: number of lineages at backwards time 0
+-est_times: times when lineage states must be estimated (reverse time)
+-coal_times: times of coalescence (reverse time)
+-est_states: initial lineage states at est_times
+-reverse_samp_times: sorted sample times in reverse time, excluding time 0
+-reverse_samp_lin: number of lineages sampled at reverse_samp_times
+-alpha_times: vector of times in forward time in which alpha changes, includes time 0
+-mat_size: cutoff at which point Krylov subspace methods are used when possible, default 50
+-curr_lin: vector of total lineages at est times
+-num_samples: number of total MCMC samples 
+-discard_inititial: number of samples to discard as burn-in
+-num_thin: every num_thinth sample is kept 
+-tstep_cutoff: above this time, Krylov subspace is not used regardless of mat_size,
+1.0 seems to work ok for small samples, 0.5 safer for >=100
+"""
 function joint_sampler_noalpha!(q_cur::Vector{Float64}, l_cur::Float64, cholC::AbstractMatrix, log_prior_means::Vector{Float64}, 
     init_lineages::Int, est_times::Vector{Float64}, coal_times::Vector{Float64}, est_states::Vector{Int}, 
      reverse_samp_times, reverse_samp_lin::AbstractVector, alpha_times::Vector{Float64}, 
@@ -54,9 +80,7 @@ function joint_sampler_noalpha!(q_cur::Vector{Float64}, l_cur::Float64, cholC::A
     lin_I = zeros(length(est_states))
     j = 1
     m = 1
-    # would be good to do a sanity check here to say, do your starting states likelihood match the input likelihood you gave me?
     for i in 1:num_samples 
-        # print("i: ", i)
         # sample the parameters
         if i % 1000 == 0
             println("i: ", i, " of ", num_samples)
@@ -94,10 +118,9 @@ function joint_sampler_noalpha!(q_cur::Vector{Float64}, l_cur::Float64, cholC::A
         reverse_I[end] = i0
         max_pop = maximum(reverse_E .+ reverse_I)
         # sample all states
-        
-        l_cur, est_states = sample_internal_nodes_noalpha!(num_lineages, est_times, coal_times, reverse_samp_times, 
+        l_cur, est_states = sample_internal_nodes_noalpha!(est_states, num_lineages, est_times, coal_times, reverse_samp_times, 
         reverse_samp_lin, gamma, reverse_alpha_vec, reverse_E, reverse_I, cache_dict, mat_size, ks_dict,  expv_cache_dict, 
-        A_matrix, L_matrix,my_output, vector_cache, row_vector, est_states, tstep_cutoff)
+        A_matrix, L_matrix,my_output, vector_cache, row_vector, tstep_cutoff)
         # store the samples
         if i > discard_initial && i % num_thin == 0
             my_states[m,1:end-2] .= est_states

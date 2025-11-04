@@ -120,10 +120,10 @@ function sample_nodescdf_andparams!(q_cur::Vector{Float64}, l_cur::Float64, chol
         total_pop .= reverse_E .+ reverse_I
         # sample all states
         
-        l_cur, ll_vec, est_states = sample_internal_nodesv2!(num_lineages, est_times, coal_times, init_dist, 
+        l_cur, ll_vec, est_states = sample_internal_nodesv2!(est_states, num_lineages, est_times, coal_times, init_dist, 
         start_time, last_samp_time, reverse_samp_times, reverse_samp_lin, alpha_times, gamma, alpha_vec, reverse_E, reverse_I,
         cache_dict, mat_size, ks_dict, expv_cache_dict, A_matrix, L_matrix, 
-        new_inverse_term, pdf, my_method, temp_vec, L_vec, my_vec, est_states, ll_vec, tstep_cutoff)
+        new_inverse_term, pdf, my_method, temp_vec, L_vec, my_vec, ll_vec, tstep_cutoff)
         # store the samples
         if i > discard_initial && i % num_thin == 0
             my_states[m,1:end-2] .= est_states

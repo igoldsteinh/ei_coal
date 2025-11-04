@@ -1,4 +1,35 @@
 """
+calc_full_likelihood_noalpha()
+
+Calculate the log likelihood of the EI coalescent model
+returns the log likelihood 
+
+# Arguments
+-init_lineages: number of sampled lineages at time 0 in reverse time
+-est_times: times of coalescence and sampling
+-est_state: states of the model at times est_times
+-reverse_comp_times: times at which E and I change in reverse time
+-coal_times: times of coalescence (reverse time)
+-reverse_samp_times: times of sampling (reverse_time)
+-reverse_samp_lin: number of lineages sampled at times reverse_samp_times
+-gamma: gamma parameter
+-reverse_alpha_vec: vector of alpha values in reverse time
+-reverse_E: values of E at times reverse_comp_times
+-reverse_I: values of I at times reverse_comp_times
+-max_pop: maximum of the sum of reverse_E and reverse_I
+-A_matrix: matrix of rates of non-coalescence, size should be size n + 1 x n + 1, n = maximum number of extant lineages 
+-L_matrix: matrix of rates of coalescence, size should be  n + 1 x n - 1, n = maximum number of lineages 
+-my_vec: vector used for matrix multiplication
+-row_vector: vector used for matrix multiplication
+-vector_cache: vector used for matrix multiplication
+-cache_dict: dictionary of caches for matrix exponentiation
+-ks_dict: dictionary of caches for krylov subspace methods
+-expv_cache_dict: dictionary of caches for expv!()
+-mat_size: matrix size at which we consider using krylov methods
+-lin_E: number of lineages in state E at est_times
+-lin_I: number of lineages in state I at est_times
+-pop_big_enough: vector checking if number of lineages exceeds number of total population in each state
+-tstep_cutoff: time above which krylov subspace methods are automatically not used
 """
 function calc_full_likelihood_noalpha(init_lineages::Int, est_times::AbstractVector{Float64}, est_states::Vector{Int},
      reverse_comp_times::AbstractVector{Float64},
@@ -10,14 +41,12 @@ function calc_full_likelihood_noalpha(init_lineages::Int, est_times::AbstractVec
     A_matrix::AbstractMatrix{Float64}, L_matrix::AbstractMatrix{Float64}, my_vec::AbstractVector{Float64}, row_vector, vector_cache,
      cache_dict, ks_dict, expv_cache_dict, mat_size::Int, lin_E::AbstractVector{Float64}, lin_I::AbstractVector{Float64}, 
     pop_big_enough::Vector{Float64}, tstep_cutoff)
-    # make ll_vec, only for debugging
-    # ll_vec = zeros(length(est_times))
         # likelihood checks, pop size too large, or if I is too small
     if max_pop > 8E9
         return -Inf
     end 
     # check if the populations are big enough at each coal and sample time
-    pop_big_enough = check_total_pop_size_noalpha!(est_times, lin_E, lin_I, reverse_comp_times, reverse_E, reverse_I, pop_big_enough)
+    pop_big_enough = check_total_pop_size_noalpha!(pop_big_enough, est_times, lin_E, lin_I, reverse_comp_times, reverse_E, reverse_I)
     # if they're ever not, reject immediately
     if any(x -> x == 0, pop_big_enough)
         return -Inf
@@ -101,14 +130,23 @@ function calc_full_likelihood_noalpha(init_lineages::Int, est_times::AbstractVec
 end
 
 """
-check_comp_pop_size(lin_E, lin_I, reverse_E, reverse_I)
-assuming reverse_E, reverse_I are same length as lin_E, lin_I
+check_total_pop_size_noalpha!
 check that the populations in the compartments are large enough 
+
 reverse_E and reverse_I are longer than lin_E and lin_I
 reverse_comp_times is the same length as reverse_E and reverse_I
 est_times is the same length as lin_E and lin_I
+
+# Arguments
+-pop_big_enough: vector of booleans checking whether population is big enough
+-est_times: coal and samp times
+-lin_E: number of lineages in E stat at est_times
+-lin_I: number of lineages in I state at est_times
+-reverse_comp_times: times when E and I change
+-reverse_E: values of E at reverse_comp_times
+-reverse_I: values of I at reverse_comp_times
 """
-function check_total_pop_size_noalpha!(est_times, lin_E, lin_I, reverse_comp_times, reverse_E, reverse_I, pop_big_enough)
+function check_total_pop_size_noalpha!(pop_big_enough, est_times, lin_E, lin_I, reverse_comp_times, reverse_E, reverse_I)
     # check that the total population size is large enough
     est_times_idx = 1
     for i in 1:length(reverse_comp_times)
@@ -124,6 +162,14 @@ function check_total_pop_size_noalpha!(est_times, lin_E, lin_I, reverse_comp_tim
     return pop_big_enough 
 end
 """
+create_currlin
+create vector of number of lineages at coal and samp times 
+
+# Arguments
+-initial_lineages: initial number of I lineages
+-coal_and_samp_times: vector of coal and samp times
+-coal_times: vector of coal_times
+-reverse_samp_lin: vector of number of lineages sampled at samp times
 """
 function create_currlin(initial_lineages, coal_and_samp_times, coal_times, reverse_samp_lin)
     coal_idx = 1
@@ -155,6 +201,11 @@ function create_currlin(initial_lineages, coal_and_samp_times, coal_times, rever
     end 
     return curr_lin 
 end 
+"""
+create_linElinI(sampled_node_states, curr_lin)
+
+create vectors of numbers of lineages in state E and state I at coal and samp times
+"""
 function create_linElinI(sampled_node_states, curr_lin)
     lin_E = zeros(length(sampled_node_states))
     lin_I = zeros(length(sampled_node_states))

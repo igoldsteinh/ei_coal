@@ -1,24 +1,46 @@
 
 using LinearAlgebra
 """
-ess(q_cur, l_cur, loglik, cholC; kwargs...)
+sample_ess_noalpha
 peform an elliptical slice sampling step
-allow for tuning of the initial angle proposal
-@params
-    q_cur: current state (with 0 mean)
-    l_cur: current log-likelihood (full likelihood)
-    loglik: function to compute the log-likelihood
-    cholC: Cholesky factor of the covariance matrix of the independent parameters
-    kwargs: additional arguments for the loglik function
-@returns
-    q: new state
-    u: new log-likelihood
-    Ind: indicator of whether the proposal was accepted (1) or rejected (0)
+returns new uncentered parameters, log likelihood
+# Arguments
+-q_cur: current state (with 0 mean)
+-l_cur: current log-likelihood (full likelihood)
+-cholC: Cholesky factor of the covariance matrix of the independent parameters
+-log_prior_means: vector of prior means on log scale
+-init_lineages: number of starting lineages
+-est_times: times that contribute to the log likelihood
+-coal_times: coalescence times
+-est_states: number of lineages in states I and E at the est_times
+-reverse_samp_times: sorted reverse samp times not including the last one
+-reverse_samp_lin: number of lineags sampled at reverse_samp_times
+-alpha_times: forward times alpha changes
+-A_matrix: rates of non-coalescent states
+-L_matrix: rates of coalescent states
+-my_vec: used for storing values
+-row_vector: used for storing values
+-vector_cache: used for storing values 
+-my_method: method of matrix exponenitation
+-ks_dict: dictionary of caches for krylov subspace
+-expv_cache_dict: dictionary of caches for expv
+-mat_size: cutoff above which krylov subpsace can be used
+-E_traj: vector of E values
+-I_traj: vector of I values
+-reverse_E: vector of E values reversed
+-reverse_I: vector of I values reversed
+-alpha_vec: vector of alpha values
+-reverse_alpha_vec: vector of alpha values in reverse time
+-lin_E: vector of number of E lineages at est_times
+-lin_I: same as lin_E but for I lineages
+-pop_big_enough: vector of booleans checking if there are more population members than lineage members
+-tstep_cutoff: if time diff is larger than this, krylov subspace is not allowed
 the order of params is log_gamma, log_nu, log_e0, log_i0, log_rw_sigma, log_rt_init,  log rt no init
 we are now using log_e0 as itself, not log(e0 - 1)
 """
 function sample_ess_noalpha(q_cur::Vector{Float64}, l_cur::Float64, cholC::AbstractMatrix, log_prior_means::Vector{Float64}, 
-    init_lineages::Int, est_times::Vector{Float64}, coal_times::Vector{Float64}, est_states::Vector{Int}, reverse_samp_times, reverse_samp_lin::AbstractVector, 
+    init_lineages::Int, est_times::Vector{Float64}, coal_times::Vector{Float64}, est_states::Vector{Int}, reverse_samp_times, 
+    reverse_samp_lin::AbstractVector, 
     alpha_times::Vector{Float64}, A_matrix::Matrix{Float64}, 
     L_matrix::Matrix{Float64}, my_vec, row_vector, vector_cache, cache_dict, 
     ks_dict, expv_cache_dict, mat_size::Int, E_traj::Vector{Float64}, I_traj::Vector{Float64}, reverse_E::Vector{Float64}, 
@@ -41,10 +63,6 @@ function sample_ess_noalpha(q_cur::Vector{Float64}, l_cur::Float64, cholC::Abstr
     # Log-likelihood threshold
     u = rand()  # uniform random number in [0, 1]
     logy = l_cur + log(u)
-    # println("v")
-    # println(v)
-    # println("u")
-    # println(u)
     # Draw an initial proposal, also defining a bracket
     omega = 2 * pi
     init_t = omega * rand()
@@ -83,12 +101,6 @@ function sample_ess_noalpha(q_cur::Vector{Float64}, l_cur::Float64, cholC::Abstr
     iter = 1
     while ll < logy || isnan(ll) 
         # Shrink the bracket and try a new point
-        # println("logy")
-        # println(logy)
-        # println("ll")
-        # println(ll)
-        # println("check")
-        # println(ll < logy)
         if t < 0
             t_min = t
         else

@@ -41,7 +41,6 @@ returns new uncentered parameters, log likelihood, vector of ll contributions, v
 -pop_big_enough: vector of booleans checking if there are more population members than lineage members
 -tstep_cutoff: if time diff is larger than this, krylov subspace is not allowed
 the order of params is log_gamma, log_nu, log_e0, log_i0, log_rw_sigma, log_rt_init,  log rt no init
-we are now using log_e0 as itself, not log(e0 - 1)
 """
 function sample_ess_simple(q_cur::Vector{Float64}, l_cur::Float64, cholC::AbstractMatrix, log_prior_means::Vector{Float64}, 
     num_lineages::Int, est_times::Vector{Float64}, coal_times::Vector{Float64}, est_states::Vector{Int}, start_time::Float64, 

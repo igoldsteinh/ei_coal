@@ -1,7 +1,27 @@
 """
+calc_coal_ll_noalpha_krylov()
 for known start and end times and states
     calculate pdf of coalescent interval with possible alpha changes
     using krylov subpsace method
+
+returns log likelihood contribution and value of alpha at end_time
+# Arguments
+-A_matrix: matrix of rates of transitioning to non-coalescent states (n+1 X n+1)
+-L_matrix: matrix of rates of transitioning to coalescent states (n+ 1 X n-1)
+-my_vec: place to store columns of L (n+1 x 1)
+-my_ks: cache for krylov subspace
+-expv_cache: cache for exponential!()
+-active_lineages: extant linages
+-end_time: time of coalescence
+-end_state: coalescent state
+-start_time: interval start
+-start_state: state at start_time
+-gamma: gamma param
+-alpha_t: value of alpha at start_time
+-reverse_alpha_vec: vector of alpha values in reverse time
+-reverse_comp_times: reverse times at which E and I change
+-reverse_E: values of E at times reverse_comp_times 
+-reverse_I: values of I at times reverse_comp_times
 """
 function calc_coal_ll_noalpha_krylov(A_matrix::AbstractMatrix{Float64}, 
     L_matrix::AbstractMatrix{Float64}, my_vec::AbstractVector{Float64}, my_ks, expv_cache, 
@@ -69,6 +89,24 @@ end
 calc_samp_pdf_noalpha_krylov
 calculate ll contribution of sampling event with known start and end states
 and assuming any alpha changes get rolled in
+
+
+returns log likelihood contribution and value of alpha at end_time
+# Arguments
+-A_matrix: matrix of rates of transitioning to non-coalescent states (n+1 X n+1)
+-my_ks: cache for krylov subspace
+-expv_cache: cache for exponential!()
+-active_lineages: extant linages
+-end_time: time of coalescence
+-end_state: coalescent state
+-start_time: interval start
+-start_state: state at start_time
+-gamma: gamma param
+-alpha_t: value of alpha at start_time
+-reverse_alpha_vec: vector of alpha values in reverse time
+-reverse_comp_times: reverse times at which E and I change
+-reverse_E: values of E at times reverse_comp_times 
+-reverse_I: values of I at times reverse_comp_times
 """
 function calc_samp_ll_noalpha_krylov(A_matrix::AbstractMatrix{Float64}, 
      my_ks, expv_cache, 
@@ -101,7 +139,6 @@ function calc_samp_ll_noalpha_krylov(A_matrix::AbstractMatrix{Float64},
         index_vector[start_state] = 1.0
         update_A_matrix_cm_simplev2!(A_matrix, active_lineages, alpha_t, gamma, E, I)
         delta_t = subset_times[1] - start_time
-        # tomorrow we need to check that this works
         ExponentialUtilities.arnoldi!(my_ks, transpose(A_matrix), index_vector; ishermitian=false)
         ExponentialUtilities.expv!(index_vector, delta_t, my_ks, cache = expv_cache)
         # this first event must have been alpha time, so update alpha_idx

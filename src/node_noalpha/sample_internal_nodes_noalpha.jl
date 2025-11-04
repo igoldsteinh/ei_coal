@@ -3,6 +3,26 @@ calc_coal_pdf_noalpha
 calculate the pdf of a single coalescent event for each possible absorbption state
 any changes in alpha are absorbed into the probability
 the only possible end states are coalescent times and sampling times
+
+returns a vector of pdfs and also alpha at end_time
+# Arguments
+-num_lineages: extant lineages
+-end_time: end of the interval
+-start_state: state at start of interval
+-start_time: start of interval
+-gamma: gamma param
+-alpha_t: value of alpha at start_time
+-reverse_alpha_vec: vector of alpha values in reverse time
+-reverse_comp_times: times at which E and I change in reverse time
+-reverse_E: values of E at reverse_comp_tiems
+-reverse_I: values of I at reverse_comp_times
+-A_matrix: rates of non-coalescence 
+-L_matrix : rates of coalescence
+-my_output: output vector
+-my_method: method for matrix exponentiation
+-my_cache: cache for matrix exponentiation
+-row_vector: vector for storing intermediate matrix multiplications
+-vector_cache: vector for storing intermediate matrix multiplications
 """
 function calc_coal_pdf_noalpha(num_lineages::Int, end_time::Float64, start_state, start_time::Float64, 
     gamma::Float64, alpha_t, reverse_alpha_vec, reverse_comp_times, reverse_E, reverse_I,  A_matrix::AbstractMatrix{Float64}, 
@@ -71,6 +91,23 @@ function calc_coal_pdf_noalpha(num_lineages::Int, end_time::Float64, start_state
 end 
 """
 calc_coal_twolin_pdf_noalpha
+calculate the pdf of a single coalescent event when there are just two lineages
+
+# Arguments
+-coal_time: end of the interval
+-start_state: state at start of interval
+-start_time: start of interval
+-gamma: gamma param
+-alpha_t: value of alpha at start_time
+-reverse_alpha_vec: vector of alpha values in reverse time
+-reverse_comp_times: times at which E and I change in reverse time
+-reverse_E: values of E at reverse_comp_tiems
+-reverse_I: values of I at reverse_comp_times
+-A_matrix: rates of non-coalescence 
+-my_method: method for matrix exponentiation
+-my_cache: cache for matrix exponentiation
+-row_vector: vector for storing intermediate matrix multiplications
+-vector_cache: vector for storing intermediate matrix multiplications
 """
 function calc_coal_twolin_pdf_noalpha(coal_time::Float64, start_state, start_time::Float64, 
     gamma::Float64, alpha_t, reverse_alpha_vec, reverse_comp_times, reverse_E, reverse_I,  A_matrix::AbstractMatrix{Float64}, 
@@ -134,9 +171,29 @@ function calc_coal_twolin_pdf_noalpha(coal_time::Float64, start_state, start_tim
 end 
 
 
-
 """
 calc_samp_pdf_noalpha
+calculate the pdf of a single sampling event for each possible state
+any changes in alpha are absorbed into the probability
+the only possible end states are coalescent times and sampling times
+
+returns a vector of pdfs and also alpha at end_time
+# Arguments
+-num_lineages: extant lineages
+-end_time: end of the interval
+-start_state: state at start of interval
+-start_time: start of interval
+-gamma: gamma param
+-alpha_t: value of alpha at start_time
+-reverse_alpha_vec: vector of alpha values in reverse time
+-reverse_comp_times: times at which E and I change in reverse time
+-reverse_E: values of E at reverse_comp_tiems
+-reverse_I: values of I at reverse_comp_times
+-A_matrix: rates of non-coalescence 
+-row_vector: vector for storing intermediate matrix multiplications
+-my_method: method for matrix exponentiation
+-my_cache: cache for matrix exponentiation
+-my_output: output vector
 """
 function calc_samp_pdf_noalpha(num_lineages::Int, end_time::Float64, start_state, start_time::Float64, 
     gamma::Float64, alpha_t, reverse_alpha_vec, reverse_comp_times, reverse_E, reverse_I,  A_matrix::AbstractMatrix{Float64}, 
@@ -192,15 +249,39 @@ function calc_samp_pdf_noalpha(num_lineages::Int, end_time::Float64, start_state
 end  
 """
 sample_internal_nodes_noalpha!
-assumes that est_times includes alpha_times, coal_times and samp_times
-the returned vector will not include the state at the time of last sampling, which is always known
+assumes that est_times is coal_times and samp_times
+returns log likelihood and sampled states
+
+# Arguments
+-sampled_node_states: current node states, to be resampled, length of est_times
+-num_lineages: initial lineages
+-est_times: coal and samp times
+-coal_times: times of coalescence
+-reverse_samp_times: sample times in reverse time
+-reverse_samp_lin: number of lineages sampled at reverse_samp_times
+-gamma: gamma param
+-reverse_alpha_vec: vector of alpha values in reverse time
+-reverse_comp_times: times at which E and I change in reverse time
+-reverse_E: values of E at reverse_comp_tiems
+-reverse_I: values of I at reverse_comp_times
+-cache_dict: dictionary of caches for matrix exponentiation
+-mat_size: size at which we might use krylov methods
+-ks_dict: dictionary for krylove subspace caches
+-expv_cache_dict: dictionary for expv!
+-A_matrix: rates of non-coalescence 
+-L_matrix: rates of coalescence
+-my_output: output vector used internally
+-vector_cache: cache used for matrix multiplication
+-row_vector: vector for storing intermediate matrix multiplications
+-tstep_cutoff: above this value, krylov subspace is not allowed
 """
-function sample_internal_nodes_noalpha!(num_lineages::Int, est_times::AbstractVector{Float64}, 
-    coal_times::AbstractVector{Float64}, reverse_samp_times::AbstractVector, 
+function sample_internal_nodes_noalpha!(sampled_node_states::Vector{Int}, num_lineages::Int, 
+    est_times::AbstractVector{Float64}, coal_times::AbstractVector{Float64}, reverse_samp_times::AbstractVector, 
     reverse_samp_lin::AbstractVector, gamma::Float64, reverse_alpha_vec::AbstractVector{Float64}, 
-    reverse_E::AbstractVector{Float64}, reverse_I::AbstractVector{Float64}, cache_dict::Dict{Int, Any}, mat_size::Int, 
+    reverse_comp_times, reverse_E::AbstractVector{Float64}, reverse_I::AbstractVector{Float64}, cache_dict::Dict{Int, Any}, 
+    mat_size::Int, 
     ks_dict::Dict{Int, Any},  expv_cache_dict::Dict{Int, Any}, A_matrix::AbstractMatrix{Float64}, 
-    L_matrix::AbstractMatrix{Float64},my_output, vector_cache, row_vector, sampled_node_states::Vector{Int}, tstep_cutoff)
+    L_matrix::AbstractMatrix{Float64},my_output, vector_cache, row_vector,  tstep_cutoff)
     # initialize many things
     # this is only for debugging
     # ll_vec = zeros(length(est_times))
@@ -232,10 +313,6 @@ function sample_internal_nodes_noalpha!(num_lineages::Int, est_times::AbstractVe
         old_alpha_t = alpha_t
         delta_t = active_est_time - active_start_time
         if active_est_time == next_coal_time 
-            # print("t")
-            # print(t)
-            # print("alpha_t")
-            # print(alpha_t)
             active_pdf, alpha_t = calc_coal_pdf_noalpha(active_lineages, active_est_time, start_state, active_start_time, 
             gamma, alpha_t, reverse_alpha_vec, reverse_comp_times, reverse_E, reverse_I,  
             A_matrix[1:(active_lineages + 1), 1:(active_lineages + 1)], 
@@ -252,8 +329,6 @@ function sample_internal_nodes_noalpha!(num_lineages::Int, est_times::AbstractVe
     L_matrix[1:(active_lineages+1), 1:(active_lineages-1)], my_vec[1:(active_lineages+1)],  ks_dict[active_lineages + 1], expv_cache_dict[active_lineages + 1], 
     active_lineages, active_est_time, state, active_start_time, start_state,
     gamma, old_alpha_t, reverse_alpha_vec, reverse_comp_times, reverse_E, reverse_I)
-                active_start_state = sampled_node_states[t]
-                # CHECK THESE
                 log_lik += new_ll
             else 
                 # we can just use what we have already calculated
@@ -296,7 +371,6 @@ function sample_internal_nodes_noalpha!(num_lineages::Int, est_times::AbstractVe
      my_method, cache_dict[3], row_vector[1:3],
      vector_cache[1:3])
     log_lik += log(last_prob)
-    # ll_vec[end] = log(last_prob)
     if isinf(log_lik)
         println("log_lik: ", log_lik)
         println("ll_vec: ", ll_vec)

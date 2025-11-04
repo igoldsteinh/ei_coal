@@ -1,9 +1,32 @@
 """
+calc_coal_ll_noalpha_higham()
+For known start and times and states, calculate the likelihood contribution of a coalescent interval
+using full matrix exponentiation using scaling and squaring from Higham (2005)
+
+returns log likelihood contribution and value of alpha at end_time
+# Arguments 
+-num_lineages: number of extant lineages
+-coal_time: time of coalescence 
+-end_state: ending coalescent state
+-start_time: interval start time
+-start_state : start state
+-gamma: gamma param
+-alpha_t : value of alpha at start_time
+-reverse_alpha_vec : vector of alpha values in order of reverse_time
+-reverse_comp_times: vector of reverse times in which E and I change values
+-reverse_E: vector of values of E at times reverse_comp_times (same length as reverse_comp_times)
+-reverse_E: vector of values of I at times reverse_comp_times (same length as reverse_comp_times)
+-A_matrix: matrix of rates of transitioning to non-coalescent states (n+1 X n+1)
+-L_matrix: matrix of rates of transitioning to coalescent states (n+ 1 X n-1)
+-my_method: method for matrix exponentiation, set to ExpMethodHigham2005()
+-my_cache: cache for matrix exponentiation
+-row_vector: place to store matrix multiplication 
+-vector_cache: other place to store matrix multiplication
 """
-function calc_coal_ll_noalpha_higham(num_lineages::Int, coal_time::Float64, end_state, start_time::Float64,  start_state, 
-    gamma::Float64, alpha_t, reverse_alpha_vec, reverse_comp_times, reverse_E, reverse_I,  A_matrix::AbstractMatrix{Float64}, 
-     L_matrix::AbstractMatrix{Float64}, my_method, my_cache, row_vector::AbstractVector{Float64},
-     vector_cache) 
+function calc_coal_ll_noalpha_higham(num_lineages::Int, coal_time::Float64, end_state::Int64, start_time::Float64,  
+    start_state::Int64, gamma::Float64, alpha_t::Float64, reverse_alpha_vec, reverse_comp_times, reverse_E, reverse_I,  
+    A_matrix::AbstractMatrix{Float64}, L_matrix::AbstractMatrix{Float64}, my_method, my_cache, 
+    row_vector::AbstractVector{Float64}, vector_cache) 
     # initialize the vectors
     row_vector .= 0
     vector_cache .= 0
@@ -22,9 +45,6 @@ function calc_coal_ll_noalpha_higham(num_lineages::Int, coal_time::Float64, end_
         delta_t = coal_time - start_time
         # A_matrix now holds the exponential of the A matrix
         exponential!(rmul!(A_matrix,delta_t), my_method, my_cache)
-        # my_output2 = zeros(num_lineages - 1)
-        # mul!(my_output2, transpose(L_matrix), A_matrix[start_state,:])
-
         # this is the product term (exp(At)
         ll_prob = transpose(L_matrix[:, end_state]) * A_matrix[start_state, :]
     elseif length(subset_times) > 1
@@ -68,6 +88,28 @@ function calc_coal_ll_noalpha_higham(num_lineages::Int, coal_time::Float64, end_
     return log(ll_prob), alpha_t
 end 
 """
+calc_samp_ll_noalpha_higham()
+For known start and times and states, calculate the likelihood contribution of a sampling interval
+using full matrix exponentiation using scaling and squaring from Higham (2005)
+
+returns log likelihood contribution and value of alpha at end_time
+# Arguments 
+-num_lineages: number of extant lineages
+-end_state: ending coalescent state
+-end_time: time of the sampling event
+-start_state : start state
+-start_time: interval start time
+-gamma: gamma param
+-alpha_t : value of alpha at start_time
+-reverse_alpha_vec : vector of alpha values in order of reverse_time
+-reverse_comp_times: vector of reverse times in which E and I change values
+-reverse_E: vector of values of E at times reverse_comp_times (same length as reverse_comp_times)
+-reverse_E: vector of values of I at times reverse_comp_times (same length as reverse_comp_times)
+-A_matrix: matrix of rates of transitioning to non-coalescent states (n+1 X n+1)
+-row_vector: place to store matrix multiplication 
+-my_method: method for matrix exponentiation, set to ExpMethodHigham2005()
+-my_cache: cache for matrix exponentiation
+-vector_cache: other place to store matrix multiplication
 """
 function calc_samp_ll_noalpha_higham(num_lineages::Int,  end_state, end_time::Float64, start_state, start_time::Float64, 
     gamma::Float64, alpha_t, reverse_alpha_vec, reverse_comp_times, reverse_E, reverse_I,  A_matrix::AbstractMatrix{Float64}, 
