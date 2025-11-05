@@ -9,12 +9,12 @@ imp_res <- read_csv(here::here("data", "compare_data", "compare_ei_impcoal_resul
   group_by(iteration) %>%
   pivot_longer(cols = starts_with("diff"), names_to = "num", values_to = "coal_int") %>%
   mutate(Algorithm = "Empirical")
-tt_res_noneg <- read_csv(here::here("data", "compare_data", "compare_ei_tt_noneg_results.csv")) %>%
+tt_res_noneg <- read_csv(here::here("data", "compare_data", "compare_ei_tt_badpop_results.csv")) %>%
   dplyr::select(iteration, diff1, diff2, diff3, diff4) %>%
   group_by(iteration) %>%
   pivot_longer(cols = starts_with("diff"), names_to = "num", values_to = "coal_int") %>%
   mutate(Algorithm = "TT")
-tt_res_ode <- read_csv(here::here("data", "compare_data", "compare_ei_tt_ode_results.csv")) %>%
+tt_res_ode <- read_csv(here::here("data", "compare_data", "compare_ei_tt_odebadpop_results.csv")) %>%
   dplyr::select(iteration, diff1, diff2, diff3, diff4) %>%
   group_by(iteration) %>%
   pivot_longer(cols = starts_with("diff"), names_to = "num", values_to = "coal_int") %>%

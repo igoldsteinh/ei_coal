@@ -26,7 +26,7 @@ function sim_next_eicoal_time_tt(t_start; reverse_times, samp_time, comp_traj, g
         # Compute the rate for the I2E process
         next_cp = reverse_times[cp_idx]
         eval_point = (t + next_cp)/2
-        rate, coal_rate, I2E_rate, E2I_rate = ei_event_rate_sampler(eval_point; 
+        rate, coal_rate, I2E_rate, E2I_rate, E, I = ei_event_rate_sampler(eval_point; 
             init_eff_frame = comp_traj, alpha = alpha, gamma = gamma, max_time = samp_time, nE = Int(nE), nI = Int(nI))
         if (target - (next_cp - t) * rate) <= 0
             # Calculate time of next event
@@ -41,11 +41,11 @@ function sim_next_eicoal_time_tt(t_start; reverse_times, samp_time, comp_traj, g
         end 
     end
     # calculate what kind of event it is 
-    rate, coal_rate, I2E_rate, E2I_rate = ei_event_rate_sampler(result; 
+    rate, coal_rate, I2E_rate, E2I_rate, E, I = ei_event_rate_sampler(result; 
     init_eff_frame = comp_traj, alpha = alpha, gamma = gamma, max_time = samp_time, nE = Int(nE), nI = Int(nI))
     event = sample(["I2E", "E2I", "coal"], Weights([I2E_rate, E2I_rate, coal_rate]))
     if result < t_start
         event = "invalid"
     end
-    return result, event  # Return time at which the next event occurs
+    return result, event, E, I  # Return time at which the next event occurs
 end

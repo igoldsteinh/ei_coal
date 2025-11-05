@@ -14,6 +14,7 @@ include(srcdir("create_coal_trees.jl"))
 include(srcdir("time_transform", "ei_event_rate_sampler.jl"))
 include(srcdir("time_transform", "sim_next_eicoal_time_tt.jl"))
 include(srcdir("time_transform", "propose_ei_coal_tree_tt_rejectnegs.jl"))
+include(srcdir("time_transform", "propose_ei_coal_tree_tt_rejectbadpop.jl"))
 
 ### First, simulate the EI MJP process ###
 individ_results = DataFrame()
@@ -103,7 +104,7 @@ for s in 1:1000
     comp_frame = filter(row -> row.time <= last_samp_time && row.sim == s, final_state_frame)
     comp_frame.reverse_time = abs.(comp_frame.time .- last_samp_time)
     reverse_times = sort(comp_frame.reverse_time)
-    coal_times = propose_ei_coal_tree_tt_rejectnegs(last_samp_time; samp_time = last_samp_time, reverse_times = reverse_times, 
+    coal_times = propose_ei_coal_tree_tt_rejectbadpop(last_samp_time; samp_time = last_samp_time, reverse_times = reverse_times, 
     comp_traj = comp_frame, gamma = gamma, 
     alpha = test_alpha, init_nE = init_nE, init_nI = init_nI)[5]
     # Create a new row with the iteration number and the results
@@ -118,7 +119,7 @@ results5_df5_ttnoneg.diff1 = results5_df5_ttnoneg.coal_time1
 results5_df5_ttnoneg.diff2 = results5_df5_ttnoneg.coal_time2 .- results5_df5_ttnoneg.coal_time1
 results5_df5_ttnoneg.diff3 = results5_df5_ttnoneg.coal_time3 .- results5_df5_ttnoneg.coal_time2
 results5_df5_ttnoneg.diff4 = results5_df5_ttnoneg.coal_time4 .- results5_df5_ttnoneg.coal_time3
-CSV.write(datadir("compare_data", "compare_ei_tt_noneg_results.csv"), results5_df5_ttnoneg)
+CSV.write(datadir("compare_data", "compare_ei_tt_badpop_results.csv"), results5_df5_ttnoneg)
 
 ### time transformation, rejecting negative coalescent times, use ODE result instead of true traj ###
 include(srcdir("new_thin", "sim_next_eicoal_time_tt.jl"))
