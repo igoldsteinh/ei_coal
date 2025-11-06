@@ -1,0 +1,197 @@
+---
+title: "Fit the Model"
+author: "Isaac H Goldstein"
+date: today
+format:
+  html:
+    code-fold: true
+jupyter: julia-1.11.4
+execute: 
+  eval: false
+---
+## Overview
+This vignette shows how to fit the EI coalescent model to the Liberia data processed in the first vignette.
+
+First, load the needed libraries and functions
+```{julia}
+using CSV
+using DataFrames
+using DrWatson
+using Distributions
+using Revise
+using JLD2
+using Random
+using LinearAlgebra
+using ExponentialUtilities
+using StatsBase
+
+# calculates the solutions to the EI ode system
+include(srcdir("calc_ei_trajectoriesv2.jl"))
+# needed to calcluate the solutions to the EI ode system
+include(srcdir("core_ei_func.jl"))
+# node likelihood functions
+include(srcdir("node_simple", "sample_init_params_simple.jl"))
+include(srcdir("node_simple", "sample_nodescdf_andparams.jl"))
+include(srcdir("node_simple", "sample_ess_simple.jl"))
+include(srcdir("node_simple", "calc_node_loglik_simplev2.jl"))
+include(srcdir("node_simple", "calc_node_loglik_simple_safev2.jl"))
+include(srcdir("node_simple", "sample_internal_nodesv2.jl"))
+```
+
+## Convert Data to Model Inputs
+Next we read in the processed data and convert it into various needed model inputs
+```{julia}
+# read in the data
+samp_times = CSV.read(datadir("ebola_lbrmcc_2014_samp_times.csv"), DataFrame)
+coal_times_df = CSV.read(datadir( "ebola_lbrmcc_2014_coal_times.csv"), DataFrame)
+
+coal_times = round.(coal_times_df.coal_times_days, digits = 4)
+
+# we ignore the time of the first sample
+reverse_samp_times = samp_times.samp_times_4dig[2:end]
+reverse_samp_lin = samp_times.samp_lin[2:end]
+# num_lineages is the number of lineages at time 0
+start_time = 0.0
+num_lineages = samp_times.samp_lin[1]
+# this is the time of the last sample in forward time
+samp_time = maximum(coal_times)
+coal_and_samp_times = sort(vcat(reverse_samp_times, coal_times))
+```
+
+Now we choose a grid of values at which the effective reproduction number is allowed to change. 
+For this vignette, we'll let it change every 7 days. 
+Note that this is the times it changes in forward time, this must be converted to reverse time.
+```{julia}
+# pick weekly alpha change times
+change_grid = 7.0
+if samp_time % change_grid == 0
+    param_change_max = samp_time - change_grid
+  else 
+    param_change_max = samp_time
+  end 
+alpha_times = vcat(0,collect(change_grid:change_grid:param_change_max))
+```
+
+Now we need more times for model input, `comp_times` is the times that ODE will be solved at, `est_times` is the reverse of `comp_times`, and is also the times at which the states of the EI coalescent model will be estimated.  
+`curr_lin` produces a vector of the total number of lineages at `est_times`. 
+```{julia}
+comp_times = sort(union(alpha_times[2:end], abs.(coal_times[1:end-1] .- samp_time), abs.(reverse_samp_times .- samp_time), samp_time))
+# est_times is the times at which we will estimate the states 
+est_times = sort(union(coal_times, reverse_samp_times, abs.(alpha_times[2:end] .- samp_time)))
+reverse_alpha_times = reverse(abs.(alpha_times[2:end] .- samp_time))
+curr_lin = create_curr_lin_vec(num_lineages, coal_times, reverse_samp_times, reverse_samp_lin, reverse_alpha_times)
+
+```
+
+## Choose Prior Parameters
+We next choose the priors for the model, and create other model inputs needes for the elliptical slice sampler, a vector of the prior means, and a the Cholesky decomposition of the joint variance matrix for the fixed parameters.
+```{julia}
+log_rt_init_mean = 0.7
+log_rt_init_sd = 0.5
+log_gamma_mean = log(1/7)
+log_gamma_sd = 0.3
+log_nu_mean = log(1/7)
+log_nu_sd = 0.3
+log_e0_mean = log(1.1)
+log_e0_sd = 0.05
+log_i0_mean = log(1.1)
+log_i0_sd = 0.05
+log_rw_mean = log(0.05)
+log_rw_sigma_sd = 0.2
+log_prior_means = [log_gamma_mean, log_nu_mean, log_e0_mean, log_i0_mean,  log_rw_mean, log_rt_init_mean,]
+cholC = create_cholc_matrix(log_gamma_sd, log_nu_sd, log_e0_sd, log_i0_sd, log_rw_sigma_sd, log_rt_init_sd)
+```
+
+## Sample Initial Parameters and States
+Now that the priors and data are chosen, we sample initial population parameters.
+We sample the parameters so that resulting E and I trajectories do not exceed 8 billion, and also that they are never smaller than the total number of sampled lineages.
+```{julia}
+Random.seed!(123467)
+init_rw_sigma, init_rts, init_gamma, init_nu, init_e0, init_i0 = sample_initial_params_simple(log_rw_mean, log_rw_sigma_sd, log_rt_init_mean, log_rt_init_sd,
+    log_gamma_mean, log_gamma_sd, log_nu_mean, log_nu_sd, log_e0_mean, log_e0_sd, log_i0_mean, log_i0_sd, 
+  alpha_times, comp_times, curr_lin)
+```
+
+The following code uses the sampled parameters to solve for the values of the E and I trajectories at `comp_times`.
+```{julia}
+# alpha = Rt * nu
+alpha_vec = init_rts .* init_nu
+E_traj = zeros(length(comp_times))
+I_traj = zeros(length(comp_times))
+# the ODE is solved in forward time
+calc_ei_trajectoriesv2!(comp_times, alpha_times, alpha_vec, init_gamma, init_nu, init_e0,init_i0, E_traj, I_traj)
+# it is useful to have the trajectories in reverse time order
+reverse_E = vcat(reverse(E_traj), init_e0)
+reverse_I = vcat(reverse(I_traj), init_i0)
+# this is how to check if the population is ever too large 
+total_pop = reverse_E .+ reverse_I
+```
+
+The following code samples the number of lineages in states E and state I at `est_times` for the initial parameters previously sampled. 
+```{julia}
+# Other needed function inputs, the maximum number of extant lineages
+max_lineages = Int(maximum(curr_lin))
+# an initial distribution vector
+init_dist = zeros(max_lineages + 1)
+# a cutoff, above this cutoff Krylov subspace methods may be used 
+# when calculating the action of a matrix exponential on a vector
+# for large matrices, this can significantly improve computation time
+mat_size = 50
+
+# log_lik is the corresponding log likelihood of the initial states
+# log_lik_vec is the vector of log likelihood contributions of each interval of the tree
+# it can be safely ignored
+Random.seed!(123467 )
+log_lik, log_lik_vec, est_states =sample_internal_nodes_safev2(num_lineages, est_times, coal_times, 
+init_dist, start_time, samp_time, reverse_samp_times, reverse_samp_lin, alpha_times, init_gamma, alpha_vec, 
+reverse_E, reverse_I, max_lineages, mat_size)
+```
+
+## Sample Population Parameters and Lineage States using MH within Gibbs
+More function inputs are required for sampling. 
+`q_cur` is the parameter vector with mean 0, needed for ESS sampling
+`l_cur` is the current value of the log likelihood.
+`tstep_cutoff`: for intervals above this length, krylov subspace methods will not be used, as they are not an accurate enough approximation to the matrix exponential. This may need to be adjusted for other data sets. 
+```{julia}
+natural_vars = vcat(init_gamma, init_nu, init_e0, init_i0,  init_rw_sigma, init_rts[1], init_rts[2:end])
+q_cur = log.(natural_vars) .- vcat(log_prior_means, repeat([log_rt_init_mean], length(init_rts)-1))
+l_cur = log_lik
+tstep_cutoff = 0.5
+
+```
+
+Next we need to choose how many samples, how much burn in, and how much to thin. 
+For the analysis shown in the paper, `num_samples` was 900000 and `num_thin` was 90. 
+```{julia}
+num_samples = 100 
+num_thin = 1
+discard_initial = Int(round(num_samples/2))
+```
+
+Now we sample
+```{julia}
+Random.seed!(123467)
+my_samples, my_states = sample_nodescdf_andparams!(q_cur, l_cur, cholC, log_prior_means, num_lineages, est_times, coal_times, 
+    est_states, start_time,last_samp_time, reverse_samp_times, reverse_samp_lin, alpha_times, mat_size, curr_lin,
+     num_samples, discard_initial, num_thin, tstep_cutoff)
+
+```
+
+## Save results as DataFrame
+Finally, we convert the matrix of samples into a data frame with named columns. 
+This is then visualized in the final vignette using R. 
+```{julia}
+# create dataframe of results
+rt_columns = ["rt_t_values[$i]" for i in 0:(length(alpha_times)-1)]
+other_columns = [:gamma, :nu, :e0, :i0, :rw_sigma]
+# rewrite other_columns as characters
+other_columns = [string(col) for col in other_columns]
+all_columns = vcat(other_columns, rt_columns, ["log_likelihood", "actual_iteration"])
+my_samples_frame = DataFrame(my_samples, all_columns)
+sim = "LBR_version2"
+seed = 123467
+# save
+# CSV.write(resultsdir("my_generated_quantities", 
+# string("vignette_samples_sim", sim, "_seed", seed, ".csv")), my_samples_frame)
+
+```
