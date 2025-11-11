@@ -51,7 +51,7 @@ date_crosswalk <- read_csv(here::here("data", "ebola_lbrmcc_2014_date_crosswalk.
 my_posterior_timevarying_quantiles <- model_res %>% 
   mutate(.iteration = row_number(),
          .chain = 1) %>%
-  filter(.iteration >= 10000) %>%
+  filter(.iteration >= 5000) %>%
   pivot_longer(-c(.iteration, .chain)) %>%
   dplyr::select( name, value) %>%
   make_timevarying_posterior_quantiles()
