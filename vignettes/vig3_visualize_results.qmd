@@ -42,7 +42,7 @@ First read in results and date_crosswalk, then create posterior quantiles
 # model results from the analysis shown in the paper
 model_res <- read_csv(here::here("results", 
                                  "my_generated_quantities", 
-                                 "ess_joint_hetchron_inseq_samples_simLBR_version2_seed123467.csv"))
+                                 "ess_joint_hetchron_inseq_samples_simLBR_version3_seed123467.csv"))
 # Rt is allowed to change every 7 days, so lump_val = 7
 lump_val = 7
 # the date crosswalk is needed to connect numerical day values to real dates
@@ -51,6 +51,7 @@ date_crosswalk <- read_csv(here::here("data", "ebola_lbrmcc_2014_date_crosswalk.
 my_posterior_timevarying_quantiles <- model_res %>% 
   mutate(.iteration = row_number(),
          .chain = 1) %>%
+  filter(.iteration >= 10000) %>%
   pivot_longer(-c(.iteration, .chain)) %>%
   dplyr::select( name, value) %>%
   make_timevarying_posterior_quantiles()

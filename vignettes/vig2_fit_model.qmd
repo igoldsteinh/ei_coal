@@ -89,7 +89,7 @@ We next choose the priors for the model, and create other model inputs needes fo
 log_rt_init_mean = 0.7
 log_rt_init_sd = 0.5
 log_gamma_mean = log(1/7)
-log_gamma_sd = 0.3
+log_gamma_sd = 0.45
 log_nu_mean = log(1/7)
 log_nu_sd = 0.3
 log_e0_mean = log(1.1)

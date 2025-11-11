@@ -1,0 +1,74 @@
+# visualize results from lbr 
+suppressPackageStartupMessages(library(tidyverse))
+suppressPackageStartupMessages(library(tidybayes))
+suppressPackageStartupMessages(library(posterior))
+suppressPackageStartupMessages(library(fs))
+suppressPackageStartupMessages(library(GGally))
+suppressPackageStartupMessages(library(gridExtra))
+suppressPackageStartupMessages(library(cowplot))
+suppressPackageStartupMessages(library(scales))
+suppressPackageStartupMessages(library(patchwork))
+suppressPackageStartupMessages(library(kableExtra))
+library(ape)
+library(ggtree)
+library(phylodyn)
+source(here::here("src", "utility_functions.R"))
+my_theme <- list(
+  scale_fill_brewer(name = "Credible Interval Width",
+                    labels = ~percent(as.numeric(.))),
+  guides(fill = guide_legend(reverse = TRUE)),
+  theme_minimal(),
+  theme())
+# load data and model res -------------------------------------------------
+model_res <- read_csv(here::here("results", 
+                                 "my_generated_quantities", 
+                                 "ess_joint_hetchron_inseq_samples_simLBR_version3_seed123467.csv"))
+lump_val = 7
+date_crosswalk <- read_csv(here::here("data", "ebola_lbrmcc_2014_date_crosswalk.csv")) %>%
+  mutate(lump = floor(forward_times/lump_val))
+my_posterior_timevarying_quantiles <- model_res %>% 
+  mutate(.iteration = row_number(),
+         .chain = 1) %>%
+  filter(.iteration >= 10000)
+  pivot_longer(-c(.iteration, .chain)) %>%
+  dplyr::select( name, value) %>%
+  make_timevarying_posterior_quantiles()
+my_posterior_rt <- my_posterior_timevarying_quantiles %>%
+  filter(name == "rt_t_values") %>%
+  rename(lump = time) %>% 
+  dplyr::select(lump, value, .lower, .upper, .width,.point, .interval) %>%
+  right_join(date_crosswalk, by = c("lump")) %>%
+  dplyr::select(lump, forward_times, reverse_dates, reverse_times, value, .lower, .upper, .width) %>%
+  distinct() %>%
+  arrange(reverse_dates)
+my_plot_posterior_rt <- my_posterior_rt %>% 
+  ggplot(aes(x = reverse_dates, y = value,  ymin = .lower, ymax = .upper)) +
+  geom_lineribbon() +
+  geom_hline(yintercept = 1, linetype = "dashed") +
+  theme_bw() +
+  ggtitle("Liberia (2014 - 2015)") + 
+  my_theme +
+  theme(text = element_text(size = 20),
+        legend.position = c(0.78,0.88),
+        legend.background = element_blank()) +
+  ylim(c(0, 2)) +
+  ylab("Ru") +
+  xlab("Time")
+my_plot_posterior_rt
+# visualize mcc tree ------------------------------------------------------
+mcc_tree <- read.nexus(here::here("data", "libera_mcc_tree.trees"))
+lbr_list <- summarize_phylo(mcc_tree)
+fields <- strsplit(mcc_tree$tip.label, "\\|")
+# gather all entry 6 into one vector
+sample_dates <- sapply(fields, function(x) x[6])
+max_date = max(sample_dates)
+tree_plot<- ggtree(mcc_tree, mrsd = max_date, as.Date = TRUE) + 
+  ggtitle("Liberia (2014 - 2015) MCC Tree") + 
+  theme_tree2() + 
+  xlab("Time") + 
+  theme(text = element_text(size = 20))
+# combined ----------------------------------------------------------------
+combined_plot <- tree_plot + my_plot_posterior_rt 
+ggsave(here::here("figures", "liberia_plot.pdf"), 
+       combined_plot, 
+       width = 14, height = 6,units = "in")
