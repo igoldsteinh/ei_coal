@@ -1,0 +1,239 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><beast beautitemplate='FixedTreeAnalysis' beautistatus='' namespace="beast.core:beast.evolution.alignment:beast.evolution.tree.coalescent:beast.core.util:beast.evolution.nuc:beast.evolution.operators:beast.evolution.sitemodel:beast.evolution.substitutionmodel:beast.base.evolution.alignment:beast.pkgmgmt:beast.base.core:beast.base.inference:beast.base.evolution.tree.coalescent:beast.pkgmgmt:beast.base.core:beast.base.inference.util:beast.evolution.nuc:beast.base.evolution.operator:beast.base.inference.operator:beast.base.evolution.sitemodel:beast.base.evolution.substitutionmodel:beast.base.evolution.likelihood" required="BEAST.base v2.7.8:BDMM-Prime v2.7.0:FixedTreeAnalysis v0.0.2:SA v2.1.1" version="2.7">
+
+    <data
+id="control_tree"
+spec="Alignment"
+name="taxa">
+        <sequence id="Sequence.0" spec="Sequence" taxon="L10181_I" totalcount="4" value="?"/>
+        <sequence id="Sequence.1" spec="Sequence" taxon="L10202_I" totalcount="4" value="?"/>
+        <sequence id="Sequence.2" spec="Sequence" taxon="L10734_I" totalcount="4" value="?"/>
+        <sequence id="Sequence.3" spec="Sequence" taxon="L1073_I" totalcount="4" value="?"/>
+        <sequence id="Sequence.4" spec="Sequence" taxon="L1078_I" totalcount="4" value="?"/>
+        <sequence id="Sequence.5" spec="Sequence" taxon="L10984_I" totalcount="4" value="?"/>
+        <sequence id="Sequence.6" spec="Sequence" taxon="L11119_I" totalcount="4" value="?"/>
+        <sequence id="Sequence.7" spec="Sequence" taxon="L11241_I" totalcount="4" value="?"/>
+        <sequence id="Sequence.8" spec="Sequence" taxon="L11255_I" totalcount="4" value="?"/>
+        <sequence id="Sequence.9" spec="Sequence" taxon="L11990_I" totalcount="4" value="?"/>
+        <sequence id="Sequence.10" spec="Sequence" taxon="L12110_I" totalcount="4" value="?"/>
+        <sequence id="Sequence.11" spec="Sequence" taxon="L1215_I" totalcount="4" value="?"/>
+        <sequence id="Sequence.12" spec="Sequence" taxon="L12384_I" totalcount="4" value="?"/>
+        <sequence id="Sequence.13" spec="Sequence" taxon="L124_I" totalcount="4" value="?"/>
+        <sequence id="Sequence.14" spec="Sequence" taxon="L12620_I" totalcount="4" value="?"/>
+        <sequence id="Sequence.15" spec="Sequence" taxon="L12775_I" totalcount="4" value="?"/>
+        <sequence id="Sequence.16" spec="Sequence" taxon="L13010_I" totalcount="4" value="?"/>
+        <sequence id="Sequence.17" spec="Sequence" taxon="L13072_I" totalcount="4" value="?"/>
+        <sequence id="Sequence.18" spec="Sequence" taxon="L13226_I" totalcount="4" value="?"/>
+        <sequence id="Sequence.19" spec="Sequence" taxon="L13535_I" totalcount="4" value="?"/>
+        <sequence id="Sequence.20" spec="Sequence" taxon="L13671_I" totalcount="4" value="?"/>
+        <sequence id="Sequence.21" spec="Sequence" taxon="L1383_I" totalcount="4" value="?"/>
+        <sequence id="Sequence.22" spec="Sequence" taxon="L14664_I" totalcount="4" value="?"/>
+        <sequence id="Sequence.23" spec="Sequence" taxon="L14907_I" totalcount="4" value="?"/>
+        <sequence id="Sequence.24" spec="Sequence" taxon="L1534_I" totalcount="4" value="?"/>
+        <sequence id="Sequence.25" spec="Sequence" taxon="L1726_I" totalcount="4" value="?"/>
+        <sequence id="Sequence.26" spec="Sequence" taxon="L1872_I" totalcount="4" value="?"/>
+        <sequence id="Sequence.27" spec="Sequence" taxon="L2603_I" totalcount="4" value="?"/>
+        <sequence id="Sequence.28" spec="Sequence" taxon="L3061_I" totalcount="4" value="?"/>
+        <sequence id="Sequence.29" spec="Sequence" taxon="L3082_I" totalcount="4" value="?"/>
+        <sequence id="Sequence.30" spec="Sequence" taxon="L3127_I" totalcount="4" value="?"/>
+        <sequence id="Sequence.31" spec="Sequence" taxon="L3226_I" totalcount="4" value="?"/>
+        <sequence id="Sequence.32" spec="Sequence" taxon="L3496_I" totalcount="4" value="?"/>
+        <sequence id="Sequence.33" spec="Sequence" taxon="L4167_I" totalcount="4" value="?"/>
+        <sequence id="Sequence.34" spec="Sequence" taxon="L4911_I" totalcount="4" value="?"/>
+        <sequence id="Sequence.35" spec="Sequence" taxon="L5172_I" totalcount="4" value="?"/>
+        <sequence id="Sequence.36" spec="Sequence" taxon="L5414_I" totalcount="4" value="?"/>
+        <sequence id="Sequence.37" spec="Sequence" taxon="L5610_I" totalcount="4" value="?"/>
+        <sequence id="Sequence.38" spec="Sequence" taxon="L5783_I" totalcount="4" value="?"/>
+        <sequence id="Sequence.39" spec="Sequence" taxon="L7198_I" totalcount="4" value="?"/>
+        <sequence id="Sequence.40" spec="Sequence" taxon="L7420_I" totalcount="4" value="?"/>
+        <sequence id="Sequence.41" spec="Sequence" taxon="L8307_I" totalcount="4" value="?"/>
+        <sequence id="Sequence.42" spec="Sequence" taxon="L8385_I" totalcount="4" value="?"/>
+        <sequence id="Sequence.43" spec="Sequence" taxon="L8548_I" totalcount="4" value="?"/>
+        <sequence id="Sequence.44" spec="Sequence" taxon="L8549_I" totalcount="4" value="?"/>
+        <sequence id="Sequence.45" spec="Sequence" taxon="L8700_I" totalcount="4" value="?"/>
+        <sequence id="Sequence.46" spec="Sequence" taxon="L8841_I" totalcount="4" value="?"/>
+        <sequence id="Sequence.47" spec="Sequence" taxon="L9293_I" totalcount="4" value="?"/>
+        <sequence id="Sequence.48" spec="Sequence" taxon="L9403_I" totalcount="4" value="?"/>
+        <sequence id="Sequence.49" spec="Sequence" taxon="L9435_I" totalcount="4" value="?"/>
+    </data>
+<trait id="dateTrait.t:tree" spec="beast.base.evolution.tree.TraitSet" traitname="date" 
+    value="L10181_I=0.0,L10202_I=0.0,L10734_I=0.0,L1073_I=0.0,L1078_I=0.0,L10984_I=0.0,L11119_I=0.0,L11241_I=0.0,L11255_I=0.0,L11990_I=0.0,L12110_I=0.0,L1215_I=0.0,L12384_I=0.0,L124_I=0.0,L12620_I=0.0,L12775_I=0.0,L13010_I=0.0,L13072_I=0.0,L13226_I=0.0,L13535_I=0.0,L13671_I=0.0,L1383_I=0.0,L14664_I=0.0,L14907_I=0.0,L1534_I=0.0,L1726_I=0.0,L1872_I=0.0,L2603_I=0.0,L3061_I=0.0,L3082_I=0.0,L3127_I=0.0,L3226_I=0.0,L3496_I=0.0,L4167_I=0.0,L4911_I=0.0,L5172_I=0.0,L5414_I=0.0,L5610_I=0.0,L5783_I=0.0,L7198_I=0.0,L7420_I=0.0,L8307_I=0.0,L8385_I=0.0,L8548_I=0.0,L8549_I=0.0,L8700_I=0.0,L8841_I=0.0,L9293_I=0.0,L9403_I=0.0,L9435_I=0.0"
+    taxa="@TaxonSet.1"/>
+    <map name="Uniform" >beast.base.inference.distribution.Uniform</map>
+
+    <map name="Exponential" >beast.base.inference.distribution.Exponential</map>
+
+    <map name="LogNormal" >beast.base.inference.distribution.LogNormalDistributionModel</map>
+
+    <map name="Normal" >beast.base.inference.distribution.Normal</map>
+
+    <map name="Beta" >beast.base.inference.distribution.Beta</map>
+
+    <map name="Gamma" >beast.base.inference.distribution.Gamma</map>
+
+    <map name="LaplaceDistribution" >beast.base.inference.distribution.LaplaceDistribution</map>
+
+    <map name="prior" >beast.base.inference.distribution.Prior</map>
+
+    <map name="InverseGamma" >beast.base.inference.distribution.InverseGamma</map>
+
+    <map name="OneOnX" >beast.base.inference.distribution.OneOnX</map>
+
+    <run id="mcmc" spec="MCMC" chainLength="2500000">
+        <state id="state" spec="State" storeEvery="-1">
+            <stateNode id="Tree.t:tree" spec="fixedtreeanalysis.evolution.tree.FixedTree" IsLabelledNewick="true" adjustTipHeights="false"  trait="@dateTrait.t:tree" newick="((((L10984_I:114.9653413,L10181_I:114.9653413):9.963295713000008,((L8700_I:87.46980412000002,L12384_I:87.46980412000002):25.28326475,L2603_I:112.75306889999999):12.175568160000012):7.904762831999989,((L5783_I:23.195873000000006,L10202_I:23.195873000000006):7.264984862999995,(L1726_I:22.431051029999992,L9293_I:22.431051029999992):8.02980683300001):102.37254199999998):19.960445590000006,(((((((((L11255_I:97.80151238000002,L5610_I:97.80151238000002):5.62227567699999,L7420_I:103.42378810000001):2.934523378999998,((L3082_I:24.200624989999994,L1215_I:24.200624989999994):21.987710219999997,(L7198_I:13.560688129999988,L3061_I:13.560688129999988):32.62764709000001):60.169976219999995):4.19975174999999,((L5172_I:82.69390167000002,L11990_I:82.69390167000002):17.153622510000005,L1534_I:99.84752418):10.71053900999999):2.0090064850000147,L3496_I:112.56706970000002):5.9412371869999845,L13072_I:118.50830689999998):2.760484980000001,((L13226_I:67.25343637,L1078_I:67.25343637):30.27779776,L14664_I:97.53123413999998):23.737557699999996):4.354372455000004,((((L8841_I:89.96409156000001,L10734_I:89.96409156000001):0.6124744173000067,L13671_I:90.57656598):17.13892136999999,L8307_I:107.7154873):8.874887109,(L11241_I:98.8806905,L11119_I:98.8806905):17.70968395):9.032789838):4.390445531000012,(((((((L1073_I:82.00716351,L1383_I:82.00716351):13.633652490000003,L3226_I:95.640816):4.726472787999995,(L124_I:80.12047059999999,L8549_I:80.12047059999999):20.246818180000005):9.503691769,(((L14907_I:0.981773834299986,L8548_I:0.981773834299986):9.105618432,L4167_I:10.08739227000001):39.503646970000005,L13010_I:49.59103923000001):60.279941320000006):2.4692954869999966,(((L1872_I:76.34694955,L13535_I:76.34694955):3.8944800670000035,L8385_I:80.24142962):14.09056468,L9403_I:94.3319943):18.00828174):0.5403995073999965,((((L12620_I:68.02526293,L12775_I:68.02526293):33.868622959999996,L5414_I:101.8938859):0.9496470433999917,L9435_I:102.84353289999999):5.1779554850000125,L3127_I:108.02148840000001):4.859187124999991):8.153677236999997,(L4911_I:100.63761950000001,L12110_I:100.63761950000001):20.396733330000004):8.979257036000007):22.780235629999993):0.0">
+                <taxa idref="control_tree"/>
+                <taxonset id="TaxonSet.1" spec="TaxonSet">
+                    <taxon id="L10181_I" spec="Taxon"/>
+                    <taxon id="L10202_I" spec="Taxon"/>
+                    <taxon id="L10734_I" spec="Taxon"/>
+                    <taxon id="L1073_I" spec="Taxon"/>
+                    <taxon id="L1078_I" spec="Taxon"/>
+                    <taxon id="L10984_I" spec="Taxon"/>
+                    <taxon id="L11119_I" spec="Taxon"/>
+                    <taxon id="L11241_I" spec="Taxon"/>
+                    <taxon id="L11255_I" spec="Taxon"/>
+                    <taxon id="L11990_I" spec="Taxon"/>
+                    <taxon id="L12110_I" spec="Taxon"/>
+                    <taxon id="L1215_I" spec="Taxon"/>
+                    <taxon id="L12384_I" spec="Taxon"/>
+                    <taxon id="L124_I" spec="Taxon"/>
+                    <taxon id="L12620_I" spec="Taxon"/>
+                    <taxon id="L12775_I" spec="Taxon"/>
+                    <taxon id="L13010_I" spec="Taxon"/>
+                    <taxon id="L13072_I" spec="Taxon"/>
+                    <taxon id="L13226_I" spec="Taxon"/>
+                    <taxon id="L13535_I" spec="Taxon"/>
+                    <taxon id="L13671_I" spec="Taxon"/>
+                    <taxon id="L1383_I" spec="Taxon"/>
+                    <taxon id="L14664_I" spec="Taxon"/>
+                    <taxon id="L14907_I" spec="Taxon"/>
+                    <taxon id="L1534_I" spec="Taxon"/>
+                    <taxon id="L1726_I" spec="Taxon"/>
+                    <taxon id="L1872_I" spec="Taxon"/>
+                    <taxon id="L2603_I" spec="Taxon"/>
+                    <taxon id="L3061_I" spec="Taxon"/>
+                    <taxon id="L3082_I" spec="Taxon"/>
+                    <taxon id="L3127_I" spec="Taxon"/>
+                    <taxon id="L3226_I" spec="Taxon"/>
+                    <taxon id="L3496_I" spec="Taxon"/>
+                    <taxon id="L4167_I" spec="Taxon"/>
+                    <taxon id="L4911_I" spec="Taxon"/>
+                    <taxon id="L5172_I" spec="Taxon"/>
+                    <taxon id="L5414_I" spec="Taxon"/>
+                    <taxon id="L5610_I" spec="Taxon"/>
+                    <taxon id="L5783_I" spec="Taxon"/>
+                    <taxon id="L7198_I" spec="Taxon"/>
+                    <taxon id="L7420_I" spec="Taxon"/>
+                    <taxon id="L8307_I" spec="Taxon"/>
+                    <taxon id="L8385_I" spec="Taxon"/>
+                    <taxon id="L8548_I" spec="Taxon"/>
+                    <taxon id="L8549_I" spec="Taxon"/>
+                    <taxon id="L8700_I" spec="Taxon"/>
+                    <taxon id="L8841_I" spec="Taxon"/>
+                    <taxon id="L9293_I" spec="Taxon"/>
+                    <taxon id="L9403_I" spec="Taxon"/>
+                    <taxon id="L9435_I" spec="Taxon"/>
+                </taxonset>
+            </stateNode>
+            <parameter id="becomeUninfectiousRateEpi.t:tree" spec="parameter.RealParameter" dimension="2" lower="0.0" name="stateNode">0.0 1.0</parameter>
+            <parameter id="migrationRateEpi.t:tree" spec="parameter.RealParameter" dimension="2" lower="0.0" name="stateNode">1.0 0.0</parameter>
+            <parameter id="ReAmongDemesEpi.t:tree" spec="parameter.RealParameter" dimension="44" lower="0.0" name="stateNode">0.0 1.0 0.0 1.0 0.0 1.0 0.0 1.0 0.0 1.0 0.0 1.0 0.0 1.0 0.0 1.0 0.0 1.0 0.0 1.0 0.0 1.0 0.0 1.0 0.0 1.0 0.0 1.0 0.0 1.0 0.0 1.0 0.0 1.0 0.0 1.0 0.0 1.0 0.0 1.0 0.0 1.0 0.0 1.0</parameter>
+        </state>
+        <distribution id="posterior" spec="CompoundDistribution">
+            <distribution id="prior" spec="CompoundDistribution">
+                <distribution id="BDMMPrime.t:tree" spec="bdmmprime.distribution.BirthDeathMigrationDistribution" conditionOnRoot="true" tree="@Tree.t:tree">
+                    <parameterization id="EpiBDMMPrimeParameterization.t:tree" spec="bdmmprime.parameterization.EpiParameterization">
+                        <Re id="ReSPEpi.t:tree" spec="bdmmprime.parameterization.SkylineVectorParameter" timesAreAges="true">
+                            <parameter id="ReEpi.t:tree" spec="parameter.RealParameter" estimate="false" lower="0.0" name="skylineValues">0.0 0.0</parameter>
+                            <processLength id="processLengthBDMMPrime.t:tree" spec="bdmmprime.util.ProcessLength" tree="@Tree.t:tree"/>
+                            <typeSet id="typeSetBDMMPrime.t:tree" spec="bdmmprime.parameterization.TypeSet" value="E,I">
+                                <typeTraitSet id="typeTraitSet.t:tree" spec="bdmmprime.util.InitializedTraitSet" traitname="type" value="L10181_I=I,L10202_I=I,L10734_I=I,L1073_I=I,L1078_I=I,L10984_I=I,L11119_I=I,L11241_I=I,L11255_I=I,L11990_I=I,L12110_I=I,L1215_I=I,L12384_I=I,L124_I=I,L12620_I=I,L12775_I=I,L13010_I=I,L13072_I=I,L13226_I=I,L13535_I=I,L13671_I=I,L1383_I=I,L14664_I=I,L14907_I=I,L1534_I=I,L1726_I=I,L1872_I=I,L2603_I=I,L3061_I=I,L3082_I=I,L3127_I=I,L3226_I=I,L3496_I=I,L4167_I=I,L4911_I=I,L5172_I=I,L5414_I=I,L5610_I=I,L5783_I=I,L7198_I=I,L7420_I=I,L8307_I=I,L8385_I=I,L8548_I=I,L8549_I=I,L8700_I=I,L8841_I=I,L9293_I=I,L9403_I=I,L9435_I=I">
+                                    <taxa id="TaxonSet.2" spec="TaxonSet" alignment="@control_tree"/>
+                                </typeTraitSet>
+                            </typeSet>
+                        </Re>
+                        <becomeUninfectiousRate id="becomeUninfectiousRateSPEpi.t:tree" spec="bdmmprime.parameterization.SkylineVectorParameter" isScalar="false" processLength="@processLengthBDMMPrime.t:tree" skylineValues="@becomeUninfectiousRateEpi.t:tree" timesAreAges="true" typeSet="@typeSetBDMMPrime.t:tree"/>
+                        <samplingProportion id="samplingProportionSPEpi.t:tree" spec="bdmmprime.parameterization.SkylineVectorParameter" processLength="@processLengthBDMMPrime.t:tree" timesAreAges="true" typeSet="@typeSetBDMMPrime.t:tree">
+                            <parameter id="samplingProportionEpi.t:tree" spec="parameter.RealParameter" estimate="false" lower="0.0" name="skylineValues" upper="1.0">0.0</parameter>
+                        </samplingProportion>
+                        <rhoSampling id="rhoSamplingProbSPEpi.t:tree" spec="bdmmprime.parameterization.TimedParameter" processLength="@processLengthBDMMPrime.t:tree" timesAreAges="true" typeSet="@typeSetBDMMPrime.t:tree">
+                            <parameter id="rhoSamplingProbTimesEpi.t:tree" spec="parameter.RealParameter" estimate="false" name="times">0.0</parameter>
+                            <parameter id="rhoSamplingProbEpi.t:tree" spec="parameter.RealParameter" dimension="2" estimate="false" name="values">0.0 0.25</parameter>
+                        </rhoSampling>
+                      <removalProb id="removalProbSPEpi.t:tree" spec="bdmmprime.parameterization.SkylineVectorParameter" processLength="@processLengthBDMMPrime.t:tree" timesAreAges="true" typeSet="@typeSetBDMMPrime.t:tree">
+                            <parameter id="removalProbEpi.t:tree" spec="parameter.RealParameter" estimate="false" lower="0.0" name="skylineValues" upper="1.0">1.0</parameter>
+                        </removalProb>
+                        <migrationRate id="migrationRateSPEpi.t:tree" spec="bdmmprime.parameterization.SkylineMatrixParameter" isScalar="false" processLength="@processLengthBDMMPrime.t:tree" skylineValues="@migrationRateEpi.t:tree" timesAreAges="true" typeSet="@typeSetBDMMPrime.t:tree"/>
+                        <ReAmongDemes id="ReAmongDemesSPEpi.t:tree" spec="bdmmprime.parameterization.SkylineMatrixParameter" isScalar="false" processLength="@processLengthBDMMPrime.t:tree" skylineValues="@ReAmongDemesEpi.t:tree" typeSet="@typeSetBDMMPrime.t:tree">
+                            <parameter id="ReAmongDemesChangeTimesEpi.t:tree" spec="parameter.RealParameter" dimension="21" estimate="false" lower="0.0" name="changeTimes">7.0 14.0 21.0 28.0 35.0 42.0 49.0 56.0 63.0 70.0 77.0 84.0 91.0 98.0 105.0 112.0 119.0 126.0 133.0 140.0 147.0</parameter>
+                        </ReAmongDemes>
+                        <typeSet idref="typeSetBDMMPrime.t:tree"/>
+                        <processLength idref="processLengthBDMMPrime.t:tree"/>
+                    </parameterization>
+                    <parameter id="startTypePriorProbs.t:tree" spec="parameter.RealParameter" dimension="2" estimate="false" lower="0.0" name="startTypePriorProbs" upper="1.0">0.0 1.0</parameter>
+                    <typeTraitSet idref="typeTraitSet.t:tree"/>
+                </distribution>
+                <distribution id="ReAmongDemesEpiPrior.t:tree" spec="bdmmprime.util.priors.ZeroExcludingPrior" x="@ReAmongDemesEpi.t:tree">
+                    <LogNormal id="LogNormalDistributionModel.3" name="distr">
+                        <parameter id="RealParameter.16" spec="parameter.RealParameter" estimate="false" name="M">0.0</parameter>
+                        <parameter id="RealParameter.17" spec="parameter.RealParameter" estimate="false" lower="0.0" name="S" upper="5.0">0.75</parameter>
+                    </LogNormal>
+                </distribution>
+                <distribution id="becomeUninfectiousRateEpiPrior.t:tree" spec="bdmmprime.util.priors.ZeroExcludingPrior" x="@becomeUninfectiousRateEpi.t:tree">
+                    <LogNormal id="LogNormalDistributionModel.1" name="distr">
+                        <parameter id="RealParameter.12" spec="parameter.RealParameter" estimate="false" name="M">-1.945</parameter>
+                        <parameter id="RealParameter.13" spec="parameter.RealParameter" estimate="false" lower="0.0" name="S" upper="5.0">0.2</parameter>
+                    </LogNormal>
+                </distribution>
+                <distribution id="migrationRateEpiPrior.t:tree" spec="bdmmprime.util.priors.ZeroExcludingPrior" x="@migrationRateEpi.t:tree">
+                    <LogNormal id="LogNormalDistributionModel.2" name="distr">
+                        <parameter id="RealParameter.14" spec="parameter.RealParameter" estimate="false" name="M">-1.38</parameter>
+                        <parameter id="RealParameter.15" spec="parameter.RealParameter" estimate="false" lower="0.0" name="S" upper="5.0">0.2</parameter>
+                    </LogNormal>
+                </distribution>
+                <prior id="processLengthBDMMPrimePrior.t:tree" name="distribution" x="@processLengthBDMMPrime.t:tree">
+                    <OneOnX id="OneOnX.0" name="distr"/>
+                </prior>
+            </distribution>
+            <distribution id="likelihood" spec="CompoundDistribution" useThreads="true">
+                <distribution id="treeLikelihood.control_tree" spec="fixedtreeanalysis.evolution.likelihood.FixedTreeLikelihood" data="@control_tree" tree="@Tree.t:tree">
+                    <siteModel id="FixedSiteModel.s:control_tree" spec="fixedtreeanalysis.evolution.sitemodel.FixedSiteModel">
+                        <parameter id="RealParameter.0" spec="parameter.RealParameter" estimate="false" lower="0.0" name="mutationRate" upper="1.0">1.0</parameter>
+                        <parameter id="RealParameter.1" spec="parameter.RealParameter" lower="0.0" name="shape" upper="0.0">1.0</parameter>
+                        <parameter id="RealParameter.2" spec="parameter.RealParameter" lower="0.0" name="proportionInvariant" upper="0.0">0.0</parameter>
+                        <substModel id="JC69.s:control_tree" spec="JukesCantor"/>
+                    </siteModel>
+                    <branchRateModel id="FixedClock.c:control_tree" spec="fixedtreeanalysis.evolution.branchratemodel.FixedClockModel">
+                        <parameter id="RealParameter.3" spec="parameter.RealParameter" estimate="false" name="clock.rate">1.0</parameter>
+                    </branchRateModel>
+                </distribution>
+            </distribution>
+        </distribution>
+        <operator id="JointBDMMPrimeSkylineScaleOperator.t:tree" spec="bdmmprime.util.operators.JointSkylineScaleOperator" weight="3.0">
+            <skylineParameter idref="becomeUninfectiousRateSPEpi.t:tree"/>
+            <skylineParameter idref="migrationRateSPEpi.t:tree"/>
+        </operator>
+        <operator id="becomeUninfectiousRateEpiScaler.t:tree" spec="ScaleOperator" parameter="@becomeUninfectiousRateEpi.t:tree" weight="3.0"/>
+        <operator id="migrationRateEpiScaler.t:tree" spec="ScaleOperator" parameter="@migrationRateEpi.t:tree" weight="3.0"/>
+        <operator id="ReAmongDemesEpiScaler.t:tree" spec="ScaleOperator" parameter="@ReAmongDemesEpi.t:tree" weight="3.0"/>
+        <logger id="tracelog" spec="Logger" fileName="$(filebase).log" logEvery="1000" model="@posterior" sanitiseHeaders="true" sort="smart">
+            <log idref="posterior"/>
+            <log idref="likelihood"/>
+            <log idref="prior"/>
+            <log idref="treeLikelihood.control_tree"/>
+            <log id="startTypePosteriorProbsLogger.t:tree" spec="bdmmprime.util.StartTypePosteriorProbsLogger" bdmmTreePrior="@BDMMPrime.t:tree"/>
+            <log idref="becomeUninfectiousRateSPEpi.t:tree"/>
+            <log idref="migrationRateSPEpi.t:tree"/>
+            <log idref="ReAmongDemesSPEpi.t:tree"/>
+            <log idref="rhoSamplingProbSPEpi.t:tree"/>
+        </logger>
+        <logger id="screenlog" spec="Logger" logEvery="1000">
+            <log idref="posterior"/>
+            <log id="ESS.0" spec="util.ESS" arg="@posterior"/>
+            <log idref="likelihood"/>
+            <log idref="prior"/>
+        </logger>
+        <operatorschedule id="OperatorSchedule" spec="OperatorSchedule"/>
+    </run>
+
+</beast>

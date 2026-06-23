@@ -1,9 +1,9 @@
 # file for converting beast log files fit to simulated data
 # into summaries and plots showing model performance
-# log files were generated using fit_bdmm_control.xml as the template file
+# log files were generated using fit_bdmm_control_weekly.xml as the template file
 # outputs are mcmc diagnostic file, rt quantile file, and plots of rt credible intervals
-library(tidyr)
-library(tibble) 
+# This is bdmm with 22 intervals (weekly) 
+library(tibble)
 library(beastio)
 library(dplyr)
 library(readr)
@@ -27,39 +27,40 @@ if (length(args) == 0) {
   sim_val <- as.integer(args[1])
 }
 true_samp_time = 153
-lump_val       = 30.6  # interval width in days (153 / 5 intervals, matching 4 change points)
-n_sim_lumps    = 5     # number of Rt intervals
+lump_val    = 7     # interval width in days (21 weekly change points)
+n_sim_lumps = 22    # number of Rt intervals
 
+# control res weekly (21 change times, fixed tree)
 # read in posterior samples -----------------------------------------------
-posterior_suffix <- "*.log"
-file_list <- list.files(path = path("BEAST2", "control_xml2"), pattern = posterior_suffix)
-
-full_posterior <- map(file_list, ~beastio::readLog(here::here("BEAST2", "control_xml2", .x), burnin = 0.1, as.mcmc = FALSE))
+posterior_suffix <- "*weekly.log"
+file_list <- list.files(path = path("scripts", "BEAST2"), pattern = posterior_suffix)
+full_posterior <- map(file_list, ~beastio::readLog(here::here("scripts", "BEAST2", .x), burnin = 0.1, as.mcmc = FALSE))
 new_names <- c(".iteration", "posterior", "nu", "gamma",
-               "rt_t_values[0]", "rt_t_values[1]", "rt_t_values[2]",
-               "rt_t_values[3]", "rt_t_values[4]")
+               paste0("rt_t_values[", 0:21, "]"))
 
+# rt[k] for k=0..20 at col 14+3k; rt[21] at col 76 (no endtime on last interval)
+rt_cols <- c(14 + 3 * 0:20, 76)
 full_posterior_df <- map(full_posterior, ~as.data.frame(.x)) %>%
   map(~.x %>%
-        dplyr::select(1, 2, 9, 10, 14, 17, 20, 23, 25)) %>%
+        dplyr::select(c(1, 2, 9, 10, rt_cols))) %>%
   map(~setNames(.x, new_names)) %>%
   map(~.x %>%
         mutate(.chain = 1))
 # summarise mcmc diagnostics ----------------------------------------------
+file_list <- paste0("simnum1", file_list[1])
+
 full_posterior_converted <- map(full_posterior_df, ~.x %>%
                                   dplyr::select(-posterior) %>%
                                   as_draws())
-full_mcmc_summary <- map(full_posterior_converted, ~summarise_draws(.x, "ess_basic","ess_bulk", "ess_tail") %>%
+full_mcmc_summary <- map(full_posterior_converted, ~summarise_draws(.x, "ess_basic", "ess_bulk", "ess_tail") %>%
                            dplyr::select(variable, ess_basic, ess_bulk, ess_tail))
 full_mcmc_summary <- map2(file_list, full_mcmc_summary, ~.y %>%
                             mutate(address = .x) %>%
                             mutate(sim_num_val = as.numeric(stringr::str_extract(.x, stringr::regex("(\\d+)(?!.*\\d)")))))
 full_mcmc_summary <- bind_rows(full_mcmc_summary)
-# save mcmc summary
-write_csv(full_mcmc_summary, here::here("BEAST2",
-                                        paste0("mcmc_diagnostics_bdmm_sim", sim_val, "v2.csv")))
+write_csv(full_mcmc_summary, here::here("scripts", "BEAST2",
+                                        paste0("mcmc_diagnostics_bdmm_sim", sim_val, "_weekly.csv")))
 # summarise rt posterior samples ---------------------------------------------
-# create grid of true rt values
 tree_file_name = sim_dict %>%
   filter(sim_id == sim_val) %>%
   pull(tree_file)
@@ -98,23 +99,22 @@ my_posterior_timevarying_quantiles <- map(full_posterior_df, ~.x %>%
                                             dplyr::select(name, value) %>%
                                             make_timevarying_posterior_quantiles())
 
-my_posterior_rt <- map2(my_posterior_timevarying_quantiles, true_rt_list,  ~.x %>%
+my_posterior_rt <- map2(my_posterior_timevarying_quantiles, true_rt_list, ~.x %>%
                           filter(name == "rt_t_values") %>%
                           rename(lump = time) %>%
                           dplyr::select(lump, value, .lower, .upper, .width, .point, .interval) %>%
                           right_join(.y, by = c("lump")) %>%
                           dplyr::select(lump, time, new_time, reverse_time, value, true_rt, .lower, .upper, .width) %>%
                           distinct()) %>%
-  map2(file_list,  ~.x %>%
+  map2(file_list, ~.x %>%
          mutate(address = .y) %>%
          mutate(sim_num_val = as.numeric(stringr::str_extract(.y, stringr::regex("(\\d+)(?!.*\\d)"))),
                 sim = sim_val)) %>%
   bind_rows()
 
-write_csv(my_posterior_rt, here::here("BEAST2",
-                                      paste0("bdmm_sim", sim_val, "_allseeds_rt_quantilesv2.csv")))
+write_csv(my_posterior_rt, here::here("scripts", "BEAST2",
+                                      paste0("bdmm_sim", sim_val, "_allseeds_rt_quantiles_weekly.csv")))
 # visualize results
-# all credit to Damon Bayer for plot functions
 my_theme <- list(
   scale_fill_brewer(name = "Credible Interval Width",
                     labels = ~percent(as.numeric(.))),
@@ -130,10 +130,10 @@ make_rt_plot <- function(seed_val) {
     geom_point(aes(time, true_rt), color = "coral1") +
     scale_y_continuous("Rt", label = comma) +
     scale_x_continuous(name = "Time") +
-    ggtitle(str_c("EI Coal Posterior Rt Scenario ", sim_val, " Simnum ", seed_val)) +
+    ggtitle(str_c("BDMM Weekly Posterior Rt Scenario ", sim_val, " Simnum ", seed_val)) +
     my_theme
 }
-ggsave2(filename = here::here("BEAST2", paste0("bdmm_rtplots_sim", sim_val, "v2.pdf")),
+ggsave2(filename = here::here("scripts", "BEAST2", paste0("bdmm_rtplots_sim", sim_val, "_weekly.pdf")),
         plot = my_posterior_rt %>%
           distinct(sim_num_val) %>%
           arrange(sim_num_val) %>%
