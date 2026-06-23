@@ -20,20 +20,20 @@ include(srcdir("node_simple", "sample_ess_simple.jl"))
 include(srcdir("node_simple", "calc_node_loglik_simplev2.jl"))
 include(srcdir("node_simple", "calc_node_loglik_simple_safev2.jl"))
 include(srcdir("node_simple", "sample_internal_nodesv2.jl"))
-num_samples = 100
-discard_initial = Int(round(num_samples/2))
+num_samples = 100000
+discard_initial = Int(round(num_samples/4))
 num_thin = 10
 # decide on the simulation id and sim number 
 sim_id =
 if length(ARGS) == 0
-    6
+    10
 else
   parse(Int64, ARGS[1])
 end
 
 sim_num = 
 if length(ARGS) == 0
-  4
+  1
 else 
   parse(Int64, ARGS[2])
 end 
@@ -97,9 +97,11 @@ natural_vars = vcat(init_gamma, init_nu, init_e0, init_i0,  init_rw_sigma, init_
 q_cur = log.(natural_vars) .- vcat(log_prior_means, repeat([log_rt_init_mean], length(init_rts)-1))
 l_cur = log_lik
 Random.seed!(sim_num)
-my_samples, my_states = sample_nodescdf_andparams!(q_cur, l_cur, cholC, log_prior_means, num_lineages, est_times, coal_times, 
+@time my_samples, my_states = sample_nodescdf_andparams!(q_cur, l_cur, cholC, log_prior_means, num_lineages, est_times, coal_times, 
     est_states, start_time,last_samp_time, reverse_samp_times, reverse_samp_lin, alpha_times, mat_size, curr_lin,
      num_samples, discard_initial, num_thin, tstep_cutoff)
+# 2361.046180 seconds (985.12 M allocations: 203.055 GiB, 0.45% gc time, 0.07% compilation time)
+# 17863.506122 seconds (2.23 G allocations: 1.383 TiB, 0.44% gc time, 0.01% compilation time) for 100 lineages
 # make dataframe of results
 rt_columns = ["rt_t_values[$i]" for i in 0:(length(alpha_times)-1)]
 other_columns = [:gamma, :nu, :e0, :i0, :rw_sigma]
@@ -108,5 +110,5 @@ other_columns = [string(col) for col in other_columns]
 all_columns = vcat(other_columns, rt_columns, ["log_likelihood", "actual_iteration"])
 my_samples_frame = DataFrame(my_samples, all_columns)
 # save results
-CSV.write(resultsdir("my_generated_quantities", 
+CSV.write(projectdir("results", "my_generated_quantities", 
 string("ei_cdf_sim", sim_id, "_simnum", sim_num, ".csv")), my_samples_frame)
