@@ -4,8 +4,10 @@ The main model was fit in `Julia`, while visualization of results was done in `R
 ## Navigation
 ```
 ├── data                          <- Processed real and simulated data
+│   ├── compare_data              <- Data for comparing coalescent simulators
 │   ├── sim_data                  <- Simulated data for model fitting
-|   └── compare_data              <- Data for comparing coalescent simulators 
+|   └── real_data                 <- data used for Liberia Ebola analysis
+|    
 │
 ├── figures                       <- Paper figures
 │
@@ -14,7 +16,9 @@ The main model was fit in `Julia`, while visualization of results was done in `R
 │   ├── my_mcmc_summaries         <- mcmc diagnostic summaries
 │
 ├── scripts                       <- Paper code 
+│   ├── BEAST2                    <- BDMM xml, processing files, results
 │   ├── ebola_scripts             <- Process real data, BEAST X .xml file, fit model julia file
+│   ├── phydynR                   <- fit PhydynR, process results, results
 │   ├── process_results           <- Final processing of mcmc/summarising simulation results
 │   ├── simulated_data            <- Simulate data
 │   └── visualize_results         <- Turn summaries of model results into paper figures
