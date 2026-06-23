@@ -1,0 +1,572 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><beast beautitemplate='FixedTreeAnalysis' beautistatus='' namespace="beast.core:beast.evolution.alignment:beast.evolution.tree.coalescent:beast.core.util:beast.evolution.nuc:beast.evolution.operators:beast.evolution.sitemodel:beast.evolution.substitutionmodel:beast.base.evolution.alignment:beast.pkgmgmt:beast.base.core:beast.base.inference:beast.base.evolution.tree.coalescent:beast.pkgmgmt:beast.base.core:beast.base.inference.util:beast.evolution.nuc:beast.base.evolution.operator:beast.base.inference.operator:beast.base.evolution.sitemodel:beast.base.evolution.substitutionmodel:beast.base.evolution.likelihood" required="BEAST.base v2.7.8:BDMM-Prime v2.7.0:FixedTreeAnalysis v0.0.2:SA v2.1.1" version="2.7">
+
+    <data
+id="liberia_mcctreev2"
+spec="Alignment"
+name="taxa">
+        <sequence id="Sequence.0" spec="Sequence" taxon="I_EBOV_201403007_KP178538_LBR__2014-08-03" totalcount="4" value="?"/>
+        <sequence id="Sequence.1" spec="Sequence" taxon="I_EBOV_CDC-NIH-1122__LBR_Margibi_2014-09-16" totalcount="4" value="?"/>
+        <sequence id="Sequence.2" spec="Sequence" taxon="I_EBOV_CDC-NIH-1650__LBR_Margibi_2014-09-27" totalcount="4" value="?"/>
+        <sequence id="Sequence.3" spec="Sequence" taxon="I_EBOV_CDC-NIH-2303__LBR_Montserrado_2014-10-10" totalcount="4" value="?"/>
+        <sequence id="Sequence.4" spec="Sequence" taxon="I_EBOV_CDC-NIH-2313__LBR_Montserrado_2014-10-10" totalcount="4" value="?"/>
+        <sequence id="Sequence.5" spec="Sequence" taxon="I_EBOV_CDC-NIH-257__LBR_Montserrado_2014-08-27" totalcount="4" value="?"/>
+        <sequence id="Sequence.6" spec="Sequence" taxon="I_EBOV_CDC-NIH-259__LBR_Montserrado_2014-08-27" totalcount="4" value="?"/>
+        <sequence id="Sequence.7" spec="Sequence" taxon="I_EBOV_CDC-NIH-261__LBR_Montserrado_2014-08-27" totalcount="4" value="?"/>
+        <sequence id="Sequence.8" spec="Sequence" taxon="I_EBOV_CDC-NIH-272__LBR_Montserrado_2014-08-27" totalcount="4" value="?"/>
+        <sequence id="Sequence.9" spec="Sequence" taxon="I_EBOV_CDC-NIH-2984__LBR_Montserrado_2014-10-23" totalcount="4" value="?"/>
+        <sequence id="Sequence.10" spec="Sequence" taxon="I_EBOV_CDC-NIH-3762__LBR_Montserrado_2014-11-19" totalcount="4" value="?"/>
+        <sequence id="Sequence.11" spec="Sequence" taxon="I_EBOV_CDC-NIH-3827__LBR_Montserrado_2014-11-23" totalcount="4" value="?"/>
+        <sequence id="Sequence.12" spec="Sequence" taxon="I_EBOV_CDC-NIH-3832__LBR_GrandCapeMount_2014-11-23" totalcount="4" value="?"/>
+        <sequence id="Sequence.13" spec="Sequence" taxon="I_EBOV_CDC-NIH-3871__LBR_GrandBassa_2014-11-25" totalcount="4" value="?"/>
+        <sequence id="Sequence.14" spec="Sequence" taxon="I_EBOV_CDC-NIH-3874__LBR_Montserrado_2014-11-25" totalcount="4" value="?"/>
+        <sequence id="Sequence.15" spec="Sequence" taxon="I_EBOV_CDC-NIH-3878__LBR_Montserrado_2014-11-25" totalcount="4" value="?"/>
+        <sequence id="Sequence.16" spec="Sequence" taxon="I_EBOV_CDC-NIH-595__LBR_Montserrado_2014-09-04" totalcount="4" value="?"/>
+        <sequence id="Sequence.17" spec="Sequence" taxon="I_EBOV_CDC-NIH-603__LBR_Montserrado_2014-09-04" totalcount="4" value="?"/>
+        <sequence id="Sequence.18" spec="Sequence" taxon="I_EBOV_CDC-NIH-683__LBR_Montserrado_2014-09-06" totalcount="4" value="?"/>
+        <sequence id="Sequence.19" spec="Sequence" taxon="I_EBOV_CDC-NIH-686__LBR_Margibi_2014-09-06" totalcount="4" value="?"/>
+        <sequence id="Sequence.20" spec="Sequence" taxon="I_EBOV_CDC-NIH-708__LBR_Montserrado_2014-09-07" totalcount="4" value="?"/>
+        <sequence id="Sequence.21" spec="Sequence" taxon="I_EBOV_CDC-NIH-710__LBR_Montserrado_2014-09-07" totalcount="4" value="?"/>
+        <sequence id="Sequence.22" spec="Sequence" taxon="I_EBOV_EM_074349_KR817108_LBR_Lofa_2014-07-22" totalcount="4" value="?"/>
+        <sequence id="Sequence.23" spec="Sequence" taxon="I_EBOV_EM_074350_KR817109_LBR_Lofa_2014-07-22" totalcount="4" value="?"/>
+        <sequence id="Sequence.24" spec="Sequence" taxon="I_EBOV_EM_074351_KR817110_LBR_Lofa_2014-07-22" totalcount="4" value="?"/>
+        <sequence id="Sequence.25" spec="Sequence" taxon="I_EBOV_EM_074352_KR817111_LBR_Lofa_2014-07-22" totalcount="4" value="?"/>
+        <sequence id="Sequence.26" spec="Sequence" taxon="I_EBOV_EM_074353_KR817112_LBR_Lofa_2014-07-22" totalcount="4" value="?"/>
+        <sequence id="Sequence.27" spec="Sequence" taxon="I_EBOV_EM_074391_KR817114_LBR_Lofa_2014-07-26" totalcount="4" value="?"/>
+        <sequence id="Sequence.28" spec="Sequence" taxon="I_EBOV_EM_074392_KR817115_LBR__2014-07-25" totalcount="4" value="?"/>
+        <sequence id="Sequence.29" spec="Sequence" taxon="I_EBOV_EM_074548_KR817123_LBR_Lofa_2014-08-08" totalcount="4" value="?"/>
+        <sequence id="Sequence.30" spec="Sequence" taxon="I_EBOV_EM_074720_KR817125_LBR_Lofa_2014-08-14" totalcount="4" value="?"/>
+        <sequence id="Sequence.31" spec="Sequence" taxon="I_EBOV_EM_074821_KR817127_LBR_Lofa_2014-08-17" totalcount="4" value="?"/>
+        <sequence id="Sequence.32" spec="Sequence" taxon="I_EBOV_EM_074822_KR817128_LBR_Lofa_2014-08-17" totalcount="4" value="?"/>
+        <sequence id="Sequence.33" spec="Sequence" taxon="I_EBOV_EM_075043_KR817129_LBR_Lofa_2014-08-22" totalcount="4" value="?"/>
+        <sequence id="Sequence.34" spec="Sequence" taxon="I_EBOV_EM_080064_KR817231_LBR_Lofa_2014-06-20" totalcount="4" value="?"/>
+        <sequence id="Sequence.35" spec="Sequence" taxon="I_EBOV_EM_080065_KR817232_LBR__2014-06-20" totalcount="4" value="?"/>
+        <sequence id="Sequence.36" spec="Sequence" taxon="I_EBOV_EM_080066_KR817233_LBR__2014-06-20" totalcount="4" value="?"/>
+        <sequence id="Sequence.37" spec="Sequence" taxon="I_EBOV_EM_080067_KR817234_LBR__2014-06-20" totalcount="4" value="?"/>
+        <sequence id="Sequence.38" spec="Sequence" taxon="I_EBOV_EM_080193_KR817239_LBR__2014-06-29" totalcount="4" value="?"/>
+        <sequence id="Sequence.39" spec="Sequence" taxon="I_EBOV_EM_080213_KR817240_LBR__2014-07-03" totalcount="4" value="?"/>
+        <sequence id="Sequence.40" spec="Sequence" taxon="I_EBOV_EM_080223_KR817241_LBR__2014-07-04" totalcount="4" value="?"/>
+        <sequence id="Sequence.41" spec="Sequence" taxon="I_EBOV_EM_080261_KR817243_LBR_Lofa_2014-07-12" totalcount="4" value="?"/>
+        <sequence id="Sequence.42" spec="Sequence" taxon="I_EBOV_EM_080269_KR817245_LBR__2014-07-12" totalcount="4" value="?"/>
+        <sequence id="Sequence.43" spec="Sequence" taxon="I_EBOV_LIBR0008_KT725313_LBR_Montserrado_2014-10-31" totalcount="4" value="?"/>
+        <sequence id="Sequence.44" spec="Sequence" taxon="I_EBOV_LIBR0058_KR006940_LBR_RiverCess_2014-11-05" totalcount="4" value="?"/>
+        <sequence id="Sequence.45" spec="Sequence" taxon="I_EBOV_LIBR0059_KR006941_LBR_RiverCess_2014-11-05" totalcount="4" value="?"/>
+        <sequence id="Sequence.46" spec="Sequence" taxon="I_EBOV_LIBR0063_KR006942_LBR_Montserrado_2014-11-06" totalcount="4" value="?"/>
+        <sequence id="Sequence.47" spec="Sequence" taxon="I_EBOV_LIBR0067_KR006943_LBR_Bomi_2014-11-06" totalcount="4" value="?"/>
+        <sequence id="Sequence.48" spec="Sequence" taxon="I_EBOV_LIBR0071_KT725303_LBR_GrandBassa_2014-11-06" totalcount="4" value="?"/>
+        <sequence id="Sequence.49" spec="Sequence" taxon="I_EBOV_LIBR0073_KR006944_LBR_GrandBassa_2014-11-06" totalcount="4" value="?"/>
+        <sequence id="Sequence.50" spec="Sequence" taxon="I_EBOV_LIBR0079_KT725274_LBR_Montserrado_2014-11-07" totalcount="4" value="?"/>
+        <sequence id="Sequence.51" spec="Sequence" taxon="I_EBOV_LIBR0090_KR006945_LBR_Margibi_2014-11-08" totalcount="4" value="?"/>
+        <sequence id="Sequence.52" spec="Sequence" taxon="I_EBOV_LIBR0092_KR006946_LBR_Montserrado_2014-11-08" totalcount="4" value="?"/>
+        <sequence id="Sequence.53" spec="Sequence" taxon="I_EBOV_LIBR0093_KR006947_LBR_Montserrado_2014-11-08" totalcount="4" value="?"/>
+        <sequence id="Sequence.54" spec="Sequence" taxon="I_EBOV_LIBR0112_KT725330_LBR_Montserrado_2014-11-10" totalcount="4" value="?"/>
+        <sequence id="Sequence.55" spec="Sequence" taxon="I_EBOV_LIBR0114_KT725273_LBR_GrandBassa_2014-11-10" totalcount="4" value="?"/>
+        <sequence id="Sequence.56" spec="Sequence" taxon="I_EBOV_LIBR0115_KT725254_LBR_GrandBassa_2014-11-10" totalcount="4" value="?"/>
+        <sequence id="Sequence.57" spec="Sequence" taxon="I_EBOV_LIBR0116_KR006948_LBR_GrandBassa_2014-11-10" totalcount="4" value="?"/>
+        <sequence id="Sequence.58" spec="Sequence" taxon="I_EBOV_LIBR0118_KT725291_LBR_Bomi_2014-11-10" totalcount="4" value="?"/>
+        <sequence id="Sequence.59" spec="Sequence" taxon="I_EBOV_LIBR0157_KT725393_LBR_Gbarpolu_2014-11-13" totalcount="4" value="?"/>
+        <sequence id="Sequence.60" spec="Sequence" taxon="I_EBOV_LIBR0159_KT725327_LBR_Montserrado_2014-11-13" totalcount="4" value="?"/>
+        <sequence id="Sequence.61" spec="Sequence" taxon="I_EBOV_LIBR0160_KT725370_LBR_Montserrado_2014-11-13" totalcount="4" value="?"/>
+        <sequence id="Sequence.62" spec="Sequence" taxon="I_EBOV_LIBR0168_KR006949_LBR_Bomi_2014-11-13" totalcount="4" value="?"/>
+        <sequence id="Sequence.63" spec="Sequence" taxon="I_EBOV_LIBR0173_KR006950_LBR_Montserrado_2014-11-14" totalcount="4" value="?"/>
+        <sequence id="Sequence.64" spec="Sequence" taxon="I_EBOV_LIBR0176_KR006951_LBR_Montserrado_2014-11-14" totalcount="4" value="?"/>
+        <sequence id="Sequence.65" spec="Sequence" taxon="I_EBOV_LIBR0177_KT725279_LBR_Montserrado_2014-11-14" totalcount="4" value="?"/>
+        <sequence id="Sequence.66" spec="Sequence" taxon="I_EBOV_LIBR0229_KT725333_LBR_GrandBassa_2014-11-17" totalcount="4" value="?"/>
+        <sequence id="Sequence.67" spec="Sequence" taxon="I_EBOV_LIBR0279_KT725280_LBR__2014-11-22" totalcount="4" value="?"/>
+        <sequence id="Sequence.68" spec="Sequence" taxon="I_EBOV_LIBR0284_KT725328_LBR_GrandCapeMount_2014-11-22" totalcount="4" value="?"/>
+        <sequence id="Sequence.69" spec="Sequence" taxon="I_EBOV_LIBR0286_KR006952_LBR_GrandCapeMount_2014-11-22" totalcount="4" value="?"/>
+        <sequence id="Sequence.70" spec="Sequence" taxon="I_EBOV_LIBR0333_KR006953_LBR_GrandCapeMount_2014-11-25" totalcount="4" value="?"/>
+        <sequence id="Sequence.71" spec="Sequence" taxon="I_EBOV_LIBR0350_KT725342_LBR_Montserrado_2014-11-26" totalcount="4" value="?"/>
+        <sequence id="Sequence.72" spec="Sequence" taxon="I_EBOV_LIBR0380_KT725290_LBR_Montserrado_2014-11-28" totalcount="4" value="?"/>
+        <sequence id="Sequence.73" spec="Sequence" taxon="I_EBOV_LIBR0423_KR006954_LBR_Montserrado_2014-12-03" totalcount="4" value="?"/>
+        <sequence id="Sequence.74" spec="Sequence" taxon="I_EBOV_LIBR0430_KR006955_LBR_GrandBassa_2014-12-03" totalcount="4" value="?"/>
+        <sequence id="Sequence.75" spec="Sequence" taxon="I_EBOV_LIBR0503_KR006956_LBR_Sinoe_2014-12-10" totalcount="4" value="?"/>
+        <sequence id="Sequence.76" spec="Sequence" taxon="I_EBOV_LIBR0505_KR006957_LBR_Sinoe_2014-12-10" totalcount="4" value="?"/>
+        <sequence id="Sequence.77" spec="Sequence" taxon="I_EBOV_LIBR0605_KR006958_LBR_Montserrado_2014-12-20" totalcount="4" value="?"/>
+        <sequence id="Sequence.78" spec="Sequence" taxon="I_EBOV_LIBR0622_KT725288_LBR_Montserrado_2014-12-22" totalcount="4" value="?"/>
+        <sequence id="Sequence.79" spec="Sequence" taxon="I_EBOV_LIBR0624_KR006959_LBR_Montserrado_2014-12-22" totalcount="4" value="?"/>
+        <sequence id="Sequence.80" spec="Sequence" taxon="I_EBOV_LIBR0707_KT725366_LBR_Montserrado_2014-12-29" totalcount="4" value="?"/>
+        <sequence id="Sequence.81" spec="Sequence" taxon="I_EBOV_LIBR0993_KR006960_LBR_Montserrado_2015-01-20" totalcount="4" value="?"/>
+        <sequence id="Sequence.82" spec="Sequence" taxon="I_EBOV_LIBR10008_KT725316_LBR__2014-08-21" totalcount="4" value="?"/>
+        <sequence id="Sequence.83" spec="Sequence" taxon="I_EBOV_LIBR10014_KT725390_LBR_Montserrado_2014-08-19" totalcount="4" value="?"/>
+        <sequence id="Sequence.84" spec="Sequence" taxon="I_EBOV_LIBR10017_KT725293_LBR_Montserrado_2014-08-19" totalcount="4" value="?"/>
+        <sequence id="Sequence.85" spec="Sequence" taxon="I_EBOV_LIBR10020_KT725292_LBR__2014-08-18" totalcount="4" value="?"/>
+        <sequence id="Sequence.86" spec="Sequence" taxon="I_EBOV_LIBR10021_KT725335_LBR__2014-08-18" totalcount="4" value="?"/>
+        <sequence id="Sequence.87" spec="Sequence" taxon="I_EBOV_LIBR10022_KT725378_LBR__2014-08-16" totalcount="4" value="?"/>
+        <sequence id="Sequence.88" spec="Sequence" taxon="I_EBOV_LIBR10025_KT725315_LBR_Margibi_2014-08-16" totalcount="4" value="?"/>
+        <sequence id="Sequence.89" spec="Sequence" taxon="I_EBOV_LIBR10026_KT725344_LBR_Margibi_2014-08-16" totalcount="4" value="?"/>
+        <sequence id="Sequence.90" spec="Sequence" taxon="I_EBOV_LIBR10027_KT725294_LBR__2014-08-16" totalcount="4" value="?"/>
+        <sequence id="Sequence.91" spec="Sequence" taxon="I_EBOV_LIBR10029_KT725348_LBR_Margibi_2014-08-16" totalcount="4" value="?"/>
+        <sequence id="Sequence.92" spec="Sequence" taxon="I_EBOV_LIBR10030_KT725257_LBR_Margibi_2014-08-16" totalcount="4" value="?"/>
+        <sequence id="Sequence.93" spec="Sequence" taxon="I_EBOV_LIBR10031_KT725278_LBR_Margibi_2014-08-16" totalcount="4" value="?"/>
+        <sequence id="Sequence.94" spec="Sequence" taxon="I_EBOV_LIBR10032_KT725267_LBR__2014-08-16" totalcount="4" value="?"/>
+        <sequence id="Sequence.95" spec="Sequence" taxon="I_EBOV_LIBR10033_KT725386_LBR_Nimba_2014-08-15" totalcount="4" value="?"/>
+        <sequence id="Sequence.96" spec="Sequence" taxon="I_EBOV_LIBR10035_KT725259_LBR_GrandBassa_2014-08-15" totalcount="4" value="?"/>
+        <sequence id="Sequence.97" spec="Sequence" taxon="I_EBOV_LIBR10036_KT725299_LBR__2014-08-10" totalcount="4" value="?"/>
+        <sequence id="Sequence.98" spec="Sequence" taxon="I_EBOV_LIBR10037_KT725311_LBR__2014-08-10" totalcount="4" value="?"/>
+        <sequence id="Sequence.99" spec="Sequence" taxon="I_EBOV_LIBR10040_KT725314_LBR__2014-08-04" totalcount="4" value="?"/>
+        <sequence id="Sequence.100" spec="Sequence" taxon="I_EBOV_LIBR10042_KT725261_LBR__2014-08-04" totalcount="4" value="?"/>
+        <sequence id="Sequence.101" spec="Sequence" taxon="I_EBOV_LIBR10047_KT725345_LBR_Margibi_2014-10-01" totalcount="4" value="?"/>
+        <sequence id="Sequence.102" spec="Sequence" taxon="I_EBOV_LIBR10048_KT725361_LBR__2014-10-01" totalcount="4" value="?"/>
+        <sequence id="Sequence.103" spec="Sequence" taxon="I_EBOV_LIBR10050_KT725270_LBR__2014-10-01" totalcount="4" value="?"/>
+        <sequence id="Sequence.104" spec="Sequence" taxon="I_EBOV_LIBR10051_KT725368_LBR__2014-10-01" totalcount="4" value="?"/>
+        <sequence id="Sequence.105" spec="Sequence" taxon="I_EBOV_LIBR10052_KT725258_LBR__2014-10-01" totalcount="4" value="?"/>
+        <sequence id="Sequence.106" spec="Sequence" taxon="I_EBOV_LIBR10053_KR006963_LBR__2014-10-01" totalcount="4" value="?"/>
+        <sequence id="Sequence.107" spec="Sequence" taxon="I_EBOV_LIBR10054_KR006964_LBR_Bomi_2014-09-23" totalcount="4" value="?"/>
+        <sequence id="Sequence.108" spec="Sequence" taxon="I_EBOV_LIBR10055_KT725340_LBR_Bomi_2014-09-23" totalcount="4" value="?"/>
+        <sequence id="Sequence.109" spec="Sequence" taxon="I_EBOV_LIBR10056_KT725276_LBR_Margibi_2014-09-23" totalcount="4" value="?"/>
+        <sequence id="Sequence.110" spec="Sequence" taxon="I_EBOV_LIBR10060_KT725357_LBR_Montserrado_2014-09-23" totalcount="4" value="?"/>
+        <sequence id="Sequence.111" spec="Sequence" taxon="I_EBOV_LIBR10061_KT725376_LBR_Montserrado_2014-09-23" totalcount="4" value="?"/>
+        <sequence id="Sequence.112" spec="Sequence" taxon="I_EBOV_LIBR10062_KT725359_LBR__2014-09-23" totalcount="4" value="?"/>
+        <sequence id="Sequence.113" spec="Sequence" taxon="I_EBOV_LIBR10065_KT725298_LBR__2014-09-21" totalcount="4" value="?"/>
+        <sequence id="Sequence.114" spec="Sequence" taxon="I_EBOV_LIBR10066_KT725379_LBR_Montserrado_2014-09-20" totalcount="4" value="?"/>
+        <sequence id="Sequence.115" spec="Sequence" taxon="I_EBOV_LIBR10071_KT725308_LBR_Montserrado_2014-09-20" totalcount="4" value="?"/>
+        <sequence id="Sequence.116" spec="Sequence" taxon="I_EBOV_LIBR10072_KT725307_LBR_Montserrado_2014-09-20" totalcount="4" value="?"/>
+        <sequence id="Sequence.117" spec="Sequence" taxon="I_EBOV_LIBR10074_KT725325_LBR__2014-09-20" totalcount="4" value="?"/>
+        <sequence id="Sequence.118" spec="Sequence" taxon="I_EBOV_LIBR10076_KT725334_LBR__2014-09-20" totalcount="4" value="?"/>
+        <sequence id="Sequence.119" spec="Sequence" taxon="I_EBOV_LIBR10077_KT725326_LBR_Margibi_2014-08-26" totalcount="4" value="?"/>
+        <sequence id="Sequence.120" spec="Sequence" taxon="I_EBOV_LIBR10078_KT725297_LBR_GrandBassa_2014-08-26" totalcount="4" value="?"/>
+        <sequence id="Sequence.121" spec="Sequence" taxon="I_EBOV_LIBR10079_KT725309_LBR_GrandBassa_2014-08-26" totalcount="4" value="?"/>
+        <sequence id="Sequence.122" spec="Sequence" taxon="I_EBOV_LIBR10081_KT725339_LBR_Margibi_2014-08-26" totalcount="4" value="?"/>
+        <sequence id="Sequence.123" spec="Sequence" taxon="I_EBOV_LIBR10082_KT725300_LBR_Margibi_2014-08-26" totalcount="4" value="?"/>
+        <sequence id="Sequence.124" spec="Sequence" taxon="I_EBOV_LIBR10086_KT725381_LBR_Margibi_2014-08-26" totalcount="4" value="?"/>
+        <sequence id="Sequence.125" spec="Sequence" taxon="I_EBOV_LIBR10087_KT725346_LBR_Margibi_2014-08-26" totalcount="4" value="?"/>
+        <sequence id="Sequence.126" spec="Sequence" taxon="I_EBOV_LIBR10088_KT725349_LBR_Montserrado_2014-08-26" totalcount="4" value="?"/>
+        <sequence id="Sequence.127" spec="Sequence" taxon="I_EBOV_LIBR10089_KT725377_LBR__2014-08-17" totalcount="4" value="?"/>
+        <sequence id="Sequence.128" spec="Sequence" taxon="I_EBOV_LIBR10092_KT725380_LBR__2014-08-17" totalcount="4" value="?"/>
+        <sequence id="Sequence.129" spec="Sequence" taxon="I_EBOV_LIBR10093_KT725363_LBR_Nimba_2014-08-17" totalcount="4" value="?"/>
+        <sequence id="Sequence.130" spec="Sequence" taxon="I_EBOV_LIBR10098_KT725383_LBR__2014-08-17" totalcount="4" value="?"/>
+        <sequence id="Sequence.131" spec="Sequence" taxon="I_EBOV_LIBR10100_KT725286_LBR__2014-08-22" totalcount="4" value="?"/>
+        <sequence id="Sequence.132" spec="Sequence" taxon="I_EBOV_LIBR10101_KT725331_LBR__2014-08-22" totalcount="4" value="?"/>
+        <sequence id="Sequence.133" spec="Sequence" taxon="I_EBOV_LIBR10103_KT725338_LBR_Nimba_2014-08-20" totalcount="4" value="?"/>
+        <sequence id="Sequence.134" spec="Sequence" taxon="I_EBOV_LIBR10106_KT725337_LBR_Nimba_2014-08-20" totalcount="4" value="?"/>
+        <sequence id="Sequence.135" spec="Sequence" taxon="I_EBOV_LIBR10110_KT725387_LBR__2014-08-20" totalcount="4" value="?"/>
+        <sequence id="Sequence.136" spec="Sequence" taxon="I_EBOV_LIBR10112_KT725365_LBR_RiverGee_2014-08-20" totalcount="4" value="?"/>
+        <sequence id="Sequence.137" spec="Sequence" taxon="I_EBOV_LIBR10113_KT725367_LBR__2014-08-20" totalcount="4" value="?"/>
+        <sequence id="Sequence.138" spec="Sequence" taxon="I_EBOV_LIBR10118_KT725364_LBR_Montserrado_2014-08-24" totalcount="4" value="?"/>
+        <sequence id="Sequence.139" spec="Sequence" taxon="I_EBOV_LIBR10127_KT725272_LBR_Bong_2014-08-22" totalcount="4" value="?"/>
+        <sequence id="Sequence.140" spec="Sequence" taxon="I_EBOV_LIBR10128_KT725355_LBR_Montserrado_2014-08-30" totalcount="4" value="?"/>
+        <sequence id="Sequence.141" spec="Sequence" taxon="I_EBOV_LIBR10130_KT725343_LBR_Montserrado_2014-09-01" totalcount="4" value="?"/>
+        <sequence id="Sequence.142" spec="Sequence" taxon="I_EBOV_LIBR10132_KT725255_LBR_Margibi_2014-09-08" totalcount="4" value="?"/>
+        <sequence id="Sequence.143" spec="Sequence" taxon="I_EBOV_LIBR10135_KT725260_LBR__2014-09-07" totalcount="4" value="?"/>
+        <sequence id="Sequence.144" spec="Sequence" taxon="I_EBOV_LIBR10136_KT725263_LBR__2014-09-09" totalcount="4" value="?"/>
+        <sequence id="Sequence.145" spec="Sequence" taxon="I_EBOV_LIBR10137_KT725385_LBR__2014-09-09" totalcount="4" value="?"/>
+        <sequence id="Sequence.146" spec="Sequence" taxon="I_EBOV_LIBR10139_KT725265_LBR__2014-09-09" totalcount="4" value="?"/>
+        <sequence id="Sequence.147" spec="Sequence" taxon="I_EBOV_LIBR10144_KT725271_LBR__2014-09-20" totalcount="4" value="?"/>
+        <sequence id="Sequence.148" spec="Sequence" taxon="I_EBOV_LIBR10145_KT725362_LBR__2014-09-20" totalcount="4" value="?"/>
+        <sequence id="Sequence.149" spec="Sequence" taxon="I_EBOV_LIBR10148_KT725295_LBR_Nimba_2014-09-20" totalcount="4" value="?"/>
+        <sequence id="Sequence.150" spec="Sequence" taxon="I_EBOV_LIBR10151_KT725317_LBR__2014-09-09" totalcount="4" value="?"/>
+        <sequence id="Sequence.151" spec="Sequence" taxon="I_EBOV_LIBR10154_KT725318_LBR_Montserrado_2014-09-13" totalcount="4" value="?"/>
+        <sequence id="Sequence.152" spec="Sequence" taxon="I_EBOV_LIBR10155_KT725296_LBR_GrandBassa_2014-09-13" totalcount="4" value="?"/>
+        <sequence id="Sequence.153" spec="Sequence" taxon="I_EBOV_LIBR10156_KT725352_LBR_GrandBassa_2014-09-13" totalcount="4" value="?"/>
+        <sequence id="Sequence.154" spec="Sequence" taxon="I_EBOV_LIBR10168_KT725353_LBR__2014-09-20" totalcount="4" value="?"/>
+        <sequence id="Sequence.155" spec="Sequence" taxon="I_EBOV_LIBR10169_KT725382_LBR__2014-08-24" totalcount="4" value="?"/>
+        <sequence id="Sequence.156" spec="Sequence" taxon="I_EBOV_LIBR10170_KT725350_LBR_Montserrado_2014-08-17" totalcount="4" value="?"/>
+        <sequence id="Sequence.157" spec="Sequence" taxon="I_EBOV_LIBR10172_KT725289_LBR__2014-09-01" totalcount="4" value="?"/>
+        <sequence id="Sequence.158" spec="Sequence" taxon="I_EBOV_LIBR10179_KT725375_LBR_Montserrado_2014-10-11" totalcount="4" value="?"/>
+        <sequence id="Sequence.159" spec="Sequence" taxon="I_EBOV_LIBR10180_KT725391_LBR_Montserrado_2014-10-11" totalcount="4" value="?"/>
+        <sequence id="Sequence.160" spec="Sequence" taxon="I_EBOV_LIBR10187_KT725392_LBR__2014-08-19" totalcount="4" value="?"/>
+        <sequence id="Sequence.161" spec="Sequence" taxon="I_EBOV_LIBR10195_KT725264_LBR__2014-08-26" totalcount="4" value="?"/>
+        <sequence id="Sequence.162" spec="Sequence" taxon="I_EBOV_LIBR10196_KT725283_LBR__2014-08-26" totalcount="4" value="?"/>
+        <sequence id="Sequence.163" spec="Sequence" taxon="I_EBOV_LIBR10201_KT725306_LBR_Montserrado_2014-08-27" totalcount="4" value="?"/>
+        <sequence id="Sequence.164" spec="Sequence" taxon="I_EBOV_LIBR10202_KT725356_LBR_Montserrado_2014-08-27" totalcount="4" value="?"/>
+        <sequence id="Sequence.165" spec="Sequence" taxon="I_EBOV_LIBR10204_KT725281_LBR__2014-08-27" totalcount="4" value="?"/>
+        <sequence id="Sequence.166" spec="Sequence" taxon="I_EBOV_LIBR10205_KT725351_LBR_Montserrado_2014-09-19" totalcount="4" value="?"/>
+        <sequence id="Sequence.167" spec="Sequence" taxon="I_EBOV_LIBR10208_KT725329_LBR_Montserrado_2014-09-19" totalcount="4" value="?"/>
+        <sequence id="Sequence.168" spec="Sequence" taxon="I_EBOV_LIBR10209_KT725371_LBR_Montserrado_2014-09-19" totalcount="4" value="?"/>
+        <sequence id="Sequence.169" spec="Sequence" taxon="I_EBOV_LIBR10210_KT725321_LBR_Montserrado_2014-09-19" totalcount="4" value="?"/>
+        <sequence id="Sequence.170" spec="Sequence" taxon="I_EBOV_LIBR10212_KT725373_LBR__2014-09-19" totalcount="4" value="?"/>
+        <sequence id="Sequence.171" spec="Sequence" taxon="I_EBOV_LIBR10217_KT725323_LBR__2014-09-29" totalcount="4" value="?"/>
+        <sequence id="Sequence.172" spec="Sequence" taxon="I_EBOV_LIBR10218_KT725284_LBR__2014-09-29" totalcount="4" value="?"/>
+        <sequence id="Sequence.173" spec="Sequence" taxon="I_EBOV_LIBR10222_KT725305_LBR_GrandBassa_2014-09-26" totalcount="4" value="?"/>
+        <sequence id="Sequence.174" spec="Sequence" taxon="I_EBOV_LIBR10223_KT725301_LBR_Montserrado_2014-09-26" totalcount="4" value="?"/>
+        <sequence id="Sequence.175" spec="Sequence" taxon="I_EBOV_LIBR10224_KT725302_LBR_Montserrado_2014-09-26" totalcount="4" value="?"/>
+        <sequence id="Sequence.176" spec="Sequence" taxon="I_EBOV_LIBR10226_KT725304_LBR_Montserrado_2014-09-26" totalcount="4" value="?"/>
+        <sequence id="Sequence.177" spec="Sequence" taxon="I_EBOV_LIBR10230_KT725354_LBR_Montserrado_2014-09-26" totalcount="4" value="?"/>
+        <sequence id="Sequence.178" spec="Sequence" taxon="I_EBOV_LIBR10237_KT725275_LBR__2014-07-11" totalcount="4" value="?"/>
+        <sequence id="Sequence.179" spec="Sequence" taxon="I_EBOV_LIBR10238_KT725322_LBR__2014-07-18" totalcount="4" value="?"/>
+        <sequence id="Sequence.180" spec="Sequence" taxon="I_EBOV_LIBR10239_KT725324_LBR__2014-07-19" totalcount="4" value="?"/>
+        <sequence id="Sequence.181" spec="Sequence" taxon="I_EBOV_LIBR10240_KT725320_LBR__2014-06-24" totalcount="4" value="?"/>
+        <sequence id="Sequence.182" spec="Sequence" taxon="I_EBOV_LIBR10241_KT725262_LBR__2014-06-25" totalcount="4" value="?"/>
+        <sequence id="Sequence.183" spec="Sequence" taxon="I_EBOV_LIBR10245_KT725332_LBR__2014-07-01" totalcount="4" value="?"/>
+        <sequence id="Sequence.184" spec="Sequence" taxon="I_EBOV_LIBR10248_KT725277_LBR__2014-07-14" totalcount="4" value="?"/>
+        <sequence id="Sequence.185" spec="Sequence" taxon="I_EBOV_LIBR10249_KT725388_LBR__2014-07-04" totalcount="4" value="?"/>
+        <sequence id="Sequence.186" spec="Sequence" taxon="I_EBOV_LIBR10250_KT725360_LBR__2014-06-23" totalcount="4" value="?"/>
+        <sequence id="Sequence.187" spec="Sequence" taxon="I_EBOV_LIBR10251_KT725319_LBR_GrandKru_2014-09-15" totalcount="4" value="?"/>
+        <sequence id="Sequence.188" spec="Sequence" taxon="I_EBOV_LIBR10252_KT725266_LBR_GrandKru_2014-09-15" totalcount="4" value="?"/>
+        <sequence id="Sequence.189" spec="Sequence" taxon="I_EBOV_LIBR10253_KT725282_LBR_Margibi_2014-09-16" totalcount="4" value="?"/>
+        <sequence id="Sequence.190" spec="Sequence" taxon="I_EBOV_LIBR10254_KT725268_LBR__2014-10-02" totalcount="4" value="?"/>
+        <sequence id="Sequence.191" spec="Sequence" taxon="I_EBOV_LIBR10255_KT725269_LBR_Bong_2014-10-02" totalcount="4" value="?"/>
+        <sequence id="Sequence.192" spec="Sequence" taxon="I_EBOV_LIBR10261_KT725287_LBR_Sinoe_2014-10-14" totalcount="4" value="?"/>
+        <sequence id="Sequence.193" spec="Sequence" taxon="I_EBOV_LIBR10262_KT725285_LBR_Montserrado_2014-10-16" totalcount="4" value="?"/>
+        <sequence id="Sequence.194" spec="Sequence" taxon="I_EBOV_LIBR10265_KT725312_LBR__2014-10-18" totalcount="4" value="?"/>
+        <sequence id="Sequence.195" spec="Sequence" taxon="I_EBOV_LIBR10267_KT725374_LBR_Montserrado_2014-10-05" totalcount="4" value="?"/>
+        <sequence id="Sequence.196" spec="Sequence" taxon="I_EBOV_LIBR10270_KT725256_LBR__2014-08-26" totalcount="4" value="?"/>
+        <sequence id="Sequence.197" spec="Sequence" taxon="I_EBOV_LIBR10271_KT725347_LBR__2014-08-26" totalcount="4" value="?"/>
+        <sequence id="Sequence.198" spec="Sequence" taxon="I_EBOV_LIBR10277_KT725369_LBR_Margibi_2014-08-26" totalcount="4" value="?"/>
+        <sequence id="Sequence.199" spec="Sequence" taxon="I_EBOV_LIBR10279_KT725341_LBR_Montserrado_2014-08-26" totalcount="4" value="?"/>
+        <sequence id="Sequence.200" spec="Sequence" taxon="I_EBOV_LIBR10306_KT725336_LBR__2014-06-25" totalcount="4" value="?"/>
+        <sequence id="Sequence.201" spec="Sequence" taxon="I_EBOV_LIBR10307_KT725310_LBR_Montserrado_2014-10-02" totalcount="4" value="?"/>
+        <sequence id="Sequence.202" spec="Sequence" taxon="I_EBOV_LIBR11079_KT725372_LBR_Montserrado_2014-10-02" totalcount="4" value="?"/>
+        <sequence id="Sequence.203" spec="Sequence" taxon="I_EBOV_LIBR11177_KT725358_LBR_Margibi_2014-10-05" totalcount="4" value="?"/>
+        <sequence id="Sequence.204" spec="Sequence" taxon="I_EBOV_LIBR1195_KR006961_LBR_Margibi_2015-02-02" totalcount="4" value="?"/>
+        <sequence id="Sequence.205" spec="Sequence" taxon="I_EBOV_LIBR1221_KT725384_LBR_Montserrado_2015-02-04" totalcount="4" value="?"/>
+        <sequence id="Sequence.206" spec="Sequence" taxon="I_EBOV_LIBR1413_KR006962_LBR_Montserrado_2015-02-14" totalcount="4" value="?"/>
+        <sequence id="Sequence.207" spec="Sequence" taxon="I_EBOV_Makona-201403261_KP240932_LBR__2014-09-26" totalcount="4" value="?"/>
+    </data>
+                <trait id="dateTrait.t:tree" spec="beast.base.evolution.tree.TraitSet" traitname="date" 
+    value="I_EBOV_201403007_KP178538_LBR__2014-08-03=2014.5863013699,I_EBOV_CDC-NIH-1122__LBR_Margibi_2014-09-16=2014.7068493151,I_EBOV_CDC-NIH-1650__LBR_Margibi_2014-09-27=2014.7369863014,I_EBOV_CDC-NIH-2303__LBR_Montserrado_2014-10-10=2014.7726027397,I_EBOV_CDC-NIH-2313__LBR_Montserrado_2014-10-10=2014.7726027397,I_EBOV_CDC-NIH-257__LBR_Montserrado_2014-08-27=2014.6520547945,I_EBOV_CDC-NIH-259__LBR_Montserrado_2014-08-27=2014.6520547945,I_EBOV_CDC-NIH-261__LBR_Montserrado_2014-08-27=2014.6520547945,I_EBOV_CDC-NIH-272__LBR_Montserrado_2014-08-27=2014.6520547945,I_EBOV_CDC-NIH-2984__LBR_Montserrado_2014-10-23=2014.8082191781,I_EBOV_CDC-NIH-3762__LBR_Montserrado_2014-11-19=2014.8821917808,I_EBOV_CDC-NIH-3827__LBR_Montserrado_2014-11-23=2014.8931506849,I_EBOV_CDC-NIH-3832__LBR_GrandCapeMount_2014-11-23=2014.8931506849,I_EBOV_CDC-NIH-3871__LBR_GrandBassa_2014-11-25=2014.8986301370,I_EBOV_CDC-NIH-3874__LBR_Montserrado_2014-11-25=2014.8986301370,I_EBOV_CDC-NIH-3878__LBR_Montserrado_2014-11-25=2014.8986301370,I_EBOV_CDC-NIH-595__LBR_Montserrado_2014-09-04=2014.6739726027,I_EBOV_CDC-NIH-603__LBR_Montserrado_2014-09-04=2014.6739726027,I_EBOV_CDC-NIH-683__LBR_Montserrado_2014-09-06=2014.6794520548,I_EBOV_CDC-NIH-686__LBR_Margibi_2014-09-06=2014.6794520548,I_EBOV_CDC-NIH-708__LBR_Montserrado_2014-09-07=2014.6821917808,I_EBOV_CDC-NIH-710__LBR_Montserrado_2014-09-07=2014.6821917808,I_EBOV_EM_074349_KR817108_LBR_Lofa_2014-07-22=2014.5534246575,I_EBOV_EM_074350_KR817109_LBR_Lofa_2014-07-22=2014.5534246575,I_EBOV_EM_074351_KR817110_LBR_Lofa_2014-07-22=2014.5534246575,I_EBOV_EM_074352_KR817111_LBR_Lofa_2014-07-22=2014.5534246575,I_EBOV_EM_074353_KR817112_LBR_Lofa_2014-07-22=2014.5534246575,I_EBOV_EM_074391_KR817114_LBR_Lofa_2014-07-26=2014.5643835616,I_EBOV_EM_074392_KR817115_LBR__2014-07-25=2014.5616438356,I_EBOV_EM_074548_KR817123_LBR_Lofa_2014-08-08=2014.6000000000,I_EBOV_EM_074720_KR817125_LBR_Lofa_2014-08-14=2014.6164383562,I_EBOV_EM_074821_KR817127_LBR_Lofa_2014-08-17=2014.6246575342,I_EBOV_EM_074822_KR817128_LBR_Lofa_2014-08-17=2014.6246575342,I_EBOV_EM_075043_KR817129_LBR_Lofa_2014-08-22=2014.6383561644,I_EBOV_EM_080064_KR817231_LBR_Lofa_2014-06-20=2014.4657534247,I_EBOV_EM_080065_KR817232_LBR__2014-06-20=2014.4657534247,I_EBOV_EM_080066_KR817233_LBR__2014-06-20=2014.4657534247,I_EBOV_EM_080067_KR817234_LBR__2014-06-20=2014.4657534247,I_EBOV_EM_080193_KR817239_LBR__2014-06-29=2014.4904109589,I_EBOV_EM_080213_KR817240_LBR__2014-07-03=2014.5013698630,I_EBOV_EM_080223_KR817241_LBR__2014-07-04=2014.5041095890,I_EBOV_EM_080261_KR817243_LBR_Lofa_2014-07-12=2014.5260273973,I_EBOV_EM_080269_KR817245_LBR__2014-07-12=2014.5260273973,I_EBOV_LIBR0008_KT725313_LBR_Montserrado_2014-10-31=2014.8301369863,I_EBOV_LIBR0058_KR006940_LBR_RiverCess_2014-11-05=2014.8438356164,I_EBOV_LIBR0059_KR006941_LBR_RiverCess_2014-11-05=2014.8438356164,I_EBOV_LIBR0063_KR006942_LBR_Montserrado_2014-11-06=2014.8465753425,I_EBOV_LIBR0067_KR006943_LBR_Bomi_2014-11-06=2014.8465753425,I_EBOV_LIBR0071_KT725303_LBR_GrandBassa_2014-11-06=2014.8465753425,I_EBOV_LIBR0073_KR006944_LBR_GrandBassa_2014-11-06=2014.8465753425,I_EBOV_LIBR0079_KT725274_LBR_Montserrado_2014-11-07=2014.8493150685,I_EBOV_LIBR0090_KR006945_LBR_Margibi_2014-11-08=2014.8520547945,I_EBOV_LIBR0092_KR006946_LBR_Montserrado_2014-11-08=2014.8520547945,I_EBOV_LIBR0093_KR006947_LBR_Montserrado_2014-11-08=2014.8520547945,I_EBOV_LIBR0112_KT725330_LBR_Montserrado_2014-11-10=2014.8575342466,I_EBOV_LIBR0114_KT725273_LBR_GrandBassa_2014-11-10=2014.8575342466,I_EBOV_LIBR0115_KT725254_LBR_GrandBassa_2014-11-10=2014.8575342466,I_EBOV_LIBR0116_KR006948_LBR_GrandBassa_2014-11-10=2014.8575342466,I_EBOV_LIBR0118_KT725291_LBR_Bomi_2014-11-10=2014.8575342466,I_EBOV_LIBR0157_KT725393_LBR_Gbarpolu_2014-11-13=2014.8657534247,I_EBOV_LIBR0159_KT725327_LBR_Montserrado_2014-11-13=2014.8657534247,I_EBOV_LIBR0160_KT725370_LBR_Montserrado_2014-11-13=2014.8657534247,I_EBOV_LIBR0168_KR006949_LBR_Bomi_2014-11-13=2014.8657534247,I_EBOV_LIBR0173_KR006950_LBR_Montserrado_2014-11-14=2014.8684931507,I_EBOV_LIBR0176_KR006951_LBR_Montserrado_2014-11-14=2014.8684931507,I_EBOV_LIBR0177_KT725279_LBR_Montserrado_2014-11-14=2014.8684931507,I_EBOV_LIBR0229_KT725333_LBR_GrandBassa_2014-11-17=2014.8767123288,I_EBOV_LIBR0279_KT725280_LBR__2014-11-22=2014.8904109589,I_EBOV_LIBR0284_KT725328_LBR_GrandCapeMount_2014-11-22=2014.8904109589,I_EBOV_LIBR0286_KR006952_LBR_GrandCapeMount_2014-11-22=2014.8904109589,I_EBOV_LIBR0333_KR006953_LBR_GrandCapeMount_2014-11-25=2014.8986301370,I_EBOV_LIBR0350_KT725342_LBR_Montserrado_2014-11-26=2014.9013698630,I_EBOV_LIBR0380_KT725290_LBR_Montserrado_2014-11-28=2014.9068493151,I_EBOV_LIBR0423_KR006954_LBR_Montserrado_2014-12-03=2014.9205479452,I_EBOV_LIBR0430_KR006955_LBR_GrandBassa_2014-12-03=2014.9205479452,I_EBOV_LIBR0503_KR006956_LBR_Sinoe_2014-12-10=2014.9397260274,I_EBOV_LIBR0505_KR006957_LBR_Sinoe_2014-12-10=2014.9397260274,I_EBOV_LIBR0605_KR006958_LBR_Montserrado_2014-12-20=2014.9671232877,I_EBOV_LIBR0622_KT725288_LBR_Montserrado_2014-12-22=2014.9726027397,I_EBOV_LIBR0624_KR006959_LBR_Montserrado_2014-12-22=2014.9726027397,I_EBOV_LIBR0707_KT725366_LBR_Montserrado_2014-12-29=2014.9917808219,I_EBOV_LIBR0993_KR006960_LBR_Montserrado_2015-01-20=2015.0520547945,I_EBOV_LIBR10008_KT725316_LBR__2014-08-21=2014.6356164384,I_EBOV_LIBR10014_KT725390_LBR_Montserrado_2014-08-19=2014.6301369863,I_EBOV_LIBR10017_KT725293_LBR_Montserrado_2014-08-19=2014.6301369863,I_EBOV_LIBR10020_KT725292_LBR__2014-08-18=2014.6273972603,I_EBOV_LIBR10021_KT725335_LBR__2014-08-18=2014.6273972603,I_EBOV_LIBR10022_KT725378_LBR__2014-08-16=2014.6219178082,I_EBOV_LIBR10025_KT725315_LBR_Margibi_2014-08-16=2014.6219178082,I_EBOV_LIBR10026_KT725344_LBR_Margibi_2014-08-16=2014.6219178082,I_EBOV_LIBR10027_KT725294_LBR__2014-08-16=2014.6219178082,I_EBOV_LIBR10029_KT725348_LBR_Margibi_2014-08-16=2014.6219178082,I_EBOV_LIBR10030_KT725257_LBR_Margibi_2014-08-16=2014.6219178082,I_EBOV_LIBR10031_KT725278_LBR_Margibi_2014-08-16=2014.6219178082,I_EBOV_LIBR10032_KT725267_LBR__2014-08-16=2014.6219178082,I_EBOV_LIBR10033_KT725386_LBR_Nimba_2014-08-15=2014.6191780822,I_EBOV_LIBR10035_KT725259_LBR_GrandBassa_2014-08-15=2014.6191780822,I_EBOV_LIBR10036_KT725299_LBR__2014-08-10=2014.6054794521,I_EBOV_LIBR10037_KT725311_LBR__2014-08-10=2014.6054794521,I_EBOV_LIBR10040_KT725314_LBR__2014-08-04=2014.5890410959,I_EBOV_LIBR10042_KT725261_LBR__2014-08-04=2014.5890410959,I_EBOV_LIBR10047_KT725345_LBR_Margibi_2014-10-01=2014.7479452055,I_EBOV_LIBR10048_KT725361_LBR__2014-10-01=2014.7479452055,I_EBOV_LIBR10050_KT725270_LBR__2014-10-01=2014.7479452055,I_EBOV_LIBR10051_KT725368_LBR__2014-10-01=2014.7479452055,I_EBOV_LIBR10052_KT725258_LBR__2014-10-01=2014.7479452055,I_EBOV_LIBR10053_KR006963_LBR__2014-10-01=2014.7479452055,I_EBOV_LIBR10054_KR006964_LBR_Bomi_2014-09-23=2014.7260273973,I_EBOV_LIBR10055_KT725340_LBR_Bomi_2014-09-23=2014.7260273973,I_EBOV_LIBR10056_KT725276_LBR_Margibi_2014-09-23=2014.7260273973,I_EBOV_LIBR10060_KT725357_LBR_Montserrado_2014-09-23=2014.7260273973,I_EBOV_LIBR10061_KT725376_LBR_Montserrado_2014-09-23=2014.7260273973,I_EBOV_LIBR10062_KT725359_LBR__2014-09-23=2014.7260273973,I_EBOV_LIBR10065_KT725298_LBR__2014-09-21=2014.7205479452,I_EBOV_LIBR10066_KT725379_LBR_Montserrado_2014-09-20=2014.7178082192,I_EBOV_LIBR10071_KT725308_LBR_Montserrado_2014-09-20=2014.7178082192,I_EBOV_LIBR10072_KT725307_LBR_Montserrado_2014-09-20=2014.7178082192,I_EBOV_LIBR10074_KT725325_LBR__2014-09-20=2014.7178082192,I_EBOV_LIBR10076_KT725334_LBR__2014-09-20=2014.7178082192,I_EBOV_LIBR10077_KT725326_LBR_Margibi_2014-08-26=2014.6493150685,I_EBOV_LIBR10078_KT725297_LBR_GrandBassa_2014-08-26=2014.6493150685,I_EBOV_LIBR10079_KT725309_LBR_GrandBassa_2014-08-26=2014.6493150685,I_EBOV_LIBR10081_KT725339_LBR_Margibi_2014-08-26=2014.6493150685,I_EBOV_LIBR10082_KT725300_LBR_Margibi_2014-08-26=2014.6493150685,I_EBOV_LIBR10086_KT725381_LBR_Margibi_2014-08-26=2014.6493150685,I_EBOV_LIBR10087_KT725346_LBR_Margibi_2014-08-26=2014.6493150685,I_EBOV_LIBR10088_KT725349_LBR_Montserrado_2014-08-26=2014.6493150685,I_EBOV_LIBR10089_KT725377_LBR__2014-08-17=2014.6246575342,I_EBOV_LIBR10092_KT725380_LBR__2014-08-17=2014.6246575342,I_EBOV_LIBR10093_KT725363_LBR_Nimba_2014-08-17=2014.6246575342,I_EBOV_LIBR10098_KT725383_LBR__2014-08-17=2014.6246575342,I_EBOV_LIBR10100_KT725286_LBR__2014-08-22=2014.6383561644,I_EBOV_LIBR10101_KT725331_LBR__2014-08-22=2014.6383561644,I_EBOV_LIBR10103_KT725338_LBR_Nimba_2014-08-20=2014.6328767123,I_EBOV_LIBR10106_KT725337_LBR_Nimba_2014-08-20=2014.6328767123,I_EBOV_LIBR10110_KT725387_LBR__2014-08-20=2014.6328767123,I_EBOV_LIBR10112_KT725365_LBR_RiverGee_2014-08-20=2014.6328767123,I_EBOV_LIBR10113_KT725367_LBR__2014-08-20=2014.6328767123,I_EBOV_LIBR10118_KT725364_LBR_Montserrado_2014-08-24=2014.6438356164,I_EBOV_LIBR10127_KT725272_LBR_Bong_2014-08-22=2014.6383561644,I_EBOV_LIBR10128_KT725355_LBR_Montserrado_2014-08-30=2014.6602739726,I_EBOV_LIBR10130_KT725343_LBR_Montserrado_2014-09-01=2014.6657534247,I_EBOV_LIBR10132_KT725255_LBR_Margibi_2014-09-08=2014.6849315068,I_EBOV_LIBR10135_KT725260_LBR__2014-09-07=2014.6821917808,I_EBOV_LIBR10136_KT725263_LBR__2014-09-09=2014.6876712329,I_EBOV_LIBR10137_KT725385_LBR__2014-09-09=2014.6876712329,I_EBOV_LIBR10139_KT725265_LBR__2014-09-09=2014.6876712329,I_EBOV_LIBR10144_KT725271_LBR__2014-09-20=2014.7178082192,I_EBOV_LIBR10145_KT725362_LBR__2014-09-20=2014.7178082192,I_EBOV_LIBR10148_KT725295_LBR_Nimba_2014-09-20=2014.7178082192,I_EBOV_LIBR10151_KT725317_LBR__2014-09-09=2014.6876712329,I_EBOV_LIBR10154_KT725318_LBR_Montserrado_2014-09-13=2014.6986301370,I_EBOV_LIBR10155_KT725296_LBR_GrandBassa_2014-09-13=2014.6986301370,I_EBOV_LIBR10156_KT725352_LBR_GrandBassa_2014-09-13=2014.6986301370,I_EBOV_LIBR10168_KT725353_LBR__2014-09-20=2014.7178082192,I_EBOV_LIBR10169_KT725382_LBR__2014-08-24=2014.6438356164,I_EBOV_LIBR10170_KT725350_LBR_Montserrado_2014-08-17=2014.6246575342,I_EBOV_LIBR10172_KT725289_LBR__2014-09-01=2014.6657534247,I_EBOV_LIBR10179_KT725375_LBR_Montserrado_2014-10-11=2014.7753424658,I_EBOV_LIBR10180_KT725391_LBR_Montserrado_2014-10-11=2014.7753424658,I_EBOV_LIBR10187_KT725392_LBR__2014-08-19=2014.6301369863,I_EBOV_LIBR10195_KT725264_LBR__2014-08-26=2014.6493150685,I_EBOV_LIBR10196_KT725283_LBR__2014-08-26=2014.6493150685,I_EBOV_LIBR10201_KT725306_LBR_Montserrado_2014-08-27=2014.6520547945,I_EBOV_LIBR10202_KT725356_LBR_Montserrado_2014-08-27=2014.6520547945,I_EBOV_LIBR10204_KT725281_LBR__2014-08-27=2014.6520547945,I_EBOV_LIBR10205_KT725351_LBR_Montserrado_2014-09-19=2014.7150684932,I_EBOV_LIBR10208_KT725329_LBR_Montserrado_2014-09-19=2014.7150684932,I_EBOV_LIBR10209_KT725371_LBR_Montserrado_2014-09-19=2014.7150684932,I_EBOV_LIBR10210_KT725321_LBR_Montserrado_2014-09-19=2014.7150684932,I_EBOV_LIBR10212_KT725373_LBR__2014-09-19=2014.7150684932,I_EBOV_LIBR10217_KT725323_LBR__2014-09-29=2014.7424657534,I_EBOV_LIBR10218_KT725284_LBR__2014-09-29=2014.7424657534,I_EBOV_LIBR10222_KT725305_LBR_GrandBassa_2014-09-26=2014.7342465753,I_EBOV_LIBR10223_KT725301_LBR_Montserrado_2014-09-26=2014.7342465753,I_EBOV_LIBR10224_KT725302_LBR_Montserrado_2014-09-26=2014.7342465753,I_EBOV_LIBR10226_KT725304_LBR_Montserrado_2014-09-26=2014.7342465753,I_EBOV_LIBR10230_KT725354_LBR_Montserrado_2014-09-26=2014.7342465753,I_EBOV_LIBR10237_KT725275_LBR__2014-07-11=2014.5232876712,I_EBOV_LIBR10238_KT725322_LBR__2014-07-18=2014.5424657534,I_EBOV_LIBR10239_KT725324_LBR__2014-07-19=2014.5452054795,I_EBOV_LIBR10240_KT725320_LBR__2014-06-24=2014.4767123288,I_EBOV_LIBR10241_KT725262_LBR__2014-06-25=2014.4794520548,I_EBOV_LIBR10245_KT725332_LBR__2014-07-01=2014.4958904110,I_EBOV_LIBR10248_KT725277_LBR__2014-07-14=2014.5315068493,I_EBOV_LIBR10249_KT725388_LBR__2014-07-04=2014.5041095890,I_EBOV_LIBR10250_KT725360_LBR__2014-06-23=2014.4739726027,I_EBOV_LIBR10251_KT725319_LBR_GrandKru_2014-09-15=2014.7041095890,I_EBOV_LIBR10252_KT725266_LBR_GrandKru_2014-09-15=2014.7041095890,I_EBOV_LIBR10253_KT725282_LBR_Margibi_2014-09-16=2014.7068493151,I_EBOV_LIBR10254_KT725268_LBR__2014-10-02=2014.7506849315,I_EBOV_LIBR10255_KT725269_LBR_Bong_2014-10-02=2014.7506849315,I_EBOV_LIBR10261_KT725287_LBR_Sinoe_2014-10-14=2014.7835616438,I_EBOV_LIBR10262_KT725285_LBR_Montserrado_2014-10-16=2014.7890410959,I_EBOV_LIBR10265_KT725312_LBR__2014-10-18=2014.7945205479,I_EBOV_LIBR10267_KT725374_LBR_Montserrado_2014-10-05=2014.7589041096,I_EBOV_LIBR10270_KT725256_LBR__2014-08-26=2014.6493150685,I_EBOV_LIBR10271_KT725347_LBR__2014-08-26=2014.6493150685,I_EBOV_LIBR10277_KT725369_LBR_Margibi_2014-08-26=2014.6493150685,I_EBOV_LIBR10279_KT725341_LBR_Montserrado_2014-08-26=2014.6493150685,I_EBOV_LIBR10306_KT725336_LBR__2014-06-25=2014.4794520548,I_EBOV_LIBR10307_KT725310_LBR_Montserrado_2014-10-02=2014.7506849315,I_EBOV_LIBR11079_KT725372_LBR_Montserrado_2014-10-02=2014.7506849315,I_EBOV_LIBR11177_KT725358_LBR_Margibi_2014-10-05=2014.7589041096,I_EBOV_LIBR1195_KR006961_LBR_Margibi_2015-02-02=2015.0876712329,I_EBOV_LIBR1221_KT725384_LBR_Montserrado_2015-02-04=2015.0931506849,I_EBOV_LIBR1413_KR006962_LBR_Montserrado_2015-02-14=2015.1205479452,I_EBOV_Makona-201403261_KP240932_LBR__2014-09-26=2014.7342465753"
+    taxa="@TaxonSet.1"/>
+    <map name="Uniform" >beast.base.inference.distribution.Uniform</map>
+
+    <map name="Exponential" >beast.base.inference.distribution.Exponential</map>
+
+    <map name="LogNormal" >beast.base.inference.distribution.LogNormalDistributionModel</map>
+
+    <map name="Normal" >beast.base.inference.distribution.Normal</map>
+
+    <map name="Beta" >beast.base.inference.distribution.Beta</map>
+
+    <map name="Gamma" >beast.base.inference.distribution.Gamma</map>
+
+    <map name="LaplaceDistribution" >beast.base.inference.distribution.LaplaceDistribution</map>
+
+    <map name="prior" >beast.base.inference.distribution.Prior</map>
+
+    <map name="InverseGamma" >beast.base.inference.distribution.InverseGamma</map>
+
+    <map name="OneOnX" >beast.base.inference.distribution.OneOnX</map>
+
+    <run id="mcmc" spec="MCMC" chainLength="5000000">
+        <state id="state" spec="State" storeEvery="5000">
+            <stateNode id="Tree.t:tree" spec="fixedtreeanalysis.evolution.tree.FixedTree" IsLabelledNewick="true" trait="@dateTrait.t:tree"  adjustTipHeights="false" newick="((((((((((((((I_EBOV_201403007_KP178538_LBR__2014-08-03:0.018362162290000095,I_EBOV_CDC-NIH-259__LBR_Montserrado_2014-08-27:0.0841155869500001):0.03655626725999994,((I_EBOV_LIBR10086_KT725381_LBR_Margibi_2014-08-26:0.03536862763999993,I_EBOV_LIBR10087_KT725346_LBR_Margibi_2014-08-26:0.03536862763999993):0.02537725600000007,I_EBOV_LIBR10088_KT725349_LBR_Montserrado_2014-08-26:0.06074588364):0.057186244539999986):0.03522180924000007,((((I_EBOV_CDC-NIH-1650__LBR_Margibi_2014-09-27:0.12008798240000007,(I_EBOV_CDC-NIH-710__LBR_Montserrado_2014-09-07:0.03489211677000004,(((I_EBOV_LIBR0993_KR006960_LBR_Montserrado_2015-01-20:0.01667840385999997,I_EBOV_LIBR1195_KR006961_LBR_Margibi_2015-02-02:0.052294842220000026):0.01664700870000002,(I_EBOV_LIBR1221_KT725384_LBR_Montserrado_2015-02-04:0.014826441349999997,I_EBOV_LIBR1413_KR006962_LBR_Montserrado_2015-02-14:0.04222370162000011):0.05959486162000005):0.32910606499999995,I_EBOV_LIBR10065_KT725298_LBR__2014-09-21:0.030924628249999975):0.04232365289999995):0.030401345100000032):0.056581133369999925,(((I_EBOV_LIBR0079_KT725274_LBR_Montserrado_2014-11-07:0.24435537790000006,I_EBOV_LIBR10029_KT725348_LBR_Margibi_2014-08-16:0.01695811759999999):0.004208920471999944,I_EBOV_LIBR10025_KT725315_LBR_Margibi_2014-08-16:0.021167038069999977):0.009438218974000101,I_EBOV_LIBR10030_KT725257_LBR_Margibi_2014-08-16:0.030605257050000056):0.030995365589999935):0.03310233638000004,I_EBOV_LIBR10202_KT725356_LBR_Montserrado_2014-08-27:0.12483994530000009):0.009042713745999964,(I_EBOV_EM_075043_KR817129_LBR_Lofa_2014-08-22:0.053927042050000096,I_EBOV_LIBR10271_KT725347_LBR__2014-08-26:0.0648859461600001):0.06625698687999992):0.02201100437000003):0.016420342199999993,((((I_EBOV_LIBR0380_KT725290_LBR_Montserrado_2014-11-28:0.22140202369999995,I_EBOV_LIBR10222_KT725305_LBR_GrandBassa_2014-09-26:0.04879928398):0.09039235045000005,I_EBOV_LIBR10089_KT725377_LBR__2014-08-17:0.02960259334000004):0.012651253959999997,I_EBOV_LIBR10265_KT725312_LBR__2014-10-18:0.21211686100000005):0.07689198437,I_EBOV_LIBR10237_KT725275_LBR__2014-07-11:0.017775968649999974):0.025770913700000064):0.013509117259999925,I_EBOV_EM_080269_KR817245_LBR__2014-07-12:0.05979572564000002):0.001825061261999994,((((((I_EBOV_CDC-NIH-3762__LBR_Montserrado_2014-11-19:0.02204376345000003,I_EBOV_LIBR0423_KR006954_LBR_Montserrado_2014-12-03:0.060399927840000034):0.02243826864999998,I_EBOV_LIBR0605_KR006958_LBR_Montserrado_2014-12-20:0.12941353899999997):0.20956856479999997,(((((I_EBOV_LIBR0008_KT725313_LBR_Montserrado_2014-10-31:0.1291453468,I_EBOV_LIBR10209_KT725371_LBR_Montserrado_2014-09-19:0.01407685366):0.023765788820000022,I_EBOV_LIBR10307_KT725310_LBR_Montserrado_2014-10-02:0.07345908083999997):0.02008120583999995,I_EBOV_LIBR10135_KT725260_LBR__2014-09-07:0.02504713599999997):0.01800301084,I_EBOV_LIBR10210_KT725321_LBR_Montserrado_2014-09-19:0.07592685915999997):0.004186135516999978,(I_EBOV_LIBR10052_KT725258_LBR__2014-10-01:0.04969669622000006,I_EBOV_LIBR10208_KT725329_LBR_Montserrado_2014-09-19:0.016819983890000056):0.06329301079999994):0.006814314509000052):0.02136459945000002,I_EBOV_LIBR10195_KT725264_LBR__2014-08-26:0.04253848398000004):0.02768567920999998,((I_EBOV_LIBR10054_KR006964_LBR_Bomi_2014-09-23:0.044412368010000036,I_EBOV_LIBR10071_KT725308_LBR_Montserrado_2014-09-20:0.03619318992999998):0.049917787950000014,(I_EBOV_LIBR10074_KT725325_LBR__2014-09-20:0.053582724660000025,I_EBOV_LIBR10145_KT725362_LBR__2014-09-20:0.053582724660000025):0.03252825320999997):0.052606335999999976):0.04869196235000006,(((I_EBOV_LIBR0279_KT725280_LBR__2014-11-22:0.3107116984,I_EBOV_LIBR10112_KT725365_LBR_RiverGee_2014-08-20:0.05317745182999989):0.006979857089000063,I_EBOV_LIBR10187_KT725392_LBR__2014-08-19:0.057417582899999986):0.02287090088999999,(I_EBOV_LIBR10037_KT725311_LBR__2014-08-10:0.014864941439999946,I_EBOV_LIBR10201_KT725306_LBR_Montserrado_2014-08-27:0.061440283910000004):0.04076600809999997):0.01944955956000005):0.06599233258999992):0.0050968561490000175,(((((((I_EBOV_CDC-NIH-595__LBR_Montserrado_2014-09-04:0.06257301732000009,(I_EBOV_LIBR0229_KT725333_LBR_GrandBassa_2014-11-17:0.21940203719999996,I_EBOV_LIBR10255_KT725269_LBR_Bong_2014-10-02:0.09337463998999995):0.04591070610000003):0.006458258172999942,(I_EBOV_LIBR10132_KT725255_LBR_Margibi_2014-09-08:0.05798022781000001,I_EBOV_LIBR10253_KT725282_LBR_Margibi_2014-09-16:0.07989803603000001):0.022009951789999982):0.01476106532999999,(I_EBOV_LIBR10020_KT725292_LBR__2014-08-18:0.011725564790000087,I_EBOV_LIBR10077_KT725326_LBR_Margibi_2014-08-26:0.03364337301000009):0.025491433569999944):0.012702129369999926,(((I_EBOV_LIBR0157_KT725393_LBR_Gbarpolu_2014-11-13:0.16538864360000005,I_EBOV_LIBR10254_KT725268_LBR__2014-10-02:0.05032015041000004):0.09966077780000004,I_EBOV_LIBR10008_KT725316_LBR__2014-08-21:0.03491243507000008):0.006836224521999945,I_EBOV_LIBR11177_KT725358_LBR_Margibi_2014-10-05:0.16503633080000002):0.016389646219999943):0.009601705986000075,I_EBOV_LIBR10212_KT725373_LBR__2014-09-19:0.14719206659999995):0.023514914850000013,I_EBOV_LIBR10031_KT725278_LBR_Margibi_2014-08-16:0.07755629651999996):0.04855115446000002,I_EBOV_LIBR10118_KT725364_LBR_Montserrado_2014-08-24:0.14802525919999998):0.036500603040000024):0.015693456319999965,((((((((I_EBOV_CDC-NIH-2984__LBR_Montserrado_2014-10-23:0.04542050409999998,I_EBOV_CDC-NIH-3878__LBR_Montserrado_2014-11-25:0.13583146300000004):0.10446372280000005,I_EBOV_LIBR10137_KT725385_LBR__2014-09-09:0.02933628166000002):0.03426143318999997,(I_EBOV_LIBR10154_KT725318_LBR_Montserrado_2014-09-13:0.06563922765999997,I_EBOV_LIBR10251_KT725319_LBR_GrandKru_2014-09-15:0.07111867971999997):0.008917391300000022):0.0165732086,I_EBOV_LIBR10224_KT725302_LBR_Montserrado_2014-09-26:0.12674626590000004):0.045724204290000015,((((((((I_EBOV_LIBR0063_KR006942_LBR_Montserrado_2014-11-06:0.052772800259999975,(I_EBOV_LIBR0503_KR006956_LBR_Sinoe_2014-12-10:0.06323035434000002,I_EBOV_LIBR0505_KR006957_LBR_Sinoe_2014-12-10:0.06323035434000002):0.08269313084999996):0.031469379200000036,I_EBOV_LIBR0176_KR006951_LBR_Montserrado_2014-11-14:0.10615998770000001):0.05953350660000001,I_EBOV_LIBR10261_KT725287_LBR_Sinoe_2014-10-14:0.08076198743999996):0.038874966349999984,I_EBOV_LIBR10252_KT725266_LBR_GrandKru_2014-09-15:0.040184898989999995):0.05441691960000006,I_EBOV_LIBR10151_KT725317_LBR__2014-09-09:0.07816346242000005):0.013946307059999885,I_EBOV_LIBR10110_KT725387_LBR__2014-08-20:0.037315248939999934):0.01704751131000004,I_EBOV_LIBR10036_KT725299_LBR__2014-08-10:0.026965499969999973):0.016272824359999993,((I_EBOV_LIBR0177_KT725279_LBR_Montserrado_2014-11-14:0.15136157789999993,I_EBOV_LIBR10267_KT725374_LBR_Montserrado_2014-10-05:0.041772536770000035):0.07087862612999996,I_EBOV_LIBR10130_KT725343_LBR_Montserrado_2014-09-01:0.019500477959999984):0.08401181896999999):4.650225910000083E-4):0.02551959055999997,(((I_EBOV_LIBR0067_KR006943_LBR_Bomi_2014-11-06:0.03477287142999996,I_EBOV_LIBR0118_KT725291_LBR_Bomi_2014-11-10:0.045731775539999964):0.1441850107,I_EBOV_LIBR10136_KT725263_LBR__2014-09-09:0.02005377256999996):0.10565281939999993,(I_EBOV_LIBR10035_KT725259_LBR_GrandBassa_2014-08-15:0.028210928519999956,(((I_EBOV_LIBR10076_KT725334_LBR__2014-09-20:0.031077895000000022,I_EBOV_LIBR10148_KT725295_LBR_Nimba_2014-09-20:0.031077895000000022):0.07627693403999991,I_EBOV_LIBR10103_KT725338_LBR_Nimba_2014-08-20:0.022423322189999984):0.0027922993460001155,I_EBOV_LIBR10169_KT725382_LBR__2014-08-24:0.03617452565000001):0.01669393711999989):0.02900251279999999):0.025708126300000078):0.02685499275000003,(I_EBOV_LIBR10040_KT725314_LBR__2014-08-04:0.046398451519999995,I_EBOV_LIBR10042_KT725261_LBR__2014-08-04:0.046398451519999995):0.03324112254):0.018951763829999968,(((I_EBOV_CDC-NIH-3832__LBR_GrandCapeMount_2014-11-23:0.06715182306,(I_EBOV_LIBR0284_KT725328_LBR_GrandCapeMount_2014-11-22:0.04191648284000005,I_EBOV_LIBR0286_KR006952_LBR_GrandCapeMount_2014-11-22:0.04191648284000005):0.022495614190000013):0.1777084282,I_EBOV_LIBR10144_KT725271_LBR__2014-09-20:0.06951778547999998):0.10592439399999998,((((I_EBOV_CDC-NIH-686__LBR_Margibi_2014-09-06:0.07447293314000003,I_EBOV_LIBR10204_KT725281_LBR__2014-08-27:0.04707567287000003):0.010225941090000079,I_EBOV_LIBR10062_KT725359_LBR__2014-09-23:0.13127421670000006):0.01813610245999997,I_EBOV_EM_074548_KR817123_LBR_Lofa_2014-08-08:0.02338292190000002):0.013725185990000055,((I_EBOV_EM_074821_KR817127_LBR_Lofa_2014-08-17:0.01710873063000007,((I_EBOV_LIBR10050_KT725270_LBR__2014-10-01:0.05950993760000001,I_EBOV_LIBR10061_KT725376_LBR_Montserrado_2014-09-23:0.037592129380000006):0.04488171264999996,I_EBOV_LIBR10055_KT725340_LBR_Bomi_2014-09-23:0.08247384202999997):0.03600475162000005):0.009334523987999943,I_EBOV_EM_074822_KR817128_LBR_Lofa_2014-08-17:0.026443254619999967):0.035322387520000054):0.02052585237999993):0.05191628171999996):0.04683346011):0.026848876340000105,I_EBOV_LIBR10240_KT725320_LBR__2014-06-24:0.05994490722000001):0.017550854120000015,I_EBOV_LIBR10250_KT725360_LBR__2014-06-23:0.07475603531000008):0.10168775139999997,((I_EBOV_EM_080064_KR817231_LBR_Lofa_2014-06-20:0.04341553179000002,I_EBOV_EM_080213_KR817240_LBR__2014-07-03:0.07903197015000007):0.029304514409999927,(I_EBOV_EM_080066_KR817233_LBR__2014-06-20:0.04153592697999997,I_EBOV_EM_080193_KR817239_LBR__2014-06-29:0.06619346123000003):0.031184119219999973):0.09550456246000005):0.007211208179999984,(((((((I_EBOV_CDC-NIH-1122__LBR_Margibi_2014-09-16:0.054481273269999964,I_EBOV_LIBR10056_KT725276_LBR_Margibi_2014-09-23:0.07365935547000002):0.02191189322999998,I_EBOV_CDC-NIH-2313__LBR_Montserrado_2014-10-10:0.14214659120000006):0.049415211250000035,((((I_EBOV_LIBR10051_KT725368_LBR__2014-10-01:0.05050404595000002,I_EBOV_LIBR10179_KT725375_LBR_Montserrado_2014-10-11:0.07790130623000002):0.047195298330000024,I_EBOV_LIBR10168_KT725353_LBR__2014-09-20:0.06756235797999999):0.03160987173000007,I_EBOV_LIBR10106_KT725337_LBR_Nimba_2014-08-20:0.01424072286000011):0.012258618669999999,I_EBOV_LIBR10113_KT725367_LBR__2014-08-20:0.02649934153000011):0.02533643347999992):0.011795480099999978,((I_EBOV_LIBR0090_KR006945_LBR_Margibi_2014-11-08:0.18296661270000003,I_EBOV_Makona-201403261_KP240932_LBR__2014-09-26:0.06515839355999997):0.01758675529999998,I_EBOV_LIBR10053_KR006963_LBR__2014-10-01:0.09644377900000001):0.08225596926):0.06894985053999991,((I_EBOV_CDC-NIH-257__LBR_Montserrado_2014-08-27:0.08244905137000003,((I_EBOV_CDC-NIH-603__LBR_Montserrado_2014-09-04:0.05831791497000005,I_EBOV_LIBR10277_KT725369_LBR_Margibi_2014-08-26:0.033660380719999994):0.026849138489999924,(I_EBOV_LIBR0173_KR006950_LBR_Montserrado_2014-11-14:0.2525466337000001,((I_EBOV_LIBR0430_KR006955_LBR_GrandBassa_2014-12-03:0.20057907780000006,I_EBOV_LIBR10180_KT725391_LBR_Montserrado_2014-10-11:0.055373598329999996):0.09646799072000001,(I_EBOV_LIBR0707_KT725366_LBR_Montserrado_2014-12-29:0.32217441339999997,I_EBOV_LIBR10060_KT725357_LBR_Montserrado_2014-09-23:0.05642098870000001):0.04610553184999999):0.007554359672000022):0.027140967749999967):0.019199806140000053):0.054174545129999974,((I_EBOV_LIBR10017_KT725293_LBR_Montserrado_2014-08-19:0.08223782041000005,(((((I_EBOV_LIBR10021_KT725335_LBR__2014-08-18:0.012506413019999996,I_EBOV_LIBR10098_KT725383_LBR__2014-08-17:0.009766686996000029):0.017766806849999983,(I_EBOV_LIBR10092_KT725380_LBR__2014-08-17:0.012789281830000054,I_EBOV_LIBR10093_KT725363_LBR_Nimba_2014-08-17:0.012789281830000054):0.01474421201999998):0.00633465414900003,I_EBOV_LIBR10033_KT725386_LBR_Nimba_2014-08-15:0.02838869594000004):0.00895759025999987,((I_EBOV_LIBR10066_KT725379_LBR_Montserrado_2014-09-20:0.03617426509999999,I_EBOV_LIBR10072_KT725307_LBR_Montserrado_2014-09-20:0.03617426509999999):0.03533726116000002,I_EBOV_LIBR10230_KT725354_LBR_Montserrado_2014-09-26:0.08794988243000001):0.0644648969299999):0.021784987049999982,I_EBOV_LIBR10081_KT725339_LBR_Margibi_2014-08-26:0.08926825954999995):0.012147643050000045):0.017457733199999992,(I_EBOV_LIBR10139_KT725265_LBR__2014-09-09:0.10079177399999995,I_EBOV_LIBR10170_KT725350_LBR_Montserrado_2014-08-17:0.03777807538999989):0.056438026170000044):0.015010234669999956):0.015135591329999976):0.0408210335000001,I_EBOV_LIBR10241_KT725262_LBR__2014-06-25:0.019977481610000014):0.07550879257999998,((((((I_EBOV_CDC-NIH-683__LBR_Montserrado_2014-09-06:0.07026390724999998,I_EBOV_LIBR10205_KT725351_LBR_Montserrado_2014-09-19:0.10588034560000004):0.06336071240000007,(I_EBOV_LIBR10078_KT725297_LBR_GrandBassa_2014-08-26:0.025009090239999976,I_EBOV_LIBR10079_KT725309_LBR_GrandBassa_2014-08-26:0.025009090239999976):0.07847854311000002):0.06135858691999996,((I_EBOV_EM_074720_KR817125_LBR_Lofa_2014-08-14:0.08056968987000013,I_EBOV_LIBR10027_KT725294_LBR__2014-08-16:0.08604914192000002):0.02352248838999993,I_EBOV_LIBR10127_KT725272_LBR_Bong_2014-08-22:0.12600998650000006):0.027877329680000007):0.03333067028000003,I_EBOV_EM_080067_KR817234_LBR__2014-06-20:0.01461524671000003):0.02053981967999996,I_EBOV_EM_080065_KR817232_LBR__2014-06-20:0.03515506639999999):0.04143942007000012,(((I_EBOV_EM_074349_KR817108_LBR_Lofa_2014-07-22:0.035281190030000076,I_EBOV_EM_080261_KR817243_LBR_Lofa_2014-07-12:0.007883929756999919):0.03933649579999998,((I_EBOV_EM_074350_KR817109_LBR_Lofa_2014-07-22:0.04290056845000012,((I_EBOV_EM_074351_KR817110_LBR_Lofa_2014-07-22:0.013040719629999975,I_EBOV_EM_074392_KR817115_LBR__2014-07-25:0.02125989770999992):0.014399863379999989,(I_EBOV_EM_074352_KR817111_LBR_Lofa_2014-07-22:0.013602232980000073,I_EBOV_EM_074391_KR817114_LBR_Lofa_2014-07-26:0.024561137090000074):0.013838350030000002):0.015459985440000046):0.010340759229999996,I_EBOV_EM_074353_KR817112_LBR_Lofa_2014-07-22:0.05324132769000012):0.02137635814999994):0.030289713750000002,I_EBOV_LIBR10082_KT725300_LBR_Margibi_2014-08-26:0.2007978105):0.059358319760000056):0.005193157592999986):0.09364817278999993):0.020669540580000034,I_EBOV_EM_080223_KR817241_LBR__2014-07-04:0.23446152180000002):0.14915332599999997,(((((((((((I_EBOV_CDC-NIH-2303__LBR_Montserrado_2014-10-10:0.07603099308000005,I_EBOV_LIBR10223_KT725301_LBR_Montserrado_2014-09-26:0.03767482870000005):0.015020068050000002,(((I_EBOV_CDC-NIH-3874__LBR_Montserrado_2014-11-25:0.026884522539999955,I_EBOV_LIBR0333_KR006953_LBR_GrandCapeMount_2014-11-25:0.026884522539999955):0.02951487314000001,(I_EBOV_LIBR0160_KT725370_LBR_Montserrado_2014-11-13:0.012514945499999985,(I_EBOV_LIBR0622_KT725288_LBR_Montserrado_2014-12-22:0.012479114799999969,I_EBOV_LIBR0624_KR006959_LBR_Montserrado_2014-12-22:0.012479114799999969):0.10688514579999997):0.011007737849999977):0.02775746927,I_EBOV_LIBR0112_KT725330_LBR_Montserrado_2014-11-10:0.04306097454000002):0.13292159339999998):0.04098671851000002,I_EBOV_LIBR0168_KR006949_LBR_Bomi_2014-11-13:0.22518846459999997):0.030418269200000014,I_EBOV_LIBR10196_KT725283_LBR__2014-08-26:0.03916837761000003):0.028890851150000008,(I_EBOV_LIBR10022_KT725378_LBR__2014-08-16:0.018935420120000046,I_EBOV_LIBR10156_KT725352_LBR_GrandBassa_2014-09-13:0.09564774888000005):0.021726548369999987):0.023299673329999937,((I_EBOV_CDC-NIH-272__LBR_Montserrado_2014-08-27:0.049030493519999996,I_EBOV_LIBR10100_KT725286_LBR__2014-08-22:0.03533186338000005):0.026816196329999986,I_EBOV_LIBR10172_KT725289_LBR__2014-09-01:0.08954531999000004):0.018251938269999934):0.009695290896000075,((I_EBOV_LIBR10128_KT725355_LBR_Montserrado_2014-08-30:0.02786120317999996,I_EBOV_LIBR10155_KT725296_LBR_GrandBassa_2014-09-13:0.06621736755999996):0.023772293639999997,I_EBOV_LIBR10279_KT725341_LBR_Montserrado_2014-08-26:0.04067459270999996):0.06037960029):0.010494285619999988,((((I_EBOV_CDC-NIH-3827__LBR_Montserrado_2014-11-23:0.053345462929999976,(I_EBOV_LIBR0114_KT725273_LBR_GrandBassa_2014-11-10:0.010207868419999988,I_EBOV_LIBR0350_KT725342_LBR_Montserrado_2014-11-26:0.05404348485999999):0.007521156157999975):0.05746344647000001,(I_EBOV_LIBR0093_KR006947_LBR_Montserrado_2014-11-08:0.03445729072000003,(I_EBOV_LIBR0115_KT725254_LBR_GrandBassa_2014-11-10:0.014487189050000016,I_EBOV_LIBR0116_KR006948_LBR_GrandBassa_2014-11-10:0.014487189050000016):0.025449553720000018):0.03525572827000001):0.18067959739999995,I_EBOV_LIBR10226_KT725304_LBR_Montserrado_2014-09-26:0.13258439719999993):0.002847644537000038,((I_EBOV_LIBR0058_KR006940_LBR_RiverCess_2014-11-05:0.01996723580000004,(I_EBOV_LIBR0059_KR006941_LBR_RiverCess_2014-11-05:0.008129639505000008,I_EBOV_LIBR0071_KT725303_LBR_GrandBassa_2014-11-06:0.010869365529999953):0.01183759630000003):0.047906001370000006,I_EBOV_LIBR0073_KR006944_LBR_GrandBassa_2014-11-06:0.07061296319999999):0.17714784569999997):0.061047943699999996):0.034943941829999936,I_EBOV_LIBR10248_KT725277_LBR__2014-07-14:0.02868420126999993):0.040333778390000075,I_EBOV_LIBR10245_KT725332_LBR__2014-07-01:0.03340154130000006):0.07002836842999993,(((((I_EBOV_CDC-NIH-261__LBR_Montserrado_2014-08-27:0.03444219112000002,I_EBOV_LIBR10014_KT725390_LBR_Montserrado_2014-08-19:0.01252438290000002):0.021238426389999954,(((((I_EBOV_CDC-NIH-3871__LBR_GrandBassa_2014-11-25:0.052075543840000016,I_EBOV_LIBR0159_KT725327_LBR_Montserrado_2014-11-13:0.019198831510000014):0.11946558149999997,I_EBOV_LIBR10217_KT725323_LBR__2014-09-29:0.015376741750000034):0.021018804679999947,(I_EBOV_LIBR10047_KT725345_LBR_Margibi_2014-10-01:0.024750765730000013,I_EBOV_LIBR10218_KT725284_LBR__2014-09-29:0.019271313670000012):0.01712423275999997):0.025741237620000024,I_EBOV_LIBR11079_KT725372_LBR_Montserrado_2014-10-02:0.07035596213000006):0.07081694291999996,I_EBOV_LIBR10032_KT725267_LBR__2014-08-16:0.012405781759999956):0.01313784943999996):0.028162789910000097,I_EBOV_CDC-NIH-708__LBR_Montserrado_2014-09-07:0.11398039370000002):0.09364439553999993,((((I_EBOV_LIBR0092_KR006946_LBR_Montserrado_2014-11-08:0.24426933820000007,(I_EBOV_LIBR10048_KT725361_LBR__2014-10-01:0.12371930470000003,I_EBOV_LIBR10262_KT725285_LBR_Montserrado_2014-10-16:0.16481519509999998):0.016440444470000037):0.05228568743999995,(I_EBOV_LIBR10101_KT725331_LBR__2014-08-22:0.03365104026999999,I_EBOV_LIBR10270_KT725256_LBR__2014-08-26:0.04460994437999999):0.04920535527000003):0.01396999186000003,I_EBOV_LIBR10026_KT725344_LBR_Margibi_2014-08-16:0.08038803124000005):0.059834112749999946,(I_EBOV_LIBR10238_KT725322_LBR__2014-07-18:0.051736290929999984,I_EBOV_LIBR10249_KT725388_LBR__2014-07-04:0.013380126539999981):0.009033798267999993):0.007128672662999991):0.029215562989999944,(I_EBOV_LIBR10239_KT725324_LBR__2014-07-19:0.07362095314999995,I_EBOV_LIBR10306_KT725336_LBR__2014-06-25:0.007867528496000031):0.026233097729999932):0.052890927350000005):0.27196575990000005):0.0">
+                <taxa idref="liberia_mcctreev2"/>
+                <taxonset id="TaxonSet.1" spec="TaxonSet">
+                    <taxon id="I_EBOV_201403007_KP178538_LBR__2014-08-03" spec="Taxon"/>
+                    <taxon id="I_EBOV_CDC-NIH-1122__LBR_Margibi_2014-09-16" spec="Taxon"/>
+                    <taxon id="I_EBOV_CDC-NIH-1650__LBR_Margibi_2014-09-27" spec="Taxon"/>
+                    <taxon id="I_EBOV_CDC-NIH-2303__LBR_Montserrado_2014-10-10" spec="Taxon"/>
+                    <taxon id="I_EBOV_CDC-NIH-2313__LBR_Montserrado_2014-10-10" spec="Taxon"/>
+                    <taxon id="I_EBOV_CDC-NIH-257__LBR_Montserrado_2014-08-27" spec="Taxon"/>
+                    <taxon id="I_EBOV_CDC-NIH-259__LBR_Montserrado_2014-08-27" spec="Taxon"/>
+                    <taxon id="I_EBOV_CDC-NIH-261__LBR_Montserrado_2014-08-27" spec="Taxon"/>
+                    <taxon id="I_EBOV_CDC-NIH-272__LBR_Montserrado_2014-08-27" spec="Taxon"/>
+                    <taxon id="I_EBOV_CDC-NIH-2984__LBR_Montserrado_2014-10-23" spec="Taxon"/>
+                    <taxon id="I_EBOV_CDC-NIH-3762__LBR_Montserrado_2014-11-19" spec="Taxon"/>
+                    <taxon id="I_EBOV_CDC-NIH-3827__LBR_Montserrado_2014-11-23" spec="Taxon"/>
+                    <taxon id="I_EBOV_CDC-NIH-3832__LBR_GrandCapeMount_2014-11-23" spec="Taxon"/>
+                    <taxon id="I_EBOV_CDC-NIH-3871__LBR_GrandBassa_2014-11-25" spec="Taxon"/>
+                    <taxon id="I_EBOV_CDC-NIH-3874__LBR_Montserrado_2014-11-25" spec="Taxon"/>
+                    <taxon id="I_EBOV_CDC-NIH-3878__LBR_Montserrado_2014-11-25" spec="Taxon"/>
+                    <taxon id="I_EBOV_CDC-NIH-595__LBR_Montserrado_2014-09-04" spec="Taxon"/>
+                    <taxon id="I_EBOV_CDC-NIH-603__LBR_Montserrado_2014-09-04" spec="Taxon"/>
+                    <taxon id="I_EBOV_CDC-NIH-683__LBR_Montserrado_2014-09-06" spec="Taxon"/>
+                    <taxon id="I_EBOV_CDC-NIH-686__LBR_Margibi_2014-09-06" spec="Taxon"/>
+                    <taxon id="I_EBOV_CDC-NIH-708__LBR_Montserrado_2014-09-07" spec="Taxon"/>
+                    <taxon id="I_EBOV_CDC-NIH-710__LBR_Montserrado_2014-09-07" spec="Taxon"/>
+                    <taxon id="I_EBOV_EM_074349_KR817108_LBR_Lofa_2014-07-22" spec="Taxon"/>
+                    <taxon id="I_EBOV_EM_074350_KR817109_LBR_Lofa_2014-07-22" spec="Taxon"/>
+                    <taxon id="I_EBOV_EM_074351_KR817110_LBR_Lofa_2014-07-22" spec="Taxon"/>
+                    <taxon id="I_EBOV_EM_074352_KR817111_LBR_Lofa_2014-07-22" spec="Taxon"/>
+                    <taxon id="I_EBOV_EM_074353_KR817112_LBR_Lofa_2014-07-22" spec="Taxon"/>
+                    <taxon id="I_EBOV_EM_074391_KR817114_LBR_Lofa_2014-07-26" spec="Taxon"/>
+                    <taxon id="I_EBOV_EM_074392_KR817115_LBR__2014-07-25" spec="Taxon"/>
+                    <taxon id="I_EBOV_EM_074548_KR817123_LBR_Lofa_2014-08-08" spec="Taxon"/>
+                    <taxon id="I_EBOV_EM_074720_KR817125_LBR_Lofa_2014-08-14" spec="Taxon"/>
+                    <taxon id="I_EBOV_EM_074821_KR817127_LBR_Lofa_2014-08-17" spec="Taxon"/>
+                    <taxon id="I_EBOV_EM_074822_KR817128_LBR_Lofa_2014-08-17" spec="Taxon"/>
+                    <taxon id="I_EBOV_EM_075043_KR817129_LBR_Lofa_2014-08-22" spec="Taxon"/>
+                    <taxon id="I_EBOV_EM_080064_KR817231_LBR_Lofa_2014-06-20" spec="Taxon"/>
+                    <taxon id="I_EBOV_EM_080065_KR817232_LBR__2014-06-20" spec="Taxon"/>
+                    <taxon id="I_EBOV_EM_080066_KR817233_LBR__2014-06-20" spec="Taxon"/>
+                    <taxon id="I_EBOV_EM_080067_KR817234_LBR__2014-06-20" spec="Taxon"/>
+                    <taxon id="I_EBOV_EM_080193_KR817239_LBR__2014-06-29" spec="Taxon"/>
+                    <taxon id="I_EBOV_EM_080213_KR817240_LBR__2014-07-03" spec="Taxon"/>
+                    <taxon id="I_EBOV_EM_080223_KR817241_LBR__2014-07-04" spec="Taxon"/>
+                    <taxon id="I_EBOV_EM_080261_KR817243_LBR_Lofa_2014-07-12" spec="Taxon"/>
+                    <taxon id="I_EBOV_EM_080269_KR817245_LBR__2014-07-12" spec="Taxon"/>
+                    <taxon id="I_EBOV_LIBR0008_KT725313_LBR_Montserrado_2014-10-31" spec="Taxon"/>
+                    <taxon id="I_EBOV_LIBR0058_KR006940_LBR_RiverCess_2014-11-05" spec="Taxon"/>
+                    <taxon id="I_EBOV_LIBR0059_KR006941_LBR_RiverCess_2014-11-05" spec="Taxon"/>
+                    <taxon id="I_EBOV_LIBR0063_KR006942_LBR_Montserrado_2014-11-06" spec="Taxon"/>
+                    <taxon id="I_EBOV_LIBR0067_KR006943_LBR_Bomi_2014-11-06" spec="Taxon"/>
+                    <taxon id="I_EBOV_LIBR0071_KT725303_LBR_GrandBassa_2014-11-06" spec="Taxon"/>
+                    <taxon id="I_EBOV_LIBR0073_KR006944_LBR_GrandBassa_2014-11-06" spec="Taxon"/>
+                    <taxon id="I_EBOV_LIBR0079_KT725274_LBR_Montserrado_2014-11-07" spec="Taxon"/>
+                    <taxon id="I_EBOV_LIBR0090_KR006945_LBR_Margibi_2014-11-08" spec="Taxon"/>
+                    <taxon id="I_EBOV_LIBR0092_KR006946_LBR_Montserrado_2014-11-08" spec="Taxon"/>
+                    <taxon id="I_EBOV_LIBR0093_KR006947_LBR_Montserrado_2014-11-08" spec="Taxon"/>
+                    <taxon id="I_EBOV_LIBR0112_KT725330_LBR_Montserrado_2014-11-10" spec="Taxon"/>
+                    <taxon id="I_EBOV_LIBR0114_KT725273_LBR_GrandBassa_2014-11-10" spec="Taxon"/>
+                    <taxon id="I_EBOV_LIBR0115_KT725254_LBR_GrandBassa_2014-11-10" spec="Taxon"/>
+                    <taxon id="I_EBOV_LIBR0116_KR006948_LBR_GrandBassa_2014-11-10" spec="Taxon"/>
+                    <taxon id="I_EBOV_LIBR0118_KT725291_LBR_Bomi_2014-11-10" spec="Taxon"/>
+                    <taxon id="I_EBOV_LIBR0157_KT725393_LBR_Gbarpolu_2014-11-13" spec="Taxon"/>
+                    <taxon id="I_EBOV_LIBR0159_KT725327_LBR_Montserrado_2014-11-13" spec="Taxon"/>
+                    <taxon id="I_EBOV_LIBR0160_KT725370_LBR_Montserrado_2014-11-13" spec="Taxon"/>
+                    <taxon id="I_EBOV_LIBR0168_KR006949_LBR_Bomi_2014-11-13" spec="Taxon"/>
+                    <taxon id="I_EBOV_LIBR0173_KR006950_LBR_Montserrado_2014-11-14" spec="Taxon"/>
+                    <taxon id="I_EBOV_LIBR0176_KR006951_LBR_Montserrado_2014-11-14" spec="Taxon"/>
+                    <taxon id="I_EBOV_LIBR0177_KT725279_LBR_Montserrado_2014-11-14" spec="Taxon"/>
+                    <taxon id="I_EBOV_LIBR0229_KT725333_LBR_GrandBassa_2014-11-17" spec="Taxon"/>
+                    <taxon id="I_EBOV_LIBR0279_KT725280_LBR__2014-11-22" spec="Taxon"/>
+                    <taxon id="I_EBOV_LIBR0284_KT725328_LBR_GrandCapeMount_2014-11-22" spec="Taxon"/>
+                    <taxon id="I_EBOV_LIBR0286_KR006952_LBR_GrandCapeMount_2014-11-22" spec="Taxon"/>
+                    <taxon id="I_EBOV_LIBR0333_KR006953_LBR_GrandCapeMount_2014-11-25" spec="Taxon"/>
+                    <taxon id="I_EBOV_LIBR0350_KT725342_LBR_Montserrado_2014-11-26" spec="Taxon"/>
+                    <taxon id="I_EBOV_LIBR0380_KT725290_LBR_Montserrado_2014-11-28" spec="Taxon"/>
+                    <taxon id="I_EBOV_LIBR0423_KR006954_LBR_Montserrado_2014-12-03" spec="Taxon"/>
+                    <taxon id="I_EBOV_LIBR0430_KR006955_LBR_GrandBassa_2014-12-03" spec="Taxon"/>
+                    <taxon id="I_EBOV_LIBR0503_KR006956_LBR_Sinoe_2014-12-10" spec="Taxon"/>
+                    <taxon id="I_EBOV_LIBR0505_KR006957_LBR_Sinoe_2014-12-10" spec="Taxon"/>
+                    <taxon id="I_EBOV_LIBR0605_KR006958_LBR_Montserrado_2014-12-20" spec="Taxon"/>
+                    <taxon id="I_EBOV_LIBR0622_KT725288_LBR_Montserrado_2014-12-22" spec="Taxon"/>
+                    <taxon id="I_EBOV_LIBR0624_KR006959_LBR_Montserrado_2014-12-22" spec="Taxon"/>
+                    <taxon id="I_EBOV_LIBR0707_KT725366_LBR_Montserrado_2014-12-29" spec="Taxon"/>
+                    <taxon id="I_EBOV_LIBR0993_KR006960_LBR_Montserrado_2015-01-20" spec="Taxon"/>
+                    <taxon id="I_EBOV_LIBR10008_KT725316_LBR__2014-08-21" spec="Taxon"/>
+                    <taxon id="I_EBOV_LIBR10014_KT725390_LBR_Montserrado_2014-08-19" spec="Taxon"/>
+                    <taxon id="I_EBOV_LIBR10017_KT725293_LBR_Montserrado_2014-08-19" spec="Taxon"/>
+                    <taxon id="I_EBOV_LIBR10020_KT725292_LBR__2014-08-18" spec="Taxon"/>
+                    <taxon id="I_EBOV_LIBR10021_KT725335_LBR__2014-08-18" spec="Taxon"/>
+                    <taxon id="I_EBOV_LIBR10022_KT725378_LBR__2014-08-16" spec="Taxon"/>
+                    <taxon id="I_EBOV_LIBR10025_KT725315_LBR_Margibi_2014-08-16" spec="Taxon"/>
+                    <taxon id="I_EBOV_LIBR10026_KT725344_LBR_Margibi_2014-08-16" spec="Taxon"/>
+                    <taxon id="I_EBOV_LIBR10027_KT725294_LBR__2014-08-16" spec="Taxon"/>
+                    <taxon id="I_EBOV_LIBR10029_KT725348_LBR_Margibi_2014-08-16" spec="Taxon"/>
+                    <taxon id="I_EBOV_LIBR10030_KT725257_LBR_Margibi_2014-08-16" spec="Taxon"/>
+                    <taxon id="I_EBOV_LIBR10031_KT725278_LBR_Margibi_2014-08-16" spec="Taxon"/>
+                    <taxon id="I_EBOV_LIBR10032_KT725267_LBR__2014-08-16" spec="Taxon"/>
+                    <taxon id="I_EBOV_LIBR10033_KT725386_LBR_Nimba_2014-08-15" spec="Taxon"/>
+                    <taxon id="I_EBOV_LIBR10035_KT725259_LBR_GrandBassa_2014-08-15" spec="Taxon"/>
+                    <taxon id="I_EBOV_LIBR10036_KT725299_LBR__2014-08-10" spec="Taxon"/>
+                    <taxon id="I_EBOV_LIBR10037_KT725311_LBR__2014-08-10" spec="Taxon"/>
+                    <taxon id="I_EBOV_LIBR10040_KT725314_LBR__2014-08-04" spec="Taxon"/>
+                    <taxon id="I_EBOV_LIBR10042_KT725261_LBR__2014-08-04" spec="Taxon"/>
+                    <taxon id="I_EBOV_LIBR10047_KT725345_LBR_Margibi_2014-10-01" spec="Taxon"/>
+                    <taxon id="I_EBOV_LIBR10048_KT725361_LBR__2014-10-01" spec="Taxon"/>
+                    <taxon id="I_EBOV_LIBR10050_KT725270_LBR__2014-10-01" spec="Taxon"/>
+                    <taxon id="I_EBOV_LIBR10051_KT725368_LBR__2014-10-01" spec="Taxon"/>
+                    <taxon id="I_EBOV_LIBR10052_KT725258_LBR__2014-10-01" spec="Taxon"/>
+                    <taxon id="I_EBOV_LIBR10053_KR006963_LBR__2014-10-01" spec="Taxon"/>
+                    <taxon id="I_EBOV_LIBR10054_KR006964_LBR_Bomi_2014-09-23" spec="Taxon"/>
+                    <taxon id="I_EBOV_LIBR10055_KT725340_LBR_Bomi_2014-09-23" spec="Taxon"/>
+                    <taxon id="I_EBOV_LIBR10056_KT725276_LBR_Margibi_2014-09-23" spec="Taxon"/>
+                    <taxon id="I_EBOV_LIBR10060_KT725357_LBR_Montserrado_2014-09-23" spec="Taxon"/>
+                    <taxon id="I_EBOV_LIBR10061_KT725376_LBR_Montserrado_2014-09-23" spec="Taxon"/>
+                    <taxon id="I_EBOV_LIBR10062_KT725359_LBR__2014-09-23" spec="Taxon"/>
+                    <taxon id="I_EBOV_LIBR10065_KT725298_LBR__2014-09-21" spec="Taxon"/>
+                    <taxon id="I_EBOV_LIBR10066_KT725379_LBR_Montserrado_2014-09-20" spec="Taxon"/>
+                    <taxon id="I_EBOV_LIBR10071_KT725308_LBR_Montserrado_2014-09-20" spec="Taxon"/>
+                    <taxon id="I_EBOV_LIBR10072_KT725307_LBR_Montserrado_2014-09-20" spec="Taxon"/>
+                    <taxon id="I_EBOV_LIBR10074_KT725325_LBR__2014-09-20" spec="Taxon"/>
+                    <taxon id="I_EBOV_LIBR10076_KT725334_LBR__2014-09-20" spec="Taxon"/>
+                    <taxon id="I_EBOV_LIBR10077_KT725326_LBR_Margibi_2014-08-26" spec="Taxon"/>
+                    <taxon id="I_EBOV_LIBR10078_KT725297_LBR_GrandBassa_2014-08-26" spec="Taxon"/>
+                    <taxon id="I_EBOV_LIBR10079_KT725309_LBR_GrandBassa_2014-08-26" spec="Taxon"/>
+                    <taxon id="I_EBOV_LIBR10081_KT725339_LBR_Margibi_2014-08-26" spec="Taxon"/>
+                    <taxon id="I_EBOV_LIBR10082_KT725300_LBR_Margibi_2014-08-26" spec="Taxon"/>
+                    <taxon id="I_EBOV_LIBR10086_KT725381_LBR_Margibi_2014-08-26" spec="Taxon"/>
+                    <taxon id="I_EBOV_LIBR10087_KT725346_LBR_Margibi_2014-08-26" spec="Taxon"/>
+                    <taxon id="I_EBOV_LIBR10088_KT725349_LBR_Montserrado_2014-08-26" spec="Taxon"/>
+                    <taxon id="I_EBOV_LIBR10089_KT725377_LBR__2014-08-17" spec="Taxon"/>
+                    <taxon id="I_EBOV_LIBR10092_KT725380_LBR__2014-08-17" spec="Taxon"/>
+                    <taxon id="I_EBOV_LIBR10093_KT725363_LBR_Nimba_2014-08-17" spec="Taxon"/>
+                    <taxon id="I_EBOV_LIBR10098_KT725383_LBR__2014-08-17" spec="Taxon"/>
+                    <taxon id="I_EBOV_LIBR10100_KT725286_LBR__2014-08-22" spec="Taxon"/>
+                    <taxon id="I_EBOV_LIBR10101_KT725331_LBR__2014-08-22" spec="Taxon"/>
+                    <taxon id="I_EBOV_LIBR10103_KT725338_LBR_Nimba_2014-08-20" spec="Taxon"/>
+                    <taxon id="I_EBOV_LIBR10106_KT725337_LBR_Nimba_2014-08-20" spec="Taxon"/>
+                    <taxon id="I_EBOV_LIBR10110_KT725387_LBR__2014-08-20" spec="Taxon"/>
+                    <taxon id="I_EBOV_LIBR10112_KT725365_LBR_RiverGee_2014-08-20" spec="Taxon"/>
+                    <taxon id="I_EBOV_LIBR10113_KT725367_LBR__2014-08-20" spec="Taxon"/>
+                    <taxon id="I_EBOV_LIBR10118_KT725364_LBR_Montserrado_2014-08-24" spec="Taxon"/>
+                    <taxon id="I_EBOV_LIBR10127_KT725272_LBR_Bong_2014-08-22" spec="Taxon"/>
+                    <taxon id="I_EBOV_LIBR10128_KT725355_LBR_Montserrado_2014-08-30" spec="Taxon"/>
+                    <taxon id="I_EBOV_LIBR10130_KT725343_LBR_Montserrado_2014-09-01" spec="Taxon"/>
+                    <taxon id="I_EBOV_LIBR10132_KT725255_LBR_Margibi_2014-09-08" spec="Taxon"/>
+                    <taxon id="I_EBOV_LIBR10135_KT725260_LBR__2014-09-07" spec="Taxon"/>
+                    <taxon id="I_EBOV_LIBR10136_KT725263_LBR__2014-09-09" spec="Taxon"/>
+                    <taxon id="I_EBOV_LIBR10137_KT725385_LBR__2014-09-09" spec="Taxon"/>
+                    <taxon id="I_EBOV_LIBR10139_KT725265_LBR__2014-09-09" spec="Taxon"/>
+                    <taxon id="I_EBOV_LIBR10144_KT725271_LBR__2014-09-20" spec="Taxon"/>
+                    <taxon id="I_EBOV_LIBR10145_KT725362_LBR__2014-09-20" spec="Taxon"/>
+                    <taxon id="I_EBOV_LIBR10148_KT725295_LBR_Nimba_2014-09-20" spec="Taxon"/>
+                    <taxon id="I_EBOV_LIBR10151_KT725317_LBR__2014-09-09" spec="Taxon"/>
+                    <taxon id="I_EBOV_LIBR10154_KT725318_LBR_Montserrado_2014-09-13" spec="Taxon"/>
+                    <taxon id="I_EBOV_LIBR10155_KT725296_LBR_GrandBassa_2014-09-13" spec="Taxon"/>
+                    <taxon id="I_EBOV_LIBR10156_KT725352_LBR_GrandBassa_2014-09-13" spec="Taxon"/>
+                    <taxon id="I_EBOV_LIBR10168_KT725353_LBR__2014-09-20" spec="Taxon"/>
+                    <taxon id="I_EBOV_LIBR10169_KT725382_LBR__2014-08-24" spec="Taxon"/>
+                    <taxon id="I_EBOV_LIBR10170_KT725350_LBR_Montserrado_2014-08-17" spec="Taxon"/>
+                    <taxon id="I_EBOV_LIBR10172_KT725289_LBR__2014-09-01" spec="Taxon"/>
+                    <taxon id="I_EBOV_LIBR10179_KT725375_LBR_Montserrado_2014-10-11" spec="Taxon"/>
+                    <taxon id="I_EBOV_LIBR10180_KT725391_LBR_Montserrado_2014-10-11" spec="Taxon"/>
+                    <taxon id="I_EBOV_LIBR10187_KT725392_LBR__2014-08-19" spec="Taxon"/>
+                    <taxon id="I_EBOV_LIBR10195_KT725264_LBR__2014-08-26" spec="Taxon"/>
+                    <taxon id="I_EBOV_LIBR10196_KT725283_LBR__2014-08-26" spec="Taxon"/>
+                    <taxon id="I_EBOV_LIBR10201_KT725306_LBR_Montserrado_2014-08-27" spec="Taxon"/>
+                    <taxon id="I_EBOV_LIBR10202_KT725356_LBR_Montserrado_2014-08-27" spec="Taxon"/>
+                    <taxon id="I_EBOV_LIBR10204_KT725281_LBR__2014-08-27" spec="Taxon"/>
+                    <taxon id="I_EBOV_LIBR10205_KT725351_LBR_Montserrado_2014-09-19" spec="Taxon"/>
+                    <taxon id="I_EBOV_LIBR10208_KT725329_LBR_Montserrado_2014-09-19" spec="Taxon"/>
+                    <taxon id="I_EBOV_LIBR10209_KT725371_LBR_Montserrado_2014-09-19" spec="Taxon"/>
+                    <taxon id="I_EBOV_LIBR10210_KT725321_LBR_Montserrado_2014-09-19" spec="Taxon"/>
+                    <taxon id="I_EBOV_LIBR10212_KT725373_LBR__2014-09-19" spec="Taxon"/>
+                    <taxon id="I_EBOV_LIBR10217_KT725323_LBR__2014-09-29" spec="Taxon"/>
+                    <taxon id="I_EBOV_LIBR10218_KT725284_LBR__2014-09-29" spec="Taxon"/>
+                    <taxon id="I_EBOV_LIBR10222_KT725305_LBR_GrandBassa_2014-09-26" spec="Taxon"/>
+                    <taxon id="I_EBOV_LIBR10223_KT725301_LBR_Montserrado_2014-09-26" spec="Taxon"/>
+                    <taxon id="I_EBOV_LIBR10224_KT725302_LBR_Montserrado_2014-09-26" spec="Taxon"/>
+                    <taxon id="I_EBOV_LIBR10226_KT725304_LBR_Montserrado_2014-09-26" spec="Taxon"/>
+                    <taxon id="I_EBOV_LIBR10230_KT725354_LBR_Montserrado_2014-09-26" spec="Taxon"/>
+                    <taxon id="I_EBOV_LIBR10237_KT725275_LBR__2014-07-11" spec="Taxon"/>
+                    <taxon id="I_EBOV_LIBR10238_KT725322_LBR__2014-07-18" spec="Taxon"/>
+                    <taxon id="I_EBOV_LIBR10239_KT725324_LBR__2014-07-19" spec="Taxon"/>
+                    <taxon id="I_EBOV_LIBR10240_KT725320_LBR__2014-06-24" spec="Taxon"/>
+                    <taxon id="I_EBOV_LIBR10241_KT725262_LBR__2014-06-25" spec="Taxon"/>
+                    <taxon id="I_EBOV_LIBR10245_KT725332_LBR__2014-07-01" spec="Taxon"/>
+                    <taxon id="I_EBOV_LIBR10248_KT725277_LBR__2014-07-14" spec="Taxon"/>
+                    <taxon id="I_EBOV_LIBR10249_KT725388_LBR__2014-07-04" spec="Taxon"/>
+                    <taxon id="I_EBOV_LIBR10250_KT725360_LBR__2014-06-23" spec="Taxon"/>
+                    <taxon id="I_EBOV_LIBR10251_KT725319_LBR_GrandKru_2014-09-15" spec="Taxon"/>
+                    <taxon id="I_EBOV_LIBR10252_KT725266_LBR_GrandKru_2014-09-15" spec="Taxon"/>
+                    <taxon id="I_EBOV_LIBR10253_KT725282_LBR_Margibi_2014-09-16" spec="Taxon"/>
+                    <taxon id="I_EBOV_LIBR10254_KT725268_LBR__2014-10-02" spec="Taxon"/>
+                    <taxon id="I_EBOV_LIBR10255_KT725269_LBR_Bong_2014-10-02" spec="Taxon"/>
+                    <taxon id="I_EBOV_LIBR10261_KT725287_LBR_Sinoe_2014-10-14" spec="Taxon"/>
+                    <taxon id="I_EBOV_LIBR10262_KT725285_LBR_Montserrado_2014-10-16" spec="Taxon"/>
+                    <taxon id="I_EBOV_LIBR10265_KT725312_LBR__2014-10-18" spec="Taxon"/>
+                    <taxon id="I_EBOV_LIBR10267_KT725374_LBR_Montserrado_2014-10-05" spec="Taxon"/>
+                    <taxon id="I_EBOV_LIBR10270_KT725256_LBR__2014-08-26" spec="Taxon"/>
+                    <taxon id="I_EBOV_LIBR10271_KT725347_LBR__2014-08-26" spec="Taxon"/>
+                    <taxon id="I_EBOV_LIBR10277_KT725369_LBR_Margibi_2014-08-26" spec="Taxon"/>
+                    <taxon id="I_EBOV_LIBR10279_KT725341_LBR_Montserrado_2014-08-26" spec="Taxon"/>
+                    <taxon id="I_EBOV_LIBR10306_KT725336_LBR__2014-06-25" spec="Taxon"/>
+                    <taxon id="I_EBOV_LIBR10307_KT725310_LBR_Montserrado_2014-10-02" spec="Taxon"/>
+                    <taxon id="I_EBOV_LIBR11079_KT725372_LBR_Montserrado_2014-10-02" spec="Taxon"/>
+                    <taxon id="I_EBOV_LIBR11177_KT725358_LBR_Margibi_2014-10-05" spec="Taxon"/>
+                    <taxon id="I_EBOV_LIBR1195_KR006961_LBR_Margibi_2015-02-02" spec="Taxon"/>
+                    <taxon id="I_EBOV_LIBR1221_KT725384_LBR_Montserrado_2015-02-04" spec="Taxon"/>
+                    <taxon id="I_EBOV_LIBR1413_KR006962_LBR_Montserrado_2015-02-14" spec="Taxon"/>
+                    <taxon id="I_EBOV_Makona-201403261_KP240932_LBR__2014-09-26" spec="Taxon"/>
+                </taxonset>
+            </stateNode>
+            <parameter id="samplingProportionEpi.t:tree" spec="parameter.RealParameter" dimension="20" lower="0.0" name="stateNode" upper="1.0">0.0 0.0 0.0 0.1 0.0 0.1 0.0 0.1 0.0 0.1 0.0 0.1 0.0 0.1 0.0 0.1 0.0 0.1 0.0 0.1</parameter>
+<parameter id="ReAmongDemesEpi.t:tree" spec="parameter.RealParameter" dimension="24" lower="0.0" name="stateNode">0.0 1.0 0.0 1.0 0.0 1.0 0.0 1.0 0.0 1.0 0.0 1.0 0.0 1.0 0.0 1.0 0.0 1.0 0.0 1.0 0.0 1.0 0.0 1.0</parameter>
+            <parameter id="migrationRateEpi.t:tree" spec="parameter.RealParameter" dimension="2" lower="0.0" name="stateNode">1.0 0.0</parameter>
+            <parameter id="becomeUninfectiousRateEpi.t:tree" spec="parameter.RealParameter" dimension="2" lower="0.0" name="stateNode">0.0 1.0</parameter>
+        </state>
+        <distribution id="posterior" spec="CompoundDistribution">
+            <distribution id="prior" spec="CompoundDistribution">
+                <distribution id="BDMMPrime.t:tree" spec="bdmmprime.distribution.BirthDeathMigrationDistribution" conditionOnRoot="true" tree="@Tree.t:tree">
+                    <parameterization id="EpiBDMMPrimeParameterization.t:tree" spec="bdmmprime.parameterization.EpiParameterization">
+                        <Re id="ReSPEpi.t:tree" spec="bdmmprime.parameterization.SkylineVectorParameter" timesAreAges="true">
+                            <parameter id="ReEpi.t:tree" spec="parameter.RealParameter" estimate="false" lower="0.0" name="skylineValues">0.0 0.0</parameter>
+                            <processLength id="processLengthBDMMPrime.t:tree" spec="bdmmprime.util.ProcessLength" tree="@Tree.t:tree"/>
+                            <typeSet id="typeSetBDMMPrime.t:tree" spec="bdmmprime.parameterization.TypeSet" value="E,I">
+                                <typeTraitSet id="typeTraitSet.t:tree" spec="bdmmprime.util.InitializedTraitSet" traitname="type" value="I_EBOV_201403007_KP178538_LBR__2014-08-03=I,I_EBOV_CDC-NIH-1122__LBR_Margibi_2014-09-16=I,I_EBOV_CDC-NIH-1650__LBR_Margibi_2014-09-27=I,I_EBOV_CDC-NIH-2303__LBR_Montserrado_2014-10-10=I,I_EBOV_CDC-NIH-2313__LBR_Montserrado_2014-10-10=I,I_EBOV_CDC-NIH-257__LBR_Montserrado_2014-08-27=I,I_EBOV_CDC-NIH-259__LBR_Montserrado_2014-08-27=I,I_EBOV_CDC-NIH-261__LBR_Montserrado_2014-08-27=I,I_EBOV_CDC-NIH-272__LBR_Montserrado_2014-08-27=I,I_EBOV_CDC-NIH-2984__LBR_Montserrado_2014-10-23=I,I_EBOV_CDC-NIH-3762__LBR_Montserrado_2014-11-19=I,I_EBOV_CDC-NIH-3827__LBR_Montserrado_2014-11-23=I,I_EBOV_CDC-NIH-3832__LBR_GrandCapeMount_2014-11-23=I,I_EBOV_CDC-NIH-3871__LBR_GrandBassa_2014-11-25=I,I_EBOV_CDC-NIH-3874__LBR_Montserrado_2014-11-25=I,I_EBOV_CDC-NIH-3878__LBR_Montserrado_2014-11-25=I,I_EBOV_CDC-NIH-595__LBR_Montserrado_2014-09-04=I,I_EBOV_CDC-NIH-603__LBR_Montserrado_2014-09-04=I,I_EBOV_CDC-NIH-683__LBR_Montserrado_2014-09-06=I,I_EBOV_CDC-NIH-686__LBR_Margibi_2014-09-06=I,I_EBOV_CDC-NIH-708__LBR_Montserrado_2014-09-07=I,I_EBOV_CDC-NIH-710__LBR_Montserrado_2014-09-07=I,I_EBOV_EM_074349_KR817108_LBR_Lofa_2014-07-22=I,I_EBOV_EM_074350_KR817109_LBR_Lofa_2014-07-22=I,I_EBOV_EM_074351_KR817110_LBR_Lofa_2014-07-22=I,I_EBOV_EM_074352_KR817111_LBR_Lofa_2014-07-22=I,I_EBOV_EM_074353_KR817112_LBR_Lofa_2014-07-22=I,I_EBOV_EM_074391_KR817114_LBR_Lofa_2014-07-26=I,I_EBOV_EM_074392_KR817115_LBR__2014-07-25=I,I_EBOV_EM_074548_KR817123_LBR_Lofa_2014-08-08=I,I_EBOV_EM_074720_KR817125_LBR_Lofa_2014-08-14=I,I_EBOV_EM_074821_KR817127_LBR_Lofa_2014-08-17=I,I_EBOV_EM_074822_KR817128_LBR_Lofa_2014-08-17=I,I_EBOV_EM_075043_KR817129_LBR_Lofa_2014-08-22=I,I_EBOV_EM_080064_KR817231_LBR_Lofa_2014-06-20=I,I_EBOV_EM_080065_KR817232_LBR__2014-06-20=I,I_EBOV_EM_080066_KR817233_LBR__2014-06-20=I,I_EBOV_EM_080067_KR817234_LBR__2014-06-20=I,I_EBOV_EM_080193_KR817239_LBR__2014-06-29=I,I_EBOV_EM_080213_KR817240_LBR__2014-07-03=I,I_EBOV_EM_080223_KR817241_LBR__2014-07-04=I,I_EBOV_EM_080261_KR817243_LBR_Lofa_2014-07-12=I,I_EBOV_EM_080269_KR817245_LBR__2014-07-12=I,I_EBOV_LIBR0008_KT725313_LBR_Montserrado_2014-10-31=I,I_EBOV_LIBR0058_KR006940_LBR_RiverCess_2014-11-05=I,I_EBOV_LIBR0059_KR006941_LBR_RiverCess_2014-11-05=I,I_EBOV_LIBR0063_KR006942_LBR_Montserrado_2014-11-06=I,I_EBOV_LIBR0067_KR006943_LBR_Bomi_2014-11-06=I,I_EBOV_LIBR0071_KT725303_LBR_GrandBassa_2014-11-06=I,I_EBOV_LIBR0073_KR006944_LBR_GrandBassa_2014-11-06=I,I_EBOV_LIBR0079_KT725274_LBR_Montserrado_2014-11-07=I,I_EBOV_LIBR0090_KR006945_LBR_Margibi_2014-11-08=I,I_EBOV_LIBR0092_KR006946_LBR_Montserrado_2014-11-08=I,I_EBOV_LIBR0093_KR006947_LBR_Montserrado_2014-11-08=I,I_EBOV_LIBR0112_KT725330_LBR_Montserrado_2014-11-10=I,I_EBOV_LIBR0114_KT725273_LBR_GrandBassa_2014-11-10=I,I_EBOV_LIBR0115_KT725254_LBR_GrandBassa_2014-11-10=I,I_EBOV_LIBR0116_KR006948_LBR_GrandBassa_2014-11-10=I,I_EBOV_LIBR0118_KT725291_LBR_Bomi_2014-11-10=I,I_EBOV_LIBR0157_KT725393_LBR_Gbarpolu_2014-11-13=I,I_EBOV_LIBR0159_KT725327_LBR_Montserrado_2014-11-13=I,I_EBOV_LIBR0160_KT725370_LBR_Montserrado_2014-11-13=I,I_EBOV_LIBR0168_KR006949_LBR_Bomi_2014-11-13=I,I_EBOV_LIBR0173_KR006950_LBR_Montserrado_2014-11-14=I,I_EBOV_LIBR0176_KR006951_LBR_Montserrado_2014-11-14=I,I_EBOV_LIBR0177_KT725279_LBR_Montserrado_2014-11-14=I,I_EBOV_LIBR0229_KT725333_LBR_GrandBassa_2014-11-17=I,I_EBOV_LIBR0279_KT725280_LBR__2014-11-22=I,I_EBOV_LIBR0284_KT725328_LBR_GrandCapeMount_2014-11-22=I,I_EBOV_LIBR0286_KR006952_LBR_GrandCapeMount_2014-11-22=I,I_EBOV_LIBR0333_KR006953_LBR_GrandCapeMount_2014-11-25=I,I_EBOV_LIBR0350_KT725342_LBR_Montserrado_2014-11-26=I,I_EBOV_LIBR0380_KT725290_LBR_Montserrado_2014-11-28=I,I_EBOV_LIBR0423_KR006954_LBR_Montserrado_2014-12-03=I,I_EBOV_LIBR0430_KR006955_LBR_GrandBassa_2014-12-03=I,I_EBOV_LIBR0503_KR006956_LBR_Sinoe_2014-12-10=I,I_EBOV_LIBR0505_KR006957_LBR_Sinoe_2014-12-10=I,I_EBOV_LIBR0605_KR006958_LBR_Montserrado_2014-12-20=I,I_EBOV_LIBR0622_KT725288_LBR_Montserrado_2014-12-22=I,I_EBOV_LIBR0624_KR006959_LBR_Montserrado_2014-12-22=I,I_EBOV_LIBR0707_KT725366_LBR_Montserrado_2014-12-29=I,I_EBOV_LIBR0993_KR006960_LBR_Montserrado_2015-01-20=I,I_EBOV_LIBR10008_KT725316_LBR__2014-08-21=I,I_EBOV_LIBR10014_KT725390_LBR_Montserrado_2014-08-19=I,I_EBOV_LIBR10017_KT725293_LBR_Montserrado_2014-08-19=I,I_EBOV_LIBR10020_KT725292_LBR__2014-08-18=I,I_EBOV_LIBR10021_KT725335_LBR__2014-08-18=I,I_EBOV_LIBR10022_KT725378_LBR__2014-08-16=I,I_EBOV_LIBR10025_KT725315_LBR_Margibi_2014-08-16=I,I_EBOV_LIBR10026_KT725344_LBR_Margibi_2014-08-16=I,I_EBOV_LIBR10027_KT725294_LBR__2014-08-16=I,I_EBOV_LIBR10029_KT725348_LBR_Margibi_2014-08-16=I,I_EBOV_LIBR10030_KT725257_LBR_Margibi_2014-08-16=I,I_EBOV_LIBR10031_KT725278_LBR_Margibi_2014-08-16=I,I_EBOV_LIBR10032_KT725267_LBR__2014-08-16=I,I_EBOV_LIBR10033_KT725386_LBR_Nimba_2014-08-15=I,I_EBOV_LIBR10035_KT725259_LBR_GrandBassa_2014-08-15=I,I_EBOV_LIBR10036_KT725299_LBR__2014-08-10=I,I_EBOV_LIBR10037_KT725311_LBR__2014-08-10=I,I_EBOV_LIBR10040_KT725314_LBR__2014-08-04=I,I_EBOV_LIBR10042_KT725261_LBR__2014-08-04=I,I_EBOV_LIBR10047_KT725345_LBR_Margibi_2014-10-01=I,I_EBOV_LIBR10048_KT725361_LBR__2014-10-01=I,I_EBOV_LIBR10050_KT725270_LBR__2014-10-01=I,I_EBOV_LIBR10051_KT725368_LBR__2014-10-01=I,I_EBOV_LIBR10052_KT725258_LBR__2014-10-01=I,I_EBOV_LIBR10053_KR006963_LBR__2014-10-01=I,I_EBOV_LIBR10054_KR006964_LBR_Bomi_2014-09-23=I,I_EBOV_LIBR10055_KT725340_LBR_Bomi_2014-09-23=I,I_EBOV_LIBR10056_KT725276_LBR_Margibi_2014-09-23=I,I_EBOV_LIBR10060_KT725357_LBR_Montserrado_2014-09-23=I,I_EBOV_LIBR10061_KT725376_LBR_Montserrado_2014-09-23=I,I_EBOV_LIBR10062_KT725359_LBR__2014-09-23=I,I_EBOV_LIBR10065_KT725298_LBR__2014-09-21=I,I_EBOV_LIBR10066_KT725379_LBR_Montserrado_2014-09-20=I,I_EBOV_LIBR10071_KT725308_LBR_Montserrado_2014-09-20=I,I_EBOV_LIBR10072_KT725307_LBR_Montserrado_2014-09-20=I,I_EBOV_LIBR10074_KT725325_LBR__2014-09-20=I,I_EBOV_LIBR10076_KT725334_LBR__2014-09-20=I,I_EBOV_LIBR10077_KT725326_LBR_Margibi_2014-08-26=I,I_EBOV_LIBR10078_KT725297_LBR_GrandBassa_2014-08-26=I,I_EBOV_LIBR10079_KT725309_LBR_GrandBassa_2014-08-26=I,I_EBOV_LIBR10081_KT725339_LBR_Margibi_2014-08-26=I,I_EBOV_LIBR10082_KT725300_LBR_Margibi_2014-08-26=I,I_EBOV_LIBR10086_KT725381_LBR_Margibi_2014-08-26=I,I_EBOV_LIBR10087_KT725346_LBR_Margibi_2014-08-26=I,I_EBOV_LIBR10088_KT725349_LBR_Montserrado_2014-08-26=I,I_EBOV_LIBR10089_KT725377_LBR__2014-08-17=I,I_EBOV_LIBR10092_KT725380_LBR__2014-08-17=I,I_EBOV_LIBR10093_KT725363_LBR_Nimba_2014-08-17=I,I_EBOV_LIBR10098_KT725383_LBR__2014-08-17=I,I_EBOV_LIBR10100_KT725286_LBR__2014-08-22=I,I_EBOV_LIBR10101_KT725331_LBR__2014-08-22=I,I_EBOV_LIBR10103_KT725338_LBR_Nimba_2014-08-20=I,I_EBOV_LIBR10106_KT725337_LBR_Nimba_2014-08-20=I,I_EBOV_LIBR10110_KT725387_LBR__2014-08-20=I,I_EBOV_LIBR10112_KT725365_LBR_RiverGee_2014-08-20=I,I_EBOV_LIBR10113_KT725367_LBR__2014-08-20=I,I_EBOV_LIBR10118_KT725364_LBR_Montserrado_2014-08-24=I,I_EBOV_LIBR10127_KT725272_LBR_Bong_2014-08-22=I,I_EBOV_LIBR10128_KT725355_LBR_Montserrado_2014-08-30=I,I_EBOV_LIBR10130_KT725343_LBR_Montserrado_2014-09-01=I,I_EBOV_LIBR10132_KT725255_LBR_Margibi_2014-09-08=I,I_EBOV_LIBR10135_KT725260_LBR__2014-09-07=I,I_EBOV_LIBR10136_KT725263_LBR__2014-09-09=I,I_EBOV_LIBR10137_KT725385_LBR__2014-09-09=I,I_EBOV_LIBR10139_KT725265_LBR__2014-09-09=I,I_EBOV_LIBR10144_KT725271_LBR__2014-09-20=I,I_EBOV_LIBR10145_KT725362_LBR__2014-09-20=I,I_EBOV_LIBR10148_KT725295_LBR_Nimba_2014-09-20=I,I_EBOV_LIBR10151_KT725317_LBR__2014-09-09=I,I_EBOV_LIBR10154_KT725318_LBR_Montserrado_2014-09-13=I,I_EBOV_LIBR10155_KT725296_LBR_GrandBassa_2014-09-13=I,I_EBOV_LIBR10156_KT725352_LBR_GrandBassa_2014-09-13=I,I_EBOV_LIBR10168_KT725353_LBR__2014-09-20=I,I_EBOV_LIBR10169_KT725382_LBR__2014-08-24=I,I_EBOV_LIBR10170_KT725350_LBR_Montserrado_2014-08-17=I,I_EBOV_LIBR10172_KT725289_LBR__2014-09-01=I,I_EBOV_LIBR10179_KT725375_LBR_Montserrado_2014-10-11=I,I_EBOV_LIBR10180_KT725391_LBR_Montserrado_2014-10-11=I,I_EBOV_LIBR10187_KT725392_LBR__2014-08-19=I,I_EBOV_LIBR10195_KT725264_LBR__2014-08-26=I,I_EBOV_LIBR10196_KT725283_LBR__2014-08-26=I,I_EBOV_LIBR10201_KT725306_LBR_Montserrado_2014-08-27=I,I_EBOV_LIBR10202_KT725356_LBR_Montserrado_2014-08-27=I,I_EBOV_LIBR10204_KT725281_LBR__2014-08-27=I,I_EBOV_LIBR10205_KT725351_LBR_Montserrado_2014-09-19=I,I_EBOV_LIBR10208_KT725329_LBR_Montserrado_2014-09-19=I,I_EBOV_LIBR10209_KT725371_LBR_Montserrado_2014-09-19=I,I_EBOV_LIBR10210_KT725321_LBR_Montserrado_2014-09-19=I,I_EBOV_LIBR10212_KT725373_LBR__2014-09-19=I,I_EBOV_LIBR10217_KT725323_LBR__2014-09-29=I,I_EBOV_LIBR10218_KT725284_LBR__2014-09-29=I,I_EBOV_LIBR10222_KT725305_LBR_GrandBassa_2014-09-26=I,I_EBOV_LIBR10223_KT725301_LBR_Montserrado_2014-09-26=I,I_EBOV_LIBR10224_KT725302_LBR_Montserrado_2014-09-26=I,I_EBOV_LIBR10226_KT725304_LBR_Montserrado_2014-09-26=I,I_EBOV_LIBR10230_KT725354_LBR_Montserrado_2014-09-26=I,I_EBOV_LIBR10237_KT725275_LBR__2014-07-11=I,I_EBOV_LIBR10238_KT725322_LBR__2014-07-18=I,I_EBOV_LIBR10239_KT725324_LBR__2014-07-19=I,I_EBOV_LIBR10240_KT725320_LBR__2014-06-24=I,I_EBOV_LIBR10241_KT725262_LBR__2014-06-25=I,I_EBOV_LIBR10245_KT725332_LBR__2014-07-01=I,I_EBOV_LIBR10248_KT725277_LBR__2014-07-14=I,I_EBOV_LIBR10249_KT725388_LBR__2014-07-04=I,I_EBOV_LIBR10250_KT725360_LBR__2014-06-23=I,I_EBOV_LIBR10251_KT725319_LBR_GrandKru_2014-09-15=I,I_EBOV_LIBR10252_KT725266_LBR_GrandKru_2014-09-15=I,I_EBOV_LIBR10253_KT725282_LBR_Margibi_2014-09-16=I,I_EBOV_LIBR10254_KT725268_LBR__2014-10-02=I,I_EBOV_LIBR10255_KT725269_LBR_Bong_2014-10-02=I,I_EBOV_LIBR10261_KT725287_LBR_Sinoe_2014-10-14=I,I_EBOV_LIBR10262_KT725285_LBR_Montserrado_2014-10-16=I,I_EBOV_LIBR10265_KT725312_LBR__2014-10-18=I,I_EBOV_LIBR10267_KT725374_LBR_Montserrado_2014-10-05=I,I_EBOV_LIBR10270_KT725256_LBR__2014-08-26=I,I_EBOV_LIBR10271_KT725347_LBR__2014-08-26=I,I_EBOV_LIBR10277_KT725369_LBR_Margibi_2014-08-26=I,I_EBOV_LIBR10279_KT725341_LBR_Montserrado_2014-08-26=I,I_EBOV_LIBR10306_KT725336_LBR__2014-06-25=I,I_EBOV_LIBR10307_KT725310_LBR_Montserrado_2014-10-02=I,I_EBOV_LIBR11079_KT725372_LBR_Montserrado_2014-10-02=I,I_EBOV_LIBR11177_KT725358_LBR_Margibi_2014-10-05=I,I_EBOV_LIBR1195_KR006961_LBR_Margibi_2015-02-02=I,I_EBOV_LIBR1221_KT725384_LBR_Montserrado_2015-02-04=I,I_EBOV_LIBR1413_KR006962_LBR_Montserrado_2015-02-14=I,I_EBOV_Makona-201403261_KP240932_LBR__2014-09-26=I">
+                                    <taxa id="TaxonSet.2" spec="TaxonSet" alignment="@liberia_mcctreev2"/>
+                                </typeTraitSet>
+                            </typeSet>
+                        </Re>
+                        <becomeUninfectiousRate id="becomeUninfectiousRateSPEpi.t:tree" spec="bdmmprime.parameterization.SkylineVectorParameter" isScalar="false" processLength="@processLengthBDMMPrime.t:tree" skylineValues="@becomeUninfectiousRateEpi.t:tree" timesAreAges="true" typeSet="@typeSetBDMMPrime.t:tree"/>
+                        <samplingProportion id="samplingProportionSPEpi.t:tree" spec="bdmmprime.parameterization.SkylineVectorParameter" isScalar="false" processLength="@processLengthBDMMPrime.t:tree" skylineValues="@samplingProportionEpi.t:tree" typeSet="@typeSetBDMMPrime.t:tree">
+                            <parameter id="samplingProportionChangeTimesEpi.t:tree" spec="parameter.RealParameter" dimension="9" estimate="false" lower="0.0" name="changeTimes">0.083 0.167 0.249 0.332 0.415 0.498 0.581 0.664 0.747</parameter>
+                        </samplingProportion>
+                        <rhoSampling id="rhoSamplingProbSPEpi.t:tree" spec="bdmmprime.parameterization.TimedParameter" processLength="@processLengthBDMMPrime.t:tree" timesAreAges="true" typeSet="@typeSetBDMMPrime.t:tree"/>
+                        <removalProb id="removalProbSPEpi.t:tree" spec="bdmmprime.parameterization.SkylineVectorParameter" processLength="@processLengthBDMMPrime.t:tree" timesAreAges="true" typeSet="@typeSetBDMMPrime.t:tree">
+                            <parameter id="removalProbEpi.t:tree" spec="parameter.RealParameter" estimate="false" lower="0.0" name="skylineValues" upper="1.0">1.0</parameter>
+                        </removalProb>
+                        <migrationRate id="migrationRateSPEpi.t:tree" spec="bdmmprime.parameterization.SkylineMatrixParameter" isScalar="false" processLength="@processLengthBDMMPrime.t:tree" skylineValues="@migrationRateEpi.t:tree" timesAreAges="true" typeSet="@typeSetBDMMPrime.t:tree"/>
+                        <ReAmongDemes id="ReAmongDemesSPEpi.t:tree" spec="bdmmprime.parameterization.SkylineMatrixParameter" isScalar="false" processLength="@processLengthBDMMPrime.t:tree" skylineValues="@ReAmongDemesEpi.t:tree"  typeSet="@typeSetBDMMPrime.t:tree">
+<parameter id="ReAmongDemesChangeTimesEpi.t:tree" spec="parameter.RealParameter" dimension="11" estimate="false" lower="0.0" name="changeTimes">0.0821 0.1643 0.2464 0.3285 0.4107 0.4928 0.5749 0.6571 0.7392 0.8214 0.9035</parameter>
+                        </ReAmongDemes>
+                        <typeSet idref="typeSetBDMMPrime.t:tree"/>
+                        <processLength idref="processLengthBDMMPrime.t:tree"/>
+                    </parameterization>
+                    <parameter id="startTypePriorProbs.t:tree" spec="parameter.RealParameter" dimension="2" estimate="false" lower="0.0" name="startTypePriorProbs" upper="1.0">0.0 1.0</parameter>
+                    <typeTraitSet idref="typeTraitSet.t:tree"/>
+                </distribution>
+                <distribution id="ReAmongDemesEpiPrior.t:tree" spec="bdmmprime.util.priors.ZeroExcludingPrior" x="@ReAmongDemesEpi.t:tree">
+                    <LogNormal id="LogNormalDistributionModel.0" name="distr">
+                        <parameter id="RealParameter.10" spec="parameter.RealParameter" estimate="false" name="M">0.0</parameter>
+                        <parameter id="RealParameter.11" spec="parameter.RealParameter" estimate="false" lower="0.0" name="S" upper="5.0">0.75</parameter>
+                    </LogNormal>
+                </distribution>
+                <distribution id="becomeUninfectiousRateEpiPrior.t:tree" spec="bdmmprime.util.priors.ZeroExcludingPrior" x="@becomeUninfectiousRateEpi.t:tree">
+                    <LogNormal id="LogNormalDistributionModel.1" name="distr">
+                        <parameter id="RealParameter.12" spec="parameter.RealParameter" estimate="false" name="M">3.952</parameter>
+                        <parameter id="RealParameter.13" spec="parameter.RealParameter" estimate="false" lower="0.0" name="S" upper="5.0">0.3</parameter>
+                    </LogNormal>
+                </distribution>
+                <distribution id="migrationRateEpiPrior.t:tree" spec="bdmmprime.util.priors.ZeroExcludingPrior" x="@migrationRateEpi.t:tree">
+                    <LogNormal id="LogNormalDistributionModel.2" name="distr">
+                        <parameter id="RealParameter.14" spec="parameter.RealParameter" estimate="false" name="M">3.952</parameter>
+                        <parameter id="RealParameter.15" spec="parameter.RealParameter" estimate="false" lower="0.0" name="S" upper="5.0">0.45</parameter>
+                    </LogNormal>
+                </distribution>
+                <prior id="processLengthBDMMPrimePrior.t:tree" name="distribution" x="@processLengthBDMMPrime.t:tree">
+                    <OneOnX id="OneOnX.0" name="distr"/>
+                </prior>
+                <distribution id="samplingProportionEpiPrior.t:tree" spec="bdmmprime.util.priors.ZeroExcludingPrior" x="@samplingProportionEpi.t:tree">
+                    <Beta id="Beta.0" name="distr">
+                        <parameter id="RealParameter.16" spec="parameter.RealParameter" estimate="false" name="alpha">2.0</parameter>
+                        <parameter id="RealParameter.17" spec="parameter.RealParameter" estimate="false" name="beta">10.0</parameter>
+                    </Beta>
+                </distribution>
+            </distribution>
+            <distribution id="likelihood" spec="CompoundDistribution" useThreads="true">
+                <distribution id="treeLikelihood.liberia_mcctreev2" spec="fixedtreeanalysis.evolution.likelihood.FixedTreeLikelihood" data="@liberia_mcctreev2" tree="@Tree.t:tree">
+                    <siteModel id="FixedSiteModel.s:liberia_mcctreev2" spec="fixedtreeanalysis.evolution.sitemodel.FixedSiteModel">
+                        <parameter id="RealParameter.0" spec="parameter.RealParameter" estimate="false" lower="0.0" name="mutationRate" upper="1.0">1.0</parameter>
+                        <parameter id="RealParameter.1" spec="parameter.RealParameter" lower="0.0" name="shape" upper="0.0">1.0</parameter>
+                        <parameter id="RealParameter.2" spec="parameter.RealParameter" lower="0.0" name="proportionInvariant" upper="0.0">0.0</parameter>
+                        <substModel id="JC69.s:liberia_mcctreev2" spec="JukesCantor"/>
+                    </siteModel>
+                    <branchRateModel id="FixedClock.c:liberia_mcctreev2" spec="fixedtreeanalysis.evolution.branchratemodel.FixedClockModel">
+                        <parameter id="RealParameter.3" spec="parameter.RealParameter" estimate="false" name="clock.rate">1.0</parameter>
+                    </branchRateModel>
+                </distribution>
+            </distribution>
+        </distribution>
+        <operator id="JointBDMMPrimeSkylineScaleOperator.t:tree" spec="bdmmprime.util.operators.JointSkylineScaleOperator" weight="3.0">
+            <skylineParameter idref="migrationRateSPEpi.t:tree"/>
+            <skylineParameter idref="becomeUninfectiousRateSPEpi.t:tree"/>
+        </operator>
+        <operator id="samplingProportionEpiScaler.t:tree" spec="ScaleOperator" parameter="@samplingProportionEpi.t:tree" weight="3.0"/>
+        <operator id="ReAmongDemesEpiScaler.t:tree" spec="ScaleOperator" parameter="@ReAmongDemesEpi.t:tree" weight="3.0"/>
+        <operator id="migrationRateEpiScaler.t:tree" spec="ScaleOperator" parameter="@migrationRateEpi.t:tree" weight="3.0"/>
+        <operator id="becomeUninfectiousRateEpiScaler.t:tree" spec="ScaleOperator" parameter="@becomeUninfectiousRateEpi.t:tree" weight="3.0"/>
+        <logger id="tracelog" spec="Logger" fileName="$(filebase).log" logEvery="1000" model="@posterior" sanitiseHeaders="true" sort="smart">
+            <log idref="posterior"/>
+            <log idref="likelihood"/>
+            <log idref="prior"/>
+            <log idref="treeLikelihood.liberia_mcctreev2"/>
+            <log id="startTypePosteriorProbsLogger.t:tree" spec="bdmmprime.util.StartTypePosteriorProbsLogger" bdmmTreePrior="@BDMMPrime.t:tree"/>
+            <log idref="samplingProportionSPEpi.t:tree"/>
+            <log idref="ReAmongDemesSPEpi.t:tree"/>
+            <log idref="migrationRateSPEpi.t:tree"/>
+            <log idref="becomeUninfectiousRateSPEpi.t:tree"/>
+        </logger>
+        <logger id="screenlog" spec="Logger" logEvery="1000">
+            <log idref="posterior"/>
+            <log id="ESS.0" spec="util.ESS" arg="@posterior"/>
+            <log idref="likelihood"/>
+            <log idref="prior"/>
+        </logger>
+        <logger id="treelog.t:tree" spec="Logger" fileName="$(filebase).trees" logEvery="1000" mode="tree">
+            <log id="TreeWithMetaDataLogger.t:tree" spec="beast.base.evolution.TreeWithMetaDataLogger" tree="@Tree.t:tree"/>
+        </logger>
+        <logger id="typedTreeLogger.t:tree" spec="bdmmprime.util.OptionalLogger" fileName="$(filebase).$(tree).typed.trees" logEvery="1000" mode="tree">
+            <log id="typeMappedTree.t:tree" spec="bdmmprime.mapping.TypeMappedTree" bdmmDistrib="@BDMMPrime.t:tree" mapOnInit="false" remapOnLog="true" startTypePriorProbs="@startTypePriorProbs.t:tree" typeLabel="type" typeTraitSet="@typeTraitSet.t:tree" untypedTree="@Tree.t:tree"/>
+        </logger>
+        <logger id="nodeTypedTreeLogger.t:tree" spec="bdmmprime.util.OptionalLogger" fileName="$(filebase).$(tree).typed.node.trees" logEvery="1000" mode="tree">
+            <log id="nodeTypedTree.t:tree" spec="bdmmprime.mapping.TypedNodeTreeLogger" typedTree="@typeMappedTree.t:tree"/>
+        </logger>
+        <logger id="trajLogger.t:tree" spec="bdmmprime.util.OptionalLogger" fileName="$(filebase).$(tree).traj" logEvery="1000">
+            <log id="typedTraj.t:tree" spec="bdmmprime.trajectories.SampledTrajectory" bdmmDistrib="@BDMMPrime.t:tree" startTypePriorProbs="@startTypePriorProbs.t:tree" typeMappedTree="@typeMappedTree.t:tree" useTauLeaping="true"/>
+        </logger>
+        <operatorschedule id="OperatorSchedule" spec="OperatorSchedule"/>
+    </run>
+
+</beast>
