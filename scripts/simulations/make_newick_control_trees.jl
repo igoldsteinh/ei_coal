@@ -22,5 +22,5 @@ for i in 2:50
     reverse_samp_lin = vcat(50)
     newick_tree = construct_newick_tree(coal_and_samp_tree, reverse_samp_lin)
     # save the newick tree as .tree
-    write(datadir("sim_data", string("control_iso50_simnum", i, ".tree")), newick_tree)
+    write(datadir("sim_data", "control_trees", string("control_iso50_simnum", i, ".tree")), newick_tree)
 end
