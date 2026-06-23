@@ -295,3 +295,4 @@ new_names <- c(".chain", "e0", "i0", "gamma", "nu",
                "rw_sigma")
 names(mcmc_df) <- new_names
 write_csv(mcmc_df, here::here("scripts", "phydynR", "phydynR_ebola_res.csv"))
+# note this file is very large, so it is not stored on the repo
