@@ -71,3 +71,41 @@ box_plot_ode <- imp_res %>%
 # save plot
 ggsave(here::here("figures", "ode_vs_varODE.pdf"), box_plot_ode, width = 10, height = 6)
 
+
+# ODE plot ----------------------------------------------------------------
+
+ode_frame <- read_csv(here::here("data", "compare_data", "compare_ei_ode_state_frame.csv"))
+stoch_frame <- read_csv(here::here("data", "compare_data", "compare_ei_state_frame.csv"))
+
+set.seed(14578)
+randnums <- sample.int(1000, 10)
+subset_stoch_frame <- stoch_frame %>% filter(sim %in% randnums) %>%
+  mutate(Type = "Stoch") %>%
+  dplyr::select(time, E, I, Type, sim)
+ode_frame <- ode_frame %>% 
+  mutate(Type = "ODE", 
+         sim = 101) %>%
+  dplyr::select(-reverse_time)
+
+count_plot <- ode_frame %>%
+  bind_rows(subset_stoch_frame) %>% 
+  group_by(sim, Type) %>%
+  pivot_longer(-c(sim, Type,time),  names_to = "Compartment") %>%
+  filter(Type != "ODE") %>%
+  ggplot(aes(x = time, y = value, group = sim, color = Type)) + 
+  geom_line(alpha = 0.5) +
+  geom_line(data = ode_frame %>% pivot_longer(-c(sim, Type,time),  names_to = "Compartment"),
+            aes(x = time, y = value, group = sim, color = Type)) +
+  facet_wrap(vars(Compartment)) + 
+  xlab("Forward Time") + 
+  ylab("Counts") + 
+  theme_minimal() +
+  # scale_fill_grey(  start = 0.4,
+  #                   end = 0.8) +
+  theme(text = element_text(size = 20),
+        legend.position = c(0.75,0.85),
+        legend.background = element_blank(),
+        panel.grid.minor = element_blank()) +
+  ggtitle("ODE vs Stochastic EI Trajectories")
+ggsave(here::here("figures", "odeEI_vs_stochEI.pdf"), count_plot, width = 10, height = 6)
+
