@@ -18,6 +18,32 @@ my_theme <- list(
   guides(fill = guide_legend(reverse = TRUE)),
   theme_minimal(),
   theme())
+
+# insert synthetic rows every gap_size units wherever new_time jumps by more than
+# gap_size, carrying forward the earlier row's values, so plots don't show big
+# gaps between dots. each new_time has one row per .width (the CI ribbons), so
+# gaps are computed within each .width separately and all rows for a given
+# synthetic time are filled together
+fill_new_time_gaps <- function(df, gap_size = 1) {
+  df %>%
+    group_by(.width) %>%
+    group_modify(~ {
+      d <- arrange(.x, new_time)
+      out <- d
+      for (i in seq_len(nrow(d) - 1)) {
+        gap <- d$new_time[i + 1] - d$new_time[i]
+        n_fill <- floor((gap - 1e-9) / gap_size)
+        if (n_fill > 0) {
+          fill_times <- d$new_time[i] + gap_size * seq_len(n_fill)
+          new_rows <- d[rep(i, length(fill_times)), ]
+          new_rows$new_time <- fill_times
+          out <- bind_rows(out, new_rows)
+        }
+      }
+      arrange(out, new_time)
+    }) %>%
+    ungroup()
+}
 sim_num = 1
 lump_val = 7
 sim_dict = read_csv(here::here("data",
@@ -177,7 +203,8 @@ sim_val = 2
 my_posterior_rt_sim2 <- read_csv(here::here("results", 
                                             "my_generated_quantities", 
                                             "ei_cdf_sim2_allseeds_rt_quantiles.csv")) %>%
-  filter(sim_num_val == sim_num_val_val)
+  filter(sim_num_val == sim_num_val_val) %>%
+  fill_new_time_gaps()
 
 sim_name = sim_dict %>%
   filter(sim_id == sim_val) %>%
@@ -203,7 +230,8 @@ sim_val = 4
 my_posterior_rt_sim4 <- read_csv(here::here("results", 
                                             "my_generated_quantities", 
                                             "ei_cdf_sim4_allseeds_rt_quantiles.csv")) %>%
-  filter(sim_num_val == sim_num_val_val)
+  filter(sim_num_val == sim_num_val_val) %>%
+  fill_new_time_gaps()
 
 sim_name = sim_dict %>%
   filter(sim_id == sim_val) %>%
@@ -230,7 +258,8 @@ sim_val = 6
 my_posterior_rt_sim6 <- read_csv(here::here("results", 
                                             "my_generated_quantities", 
                                             "ei_cdf_sim6_allseeds_rt_quantiles.csv")) %>%
-  filter(sim_num_val == sim_num_val_val)
+  filter(sim_num_val == sim_num_val_val) %>%
+  fill_new_time_gaps()
 sim_name = sim_dict %>%
   filter(sim_id == sim_val) %>%
   pull(sim)
@@ -254,7 +283,8 @@ sim_val = 8
 my_posterior_rt_sim8 <- read_csv(here::here("results", 
                                             "my_generated_quantities", 
                                             "ei_cdf_sim8_allseeds_rt_quantiles.csv")) %>%
-  filter(sim_num_val == sim_num_val_val)
+  filter(sim_num_val == sim_num_val_val) %>%
+  fill_new_time_gaps()
 sim_name = sim_dict %>%
   filter(sim_id == sim_val) %>%
   pull(sim)
@@ -278,7 +308,8 @@ sim_val = 10
 my_posterior_rt_sim10 <- read_csv(here::here("results", 
                                             "my_generated_quantities", 
                                             "ei_cdf_sim10_allseeds_rt_quantiles.csv")) %>%
-  filter(sim_num_val == sim_num_val_val)
+  filter(sim_num_val == sim_num_val_val) %>%
+  fill_new_time_gaps()
 sim_name = sim_dict %>%
   filter(sim_id == sim_val) %>%
   pull(sim)
@@ -302,7 +333,8 @@ sim_val = 12
 my_posterior_rt_sim12 <- read_csv(here::here("results", 
                                             "my_generated_quantities", 
                                             "ei_cdf_sim12_allseeds_rt_quantiles.csv")) %>%
-  filter(sim_num_val == sim_num_val_val)
+  filter(sim_num_val == sim_num_val_val) %>%
+  fill_new_time_gaps()
 
 sim_name = sim_dict %>%
   filter(sim_id == sim_val) %>%
