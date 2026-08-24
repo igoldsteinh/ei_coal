@@ -105,12 +105,12 @@ assumes that est_times includes alpha_times, coal_times and samp_times
 function sample_internal_nodesv2!(sampled_node_states::Vector{Int}, num_lineages::Int, est_times::AbstractVector{Float64}, coal_times::AbstractVector{Float64}, 
     init_dist::AbstractVector{Float64}, start_time::Float64, last_samp_time::Float64, reverse_samp_times::AbstractVector{Float64}, 
     reverse_samp_lin::AbstractVector, alpha_times::AbstractVector{Float64}, gamma::Float64, alpha_vec::AbstractVector{Float64}, 
-    reverse_E::AbstractVector{Float64}, reverse_I::AbstractVector{Float64}, cache_dict::Dict{Int, Any}, mat_size::Int, ks_dict::Dict{Int, Any}, 
-    expv_cache_dict::Dict{Int, Any}, A_matrix::AbstractMatrix{Float64},  L_matrix::AbstractMatrix{Float64}, 
-    new_inverse_term::AbstractMatrix{Float64},  pdf::AbstractVector{Float64}, my_method, 
-    temp_vec::AbstractVector{Float64}, L_vec::AbstractVector{Float64}, my_vec::AbstractVector{Float64}, 
+    reverse_E::AbstractVector{Float64}, reverse_I::AbstractVector{Float64}, cache_dict::Dict{Int, T1}, mat_size::Int, ks_dict::Dict{Int, T2},
+    expv_cache_dict::Dict{Int, T3}, A_matrix::AbstractMatrix{Float64},  L_matrix::AbstractMatrix{Float64},
+    new_inverse_term::AbstractMatrix{Float64},  pdf::AbstractVector{Float64}, my_method,
+    temp_vec::AbstractVector{Float64}, L_vec::AbstractVector{Float64}, my_vec::AbstractVector{Float64},
     ll_vec::AbstractVector{Float64},
-    tstep_cutoff)
+    tstep_cutoff) where {T1, T2, T3}
     # initialize many things
     # initialize the active lineages and start and est times
     active_lineages = num_lineages

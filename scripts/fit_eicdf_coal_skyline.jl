@@ -102,7 +102,7 @@ q_cur = log.(natural_vars) .- vcat(log_prior_means, repeat([log_rt_init_mean], l
 l_cur = log_lik
 Random.seed!(sim_num)
 @time my_samples, my_states = sample_nodescdf_andparams_skyline!(q_cur, l_cur, cholC, log_prior_means, num_lineages, est_times, coal_times, 
-    est_states, start_time,last_samp_time, reverse_samp_times, reverse_samp_lin, alpha_times, mat_size, curr_lin,
+    est_states, start_time,last_samp_time, reverse_samp_times, reverse_samp_lin, alpha_times, comp_times, mat_size, curr_lin,
      num_samples, discard_initial, num_thin, tstep_cutoff)
 # process samples
 rt_columns = ["rt_t_values[$i]" for i in 0:(length(alpha_times)-1)]

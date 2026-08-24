@@ -312,7 +312,7 @@ function calc_coal_pdf_vecform_krylov_simplev2(A_matrix::AbstractMatrix{Float64}
     # calculate first action of exponential vector
     delta_t = coal_time - start_time
     my_vec .= @view L_matrix[:,coal_type]
-    if any(isnan.(A_matrix))|| any(isinf.(A_matrix)) || any(isnan.(my_vec)) || any(isinf.(my_vec))
+    if any(isnan, A_matrix) || any(isinf, A_matrix) || any(isnan, my_vec) || any(isinf, my_vec)
         my_vec .= 0.0
         return my_vec
     end
@@ -434,8 +434,11 @@ preallocate_caches(sizes, method)
 preallocate caches for all sizes of A matrices
 """
 function preallocate_caches(sizes, method)
-    caches = Dict{Int, Any}()
-    for (cols) in sizes
+    first_size = first(sizes)
+    example = ExponentialUtilities.alloc_mem(zeros(first_size, first_size), method)
+    caches = Dict{Int, typeof(example)}()
+    caches[first_size] = example
+    for cols in Iterators.drop(sizes, 1)
         A_matrix = zeros(cols, cols)  # Temporary matrix for cache allocation
         caches[cols] = ExponentialUtilities.alloc_mem(A_matrix, method)
     end
@@ -446,11 +449,13 @@ preallocate_krylov(sizes)
 preallocate krylove spaces for all sizes of A matrices
 """
 function preallocate_krylov(sizes)
-    k_space = Dict{Int, Any}()
-    for (cols) in sizes
-        state = zeros(cols)  # Temporary matrix for cache allocation
-        krylovdim = 30 # default
-        k_space[cols] = ExponentialUtilities.KrylovSubspace{Float64}(length(state), min(krylovdim, length(state)))
+    krylovdim = 30 # default
+    first_size = first(sizes)
+    example = ExponentialUtilities.KrylovSubspace{Float64}(first_size, min(krylovdim, first_size))
+    k_space = Dict{Int, typeof(example)}()
+    k_space[first_size] = example
+    for cols in Iterators.drop(sizes, 1)
+        k_space[cols] = ExponentialUtilities.KrylovSubspace{Float64}(cols, min(krylovdim, cols))
     end
     return k_space
 end
@@ -458,8 +463,11 @@ end
 preallocate expv cache for all sizes of A matrices
 """
 function preallocate_expv_cache(sizes)
-    expv_space = Dict{Int, Any}()
-    for (cols) in sizes
+    first_size = first(sizes)
+    example = ExponentialUtilities.ExpvCache{Float64}(first_size)
+    expv_space = Dict{Int, typeof(example)}()
+    expv_space[first_size] = example
+    for cols in Iterators.drop(sizes, 1)
         expv_space[cols] = ExponentialUtilities.ExpvCache{Float64}(cols)
     end
     return expv_space

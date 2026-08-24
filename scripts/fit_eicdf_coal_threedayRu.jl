@@ -98,7 +98,7 @@ q_cur = log.(natural_vars) .- vcat(log_prior_means, repeat([log_rt_init_mean], l
 l_cur = log_lik
 Random.seed!(sim_num)
 @time my_samples, my_states = sample_nodescdf_andparams!(q_cur, l_cur, cholC, log_prior_means, num_lineages, est_times, coal_times, 
-    est_states, start_time,last_samp_time, reverse_samp_times, reverse_samp_lin, alpha_times, mat_size, curr_lin,
+    est_states, start_time,last_samp_time, reverse_samp_times, reverse_samp_lin, alpha_times, comp_times, mat_size, curr_lin,
      num_samples, discard_initial, num_thin, tstep_cutoff)
 # 2361.046180 seconds (985.12 M allocations: 203.055 GiB, 0.45% gc time, 0.07% compilation time)
 # 17863.506122 seconds (2.23 G allocations: 1.383 TiB, 0.44% gc time, 0.01% compilation time) for 100 lineages

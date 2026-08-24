@@ -100,7 +100,7 @@ discard_initial = 0
 # sample
 Random.seed!(123467)
 @time my_samples, my_states = sample_nodescdf_andparams!(q_cur, l_cur, cholC, log_prior_means, num_lineages, est_times, coal_times, 
-    est_states, start_time,last_samp_time, reverse_samp_times, reverse_samp_lin, alpha_times, mat_size, curr_lin,
+    est_states, start_time,last_samp_time, reverse_samp_times, reverse_samp_lin, alpha_times, comp_times, mat_size, curr_lin,
      num_samples, discard_initial, num_thin, tstep_cutoff)
 
 # create dataframe of results

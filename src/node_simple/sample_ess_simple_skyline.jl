@@ -23,8 +23,8 @@ function sample_ess_simple_skyline(q_cur::Vector{Float64}, l_cur::Float64, cholC
     last_samp_time::Float64, reverse_samp_times::Vector{Float64}, reverse_samp_lin::AbstractVector, 
     alpha_times::Vector{Float64}, ll_vec::Vector{Float64}, lik_vec::Vector{Vector{Float64}}, A_matrix::Matrix{Float64}, 
     L_matrix::Matrix{Float64}, my_vec::Vector{Float64}, my_method, cache_dict, temp::Vector{Float64}, L_vec::Vector{Float64}, 
-    ks_dict, expv_cache_dict, mat_size::Int, E_traj::Vector{Float64}, I_traj::Vector{Float64}, reverse_E::Vector{Float64}, 
-    reverse_I::Vector{Float64}, total_pop::Vector{Float64}, alpha_vec::Vector{Float64}, lin_E::Vector{Float64}, 
+    ks_dict, expv_cache_dict, mat_size::Int, comp_times::Vector{Float64}, E_traj::Vector{Float64}, I_traj::Vector{Float64}, reverse_E::Vector{Float64},
+    reverse_I::Vector{Float64}, total_pop::Vector{Float64}, alpha_vec::Vector{Float64}, lin_E::Vector{Float64},
     lin_I::Vector{Float64}, pop_big_enough::Vector{Float64}, tstep_cutoff)
     if isinf(l_cur)
         print("l_cur")
@@ -66,9 +66,9 @@ function sample_ess_simple_skyline(q_cur::Vector{Float64}, l_cur::Float64, cholC
     # the other rts, trying to save space 
     alpha_vec[2:end] .= exp.(log_prior_means[6] .+ q[7:end]) .* nu
     calc_ei_trajectoriesv2!(comp_times, alpha_times, alpha_vec, gamma, nu, e0, i0, E_traj, I_traj)
-    reverse_E[1:length(E_traj)] .= reverse(E_traj)
+    reverse_E[1:length(E_traj)] .= @view E_traj[end:-1:1]
     reverse_E[end] = e0
-    reverse_I[1:length(I_traj)] .= reverse(I_traj)
+    reverse_I[1:length(I_traj)] .= @view I_traj[end:-1:1]
     reverse_I[end] = i0
     total_pop .= reverse_E .+ reverse_I
 
@@ -99,9 +99,9 @@ function sample_ess_simple_skyline(q_cur::Vector{Float64}, l_cur::Float64, cholC
         # the other rts, trying to save space 
         alpha_vec[2:end] .= exp.(log_prior_means[6] .+ q[7:end]) .* nu
         calc_ei_trajectoriesv2!(comp_times, alpha_times, alpha_vec, gamma, nu, e0, i0, E_traj, I_traj)
-        reverse_E[1:length(E_traj)] .= reverse(E_traj)
+        reverse_E[1:length(E_traj)] .= @view E_traj[end:-1:1]
         reverse_E[end] = e0
-        reverse_I[1:length(I_traj)] .= reverse(I_traj)
+        reverse_I[1:length(I_traj)] .= @view I_traj[end:-1:1]
         reverse_I[end] = i0
         total_pop .= reverse_E .+ reverse_I
 

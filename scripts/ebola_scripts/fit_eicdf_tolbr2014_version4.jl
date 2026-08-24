@@ -10,10 +10,7 @@ using MCMCChains
 using ExponentialUtilities
 using DynamicPPL
 using StatsBase
-using Plots
 
-# helper functions for processing turing model
-include(srcdir("phylo_ww.jl"))
 # calculates the solutions to the EI ode system
 include(srcdir("calc_ei_trajectoriesv2.jl"))
 # needed to calcluate the solutions to the EI ode system
@@ -77,7 +74,8 @@ cholC = create_cholc_matrix(log_gamma_sd, log_nu_sd, log_e0_sd, log_i0_sd, log_r
 Random.seed!(123467)
 init_rw_sigma, init_rts, init_gamma, init_nu, init_e0, init_i0 = sample_initial_params_simple(log_rw_mean, log_rw_sigma_sd, log_rt_init_mean, log_rt_init_sd,
     log_gamma_mean, log_gamma_sd, log_nu_mean, log_nu_sd, log_e0_mean, log_e0_sd, log_i0_mean, log_i0_sd, 
-  alpha_times, curr_lin)
+  alpha_times, comp_times, curr_lin)
+
 alpha_vec = init_rts .* init_nu
 E_traj = zeros(length(comp_times))
 I_traj = zeros(length(comp_times))
@@ -99,17 +97,19 @@ est_states = new_sampled_node_states
 natural_vars = vcat(init_gamma, init_nu, init_e0, init_i0,  init_rw_sigma, init_rts[1], init_rts[2:end])
 q_cur = log.(natural_vars) .- vcat(log_prior_means, repeat([log_rt_init_mean], length(init_rts)-1))
 l_cur = log_lik
-num_samples = 800000 
-num_thin = 80
+num_samples = 1000 
+num_thin = 10
 discard_initial = 0
 # discard_initial = Int(round(num_samples/2))
 Random.seed!(123467)
 @time my_samples, my_states = sample_nodescdf_andparams!(q_cur, l_cur, cholC, log_prior_means, num_lineages, est_times, coal_times, 
-    est_states, start_time,last_samp_time, reverse_samp_times, reverse_samp_lin, alpha_times, mat_size, curr_lin,
+    est_states, start_time,last_samp_time, reverse_samp_times, reverse_samp_lin, alpha_times, comp_times, mat_size, curr_lin,
      num_samples, discard_initial, num_thin, tstep_cutoff)
 # for 200000 56510.607332 seconds (12.26 G allocations: 8.137 TiB, 1.02% gc time, 0.00% compilation time)
 # for 600000 175356.195725 seconds (36.55 G allocations: 24.348 TiB, 1.56% gc time, 0.00% compilation time)
 # for 1000 263.48 seconds
+# fix #2 229.037802 seconds (66.70 M allocations: 36.460 GiB, 0.87% gc time, 0.71% compilation time)
+
 # well lets see what it looks like I guess 
 rt_columns = ["rt_t_values[$i]" for i in 0:(length(alpha_times)-1)]
 other_columns = [:gamma, :nu, :e0, :i0, :rw_sigma]
